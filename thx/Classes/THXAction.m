@@ -40,8 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong           ) NSArray< THXTask * > * tasks;
 @property( atomic, readwrite, strong, nullable ) NSError              * error;
 
-- ( NSError * )errorWithDescription: ( NSString * )description;
-
 @end
 
 NS_ASSUME_NONNULL_END
@@ -56,7 +54,8 @@ NS_ASSUME_NONNULL_END
     c.name  = @"setup";
     c.tasks =
     @[
-        [ [ THXTask alloc ] initWithShellScript: @"true"  step: c.name status: THXStatusInstall ],
+        [ [ THXTask alloc ] initWithShellScript: @"brew install ccache" step: c.name status: THXStatusInstall ],
+        [ [ THXTask alloc ] initWithShellScript: @"brew install macmade/tap/xcode-coveralls" step: c.name status: THXStatusInstall recoverTask: [ [ THXTask alloc ] initWithShellScript: @"brew upgrade xcode-coveralls" step: c.name status: THXStatusInstall ] ],
         [ [ THXTask alloc ] initWithShellScript: @"false" step: c.name status: THXStatusInstall ]
     ];
     
@@ -114,11 +113,6 @@ NS_ASSUME_NONNULL_END
     return self;
 }
 
-- ( NSError * )errorWithDescription: ( NSString * )description
-{
-    return [ NSError errorWithDomain: @"com.xs-THXTask" code: 0 userInfo: @{ NSLocalizedDescriptionKey : description } ];
-}
-
 #pragma mark - THXRunableObject
 
 - ( BOOL )runWithArguments: ( THXArguments * )args
@@ -134,7 +128,7 @@ NS_ASSUME_NONNULL_END
     
     for( task in self.tasks )
     {
-        [ [ THX sharedInstance ] printMessage: @"Executing action:" step: self.name status: THXStatusExecute color: THXColorNone ];
+        [ [ THX sharedInstance ] printMessage: @"Executing action..." step: self.name status: THXStatusExecute color: THXColorNone ];
         
         if( [ task runWithArguments: args ] == NO )
         {

@@ -23,29 +23,25 @@
  ******************************************************************************/
 
 /*!
- * @file        main.m
+ * @file        THXObject.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import <Cocoa/Cocoa.h>
-#import "THXArguments.h"
-#import "THX.h"
+#import "THXObject.h"
 
-    #include <stdlib.h>
-#include <curses.h>
-#include <term.h>
+NS_ASSUME_NONNULL_BEGIN
 
+@interface THXObject()
 
-int main( int argc, const char * argv[] )
+@end
+
+NS_ASSUME_NONNULL_END
+
+@implementation THXObject
+
+- ( NSError * )errorWithDescription: ( NSString * )description
 {
-    THXArguments * args;
-    BOOL           success;
-    
-    @autoreleasepool
-    {
-        args    = [ [ THXArguments alloc ] initWithArguments: argv count: argc ];
-        success = [ [ THX sharedInstance ] runWithArguments: args ];
-        
-        return ( success ) ? EXIT_SUCCESS : EXIT_FAILURE;
-    }
+    return [ NSError errorWithDomain: [ NSString stringWithFormat: @"com.xs-labs.thx.%@", NSStringFromClass( [ self class ] ) ] code: 0 userInfo: @{ NSLocalizedDescriptionKey : description } ];
 }
+
+@end

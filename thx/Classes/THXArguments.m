@@ -42,7 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong           ) NSString              * executable;
 
 - ( void )parse: ( NSArray< NSString * > * )args;
-- ( NSError * )errorWithDescription: ( NSString * )description;
 
 @end
 
@@ -164,11 +163,6 @@ NS_ASSUME_NONNULL_END
     
     self.actions = [ NSArray arrayWithArray: actions ];
     self.schemes = [ NSArray arrayWithArray: schemes ];
-}
-
-- ( NSError * )errorWithDescription: ( NSString * )description
-{
-    return [ NSError errorWithDomain: @"com.xs-labs.thx.THXArguments" code: 0 userInfo: @{ NSLocalizedDescriptionKey : description } ];
 }
 
 - ( NSString * )description

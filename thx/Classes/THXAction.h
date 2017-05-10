@@ -28,13 +28,14 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "THXObject.h"
 #import "THXRunableObject.h"
 
 @class THXTask;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXAction: NSObject < THXRunableObject >
+@interface THXAction: THXObject < THXRunableObject >
 
 @property( atomic, readonly ) NSString             * name;
 @property( atomic, readonly ) NSArray< THXTask * > * tasks;

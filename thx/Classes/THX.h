@@ -28,6 +28,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "THXObject.h"
 #import "THXRunableObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -45,7 +46,8 @@ typedef NS_ENUM( NSInteger, THXStatus )
     THXStatusIdea,
     THXStatusSettings,
     THXStatusSecurity,
-    THXStatusExecute
+    THXStatusExecute,
+    THXStatusSearch
 };
 
 typedef NS_ENUM( NSInteger, THXColor )
@@ -61,9 +63,10 @@ typedef NS_ENUM( NSInteger, THXColor )
     THXColorCyan
 };
 
-@interface THX: NSObject < THXRunableObject >
+@interface THX: THXObject < THXRunableObject >
 
 @property( atomic, readonly ) NSString * version;
+@property( atomic, readonly ) BOOL       terminalSupportsColors;
 
 + ( instancetype )sharedInstance;
 
@@ -75,6 +78,8 @@ typedef NS_ENUM( NSInteger, THXColor )
 - ( void )printErrorMessage: ( NSString * )message step: ( nullable NSString * )step;
 - ( void )printMessage: ( NSString * )message status: ( THXStatus )status color: ( THXColor )color;
 - ( void )printMessage: ( NSString * )message step: ( nullable NSString * )step status: ( THXStatus )status color: ( THXColor )color;
+- ( BOOL )checkEnvironment;
+- ( BOOL )checkIfCommandIsAvailable: ( NSString * )command;
 
 @end
 

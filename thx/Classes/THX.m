@@ -31,6 +31,8 @@
 #import "THXArguments.h"
 #import "THXAction.h"
 #import "THXPair.h"
+#include <curses.h>
+#include <term.h>
 
 #define THX_COLOR_NONE      "\x1B[0m"
 #define THX_COLOR_BLACK     "\x1B[30m"
@@ -202,6 +204,18 @@ NS_ASSUME_NONNULL_END
     );
 }
 
+- ( BOOL )terminalSupportsColors
+{
+    int err;
+    
+    if( setupterm( NULL, 1, &err ) == ERR )
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
 - ( NSString * )stringForStatus: ( THXStatus )status
 {
     switch( status )
@@ -218,11 +232,17 @@ NS_ASSUME_NONNULL_END
         case THXStatusSettings: return @"⚙️";
         case THXStatusSecurity: return @"🔑";
         case THXStatusExecute:  return @"🚦";
+        case THXStatusSearch:   return @"🔍";
     }
 }
 
 - ( NSString * )stringForColor: ( THXColor )color
 {
+    if( self.terminalSupportsColors == NO )
+    {
+        return @"";
+    }
+    
     switch( color )
     {
         case THXColorNone:      return @THX_COLOR_NONE;
@@ -237,44 +257,69 @@ NS_ASSUME_NONNULL_END
     }
 }
 
-#pragma mark - THXRunableObject
-
-- ( BOOL )runWithArguments: ( THXArguments * )args
+- ( BOOL )checkEnvironment
 {
-    self.args = args;
+    [ self printMessage: @"Checking environment" status: THXStatusSettings color: THXColorNone ];
     
-    if( args.error )
+    if( [ self checkIfCommandIsAvailable: @"sh" ] == NO )
     {
-        [ self printError: args.error ];
-        [ self printHelp ];
-        
         return NO;
     }
     
-    if( args.showVersion == NO && args.showHelp == NO && args.actions.count == 0 )
+    if( [ self checkIfCommandIsAvailable: @"brew" ] == NO )
     {
-        [ self printErrorMessage: @"No action provided" ];
-        [ self printHelp ];
-        
         return NO;
     }
     
-    if( args.showVersion )
+    if( [ self checkIfCommandIsAvailable: @"xcodebuild" ] == NO )
     {
-        [ self printVersion ];
-    }
-    
-    if( args.showHelp )
-    {
-        [ self printHelp ];
-    }
-    
-    if( args.actions.count )
-    {
-        return [ self executeActions: args.actions ];
+        return NO;
     }
     
     return YES;
+}
+
+- ( BOOL )checkIfCommandIsAvailable: ( NSString * )command
+{
+    NSString     * shell;
+    NSTask       * task;
+    NSPipe       * pipe;
+    NSString     * output;
+    
+    [ self printMessage: [ NSString stringWithFormat: @"Looking for %@...", command ] status: THXStatusSearch color: THXColorNone ];
+    
+    shell = [ NSProcessInfo processInfo ].environment[ @"SHELL" ];
+        
+    if( shell.length && [ [ NSFileManager defaultManager ] fileExistsAtPath: shell ] )
+    {
+        pipe                = [ NSPipe pipe ];
+        task                = [ NSTask new ];
+        task.launchPath     = shell;
+        task.arguments      = @[ @"-l", @"-c", [ NSString stringWithFormat: @"which %@", command ] ];
+        task.standardOutput = pipe;
+        
+        [ task launch ];
+        [ task waitUntilExit ];
+        
+        if( task.terminationStatus == EXIT_SUCCESS )
+        {
+            output = [ [ NSString alloc ] initWithData: [ pipe.fileHandleForReading readDataToEndOfFile ] encoding: NSUTF8StringEncoding ];
+            output = [ output stringByTrimmingCharactersInSet: [ NSCharacterSet whitespaceAndNewlineCharacterSet ] ];
+            
+            if( output.length && [ [ NSFileManager defaultManager ] fileExistsAtPath: output ] )
+            {
+                [ self printMessage: [ NSString stringWithFormat: @"%@ is installed: %@", command, output ] status: THXStatusSuccess color: THXColorGreen ];
+                
+                return YES;
+            }
+        }
+    }
+    
+    self.error = [ self errorWithDescription: [ NSString stringWithFormat: @"%@ is not installed", command ] ];
+    
+    [ self printError: self.error ];
+    
+    return NO;
 }
 
 - ( BOOL )executeActions: ( NSArray< NSString * > * )names
@@ -309,6 +354,7 @@ NS_ASSUME_NONNULL_END
         }
         else
         {
+            
             [ self printErrorMessage: [ NSString stringWithFormat: @"Invalid action: %@", name ] ];
             
             return NO;
@@ -326,10 +372,57 @@ NS_ASSUME_NONNULL_END
     {
         if( [ action runWithArguments: self.args ] == NO )
         {
+            self.error = action.error;
+            
             [ self printError: action.error step: action.name ];
             
             return NO;
         }
+    }
+    
+    return YES;
+}
+
+#pragma mark - THXRunableObject
+
+- ( BOOL )runWithArguments: ( THXArguments * )args
+{
+    self.args = args;
+    
+    if( args.error )
+    {
+        [ self printError: args.error ];
+        [ self printHelp ];
+        
+        return NO;
+    }
+    
+    if( args.showVersion == NO && args.showHelp == NO && args.actions.count == 0 )
+    {
+        [ self printErrorMessage: @"No action provided" ];
+        [ self printHelp ];
+        
+        return NO;
+    }
+    
+    if( [ self checkEnvironment ] == NO )
+    {
+        return NO;
+    }
+    
+    if( args.showVersion )
+    {
+        [ self printVersion ];
+    }
+    
+    if( args.showHelp )
+    {
+        [ self printHelp ];
+    }
+    
+    if( args.actions.count )
+    {
+        return [ self executeActions: args.actions ];
     }
     
     return YES;

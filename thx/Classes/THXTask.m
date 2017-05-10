@@ -37,8 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong           ) NSString * script;
 @property( atomic, readwrite, assign           ) THXStatus  status;
 @property( atomic, readwrite, strong, nullable ) NSString * step;
-
-- ( NSError * )errorWithDescription: ( NSString * )description;
+@property( atomic, readwrite, strong, nullable ) THXTask  * recover;
 
 @end
 
@@ -68,19 +67,20 @@ NS_ASSUME_NONNULL_END
 
 - ( instancetype )initWithShellScript: ( NSString * )script step: ( nullable NSString * )step status: ( THXStatus )status
 {
+    return [ self initWithShellScript: script step: step status: status recoverTask: nil ];
+}
+
+- ( instancetype )initWithShellScript: ( NSString * )script step: ( nullable NSString * )step status: ( THXStatus )status recoverTask: ( nullable THXTask * )recover
+{
     if( ( self = [ super init ] ) )
     {
-        self.script = script;
-        self.step   = step;
-        self.status = status;
+        self.script  = script;
+        self.step    = step;
+        self.status  = status;
+        self.recover = recover;
     }
     
     return self;
-}
-
-- ( NSError * )errorWithDescription: ( NSString * )description
-{
-    return [ NSError errorWithDomain: @"com.xs-THXTask" code: 0 userInfo: @{ NSLocalizedDescriptionKey : description } ];
 }
 
 #pragma mark - THXRunableObject
@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_END
     
     ( void )args;
     
-    [ [ THX sharedInstance ] printMessage: self.script step: self.step status: self.status color: THXColorYellow ];
+    [ [ THX sharedInstance ] printMessage: self.script step: self.step status: self.status color: THXColorPurple ];
     
     task            = [ NSTask new ];
     task.launchPath = @"/bin/sh";
@@ -107,6 +107,20 @@ NS_ASSUME_NONNULL_END
     
     if( task.terminationStatus != 0 )
     {
+        if( self.recover )
+        {
+            [ [ THX sharedInstance ] printMessage: @"Task failed - Trying to recover..." step: self.step status: THXStatusWarning color: THXColorYellow ];
+            
+            {
+                BOOL ret;
+                
+                ret        = [ self.recover runWithArguments: args ];
+                self.error = self.recover.error;
+                
+                return ret;
+            }
+        }
+        
         self.error = [ self errorWithDescription: [ NSString stringWithFormat: @"Task exited with status %li", ( long )( task.terminationStatus ) ] ];
         
         return NO;

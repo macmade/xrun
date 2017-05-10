@@ -11,6 +11,8 @@
 		05C35D7D1EC388E600F373E7 /* THXTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7C1EC388E600F373E7 /* THXTask.m */; };
 		05C35D801EC38B2D00F373E7 /* THX.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* THX.m */; };
 		05C35D861EC3AE2000F373E7 /* THXPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D851EC3AE2000F373E7 /* THXPair.m */; };
+		05C35D891EC3C96D00F373E7 /* THXObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D881EC3C96D00F373E7 /* THXObject.m */; };
+		05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */; };
 		05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CFB82C1EC30AF70020A075 /* Cocoa.framework */; };
 		05CFB8301EC30B0B0020A075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB82F1EC30B0B0020A075 /* main.m */; };
 		05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB8331EC30DEE0020A075 /* THXArguments.m */; };
@@ -41,6 +43,9 @@
 		05C35D811EC3972C00F373E7 /* THXRunableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXRunableObject.h; sourceTree = "<group>"; };
 		05C35D841EC3AE2000F373E7 /* THXPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXPair.h; sourceTree = "<group>"; };
 		05C35D851EC3AE2000F373E7 /* THXPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXPair.m; sourceTree = "<group>"; };
+		05C35D871EC3C96D00F373E7 /* THXObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXObject.h; sourceTree = "<group>"; };
+		05C35D881EC3C96D00F373E7 /* THXObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXObject.m; sourceTree = "<group>"; };
+		05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
 		05CFB82C1EC30AF70020A075 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05CFB82F1EC30B0B0020A075 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05CFB8321EC30DEE0020A075 /* THXArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXArguments.h; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */,
 				05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +68,7 @@
 		050B83E21EB919CB0090EA12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */,
 				05CFB82C1EC30AF70020A075 /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -104,6 +111,8 @@
 				05C35D791EC388DA00F373E7 /* THXAction.m */,
 				05CFB8321EC30DEE0020A075 /* THXArguments.h */,
 				05CFB8331EC30DEE0020A075 /* THXArguments.m */,
+				05C35D871EC3C96D00F373E7 /* THXObject.h */,
+				05C35D881EC3C96D00F373E7 /* THXObject.m */,
 				05C35D841EC3AE2000F373E7 /* THXPair.h */,
 				05C35D851EC3AE2000F373E7 /* THXPair.m */,
 				05C35D811EC3972C00F373E7 /* THXRunableObject.h */,
@@ -176,6 +185,7 @@
 				05C35D7D1EC388E600F373E7 /* THXTask.m in Sources */,
 				05C35D861EC3AE2000F373E7 /* THXPair.m in Sources */,
 				05C35D801EC38B2D00F373E7 /* THX.m in Sources */,
+				05C35D891EC3C96D00F373E7 /* THXObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
