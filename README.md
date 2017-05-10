@@ -1,4 +1,4 @@
-thx
+THX
 ===
 
 [![Build Status](https://img.shields.io/travis/macmade/thx.svg?branch=master&style=flat)](https://travis-ci.org/macmade/thx)
