@@ -188,8 +188,6 @@ NS_ASSUME_NONNULL_END
 
 - ( NSString * )stringForColor: ( THXColor )color
 {
-    ( void )color;
-    
     switch( color )
     {
         case THXColorNone:      return @THX_COLOR_NONE;
