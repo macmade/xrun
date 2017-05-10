@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_END
     THXAction * c;
     
     c      = [ THXAction new ];
-    c.name = @"coverage";
+    c.name = @"setup";
     
     return c;
 }

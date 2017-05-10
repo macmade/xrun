@@ -324,7 +324,7 @@ NS_ASSUME_NONNULL_END
     
     for( action in actions )
     {
-        [ self printMessage: @"Running..." step: action.name status: THXStatusExecute color: THXColorNone ];
+        [ self printMessage: @"Executing action..." step: action.name status: THXStatusExecute color: THXColorNone ];
         
         if( [ action runWithArguments: self.args ] == NO )
         {
