@@ -44,7 +44,8 @@ typedef NS_ENUM( NSInteger, THXStatus )
     THXStatusInstall,
     THXStatusIdea,
     THXStatusSettings,
-    THXStatusSecurity
+    THXStatusSecurity,
+    THXStatusExecute
 };
 
 typedef NS_ENUM( NSInteger, THXColor )
@@ -69,8 +70,11 @@ typedef NS_ENUM( NSInteger, THXColor )
 - ( void )printHelp;
 - ( void )printVersion;
 - ( void )printError: ( nullable NSError * )error;
+- ( void )printError: ( nullable NSError * )error step: ( nullable NSString * )step;
 - ( void )printErrorMessage: ( NSString * )message;
+- ( void )printErrorMessage: ( NSString * )message step: ( nullable NSString * )step;
 - ( void )printMessage: ( NSString * )message status: ( THXStatus )status color: ( THXColor )color;
+- ( void )printMessage: ( NSString * )message step: ( nullable NSString * )step status: ( THXStatus )status color: ( THXColor )color;
 
 @end
 

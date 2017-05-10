@@ -23,96 +23,36 @@
  ******************************************************************************/
 
 /*!
- * @file        THXAction.m
+ * @file        THXPair.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXAction.h"
-#import "THXTask.h"
-#import "THXArguments.h"
+#import "THXPair.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXAction()
-
-@property( atomic, readwrite, strong           ) NSString             * name;
-@property( atomic, readwrite, strong           ) NSArray< THXTask * > * tasks;
-@property( atomic, readwrite, strong, nullable ) NSError              * error;
+@interface THXPair()
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-@implementation THXAction
-
-+ ( instancetype )setupAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"coverage";
-    
-    return c;
-}
-
-+ ( instancetype )buildAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"build";
-    
-    return c;
-}
-
-+ ( instancetype )analyzeAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"analyze";
-    
-    return c;
-}
-
-+ ( instancetype )testAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"test";
-    
-    return c;
-}
-
-+ ( instancetype )coverageAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"coverage";
-    
-    return c;
-}
+@implementation THXPair
 
 - ( instancetype )init
 {
+    return [ self initWithKey: nil value: nil ];
+}
+
+- ( instancetype )initWithKey: ( nullable id )key value: ( nullable id )value
+{
     if( ( self = [ super init ] ) )
     {
-        self.name  = @"unknown";
-        self.tasks = @[];
+        self.key   = key;
+        self.value = value;
     }
     
     return self;
-}
-
-#pragma mark - THXRunableObject
-
-- ( BOOL )runWithArguments: ( THXArguments * )args
-{
-    ( void )args;
-    
-    return NO;
 }
 
 @end

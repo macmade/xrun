@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface THXAction: NSObject < THXRunableObject >
 
+@property( atomic, readonly ) NSString             * name;
 @property( atomic, readonly ) NSArray< THXTask * > * tasks;
 
 + ( instancetype )setupAction;

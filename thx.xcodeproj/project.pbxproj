@@ -10,6 +10,7 @@
 		05C35D7A1EC388DA00F373E7 /* THXAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D791EC388DA00F373E7 /* THXAction.m */; };
 		05C35D7D1EC388E600F373E7 /* THXTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7C1EC388E600F373E7 /* THXTask.m */; };
 		05C35D801EC38B2D00F373E7 /* THX.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* THX.m */; };
+		05C35D861EC3AE2000F373E7 /* THXPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D851EC3AE2000F373E7 /* THXPair.m */; };
 		05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CFB82C1EC30AF70020A075 /* Cocoa.framework */; };
 		05CFB8301EC30B0B0020A075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB82F1EC30B0B0020A075 /* main.m */; };
 		05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB8331EC30DEE0020A075 /* THXArguments.m */; };
@@ -38,6 +39,8 @@
 		05C35D7E1EC38B2D00F373E7 /* THX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THX.h; sourceTree = "<group>"; };
 		05C35D7F1EC38B2D00F373E7 /* THX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THX.m; sourceTree = "<group>"; };
 		05C35D811EC3972C00F373E7 /* THXRunableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXRunableObject.h; sourceTree = "<group>"; };
+		05C35D841EC3AE2000F373E7 /* THXPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXPair.h; sourceTree = "<group>"; };
+		05C35D851EC3AE2000F373E7 /* THXPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXPair.m; sourceTree = "<group>"; };
 		05CFB82C1EC30AF70020A075 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05CFB82F1EC30B0B0020A075 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05CFB8321EC30DEE0020A075 /* THXArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXArguments.h; sourceTree = "<group>"; };
@@ -95,15 +98,17 @@
 		05CFB8311EC30DC40020A075 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				05CFB8321EC30DEE0020A075 /* THXArguments.h */,
-				05CFB8331EC30DEE0020A075 /* THXArguments.m */,
-				05C35D781EC388DA00F373E7 /* THXAction.h */,
-				05C35D791EC388DA00F373E7 /* THXAction.m */,
-				05C35D7B1EC388E600F373E7 /* THXTask.h */,
-				05C35D7C1EC388E600F373E7 /* THXTask.m */,
 				05C35D7E1EC38B2D00F373E7 /* THX.h */,
 				05C35D7F1EC38B2D00F373E7 /* THX.m */,
+				05C35D781EC388DA00F373E7 /* THXAction.h */,
+				05C35D791EC388DA00F373E7 /* THXAction.m */,
+				05CFB8321EC30DEE0020A075 /* THXArguments.h */,
+				05CFB8331EC30DEE0020A075 /* THXArguments.m */,
+				05C35D841EC3AE2000F373E7 /* THXPair.h */,
+				05C35D851EC3AE2000F373E7 /* THXPair.m */,
 				05C35D811EC3972C00F373E7 /* THXRunableObject.h */,
+				05C35D7B1EC388E600F373E7 /* THXTask.h */,
+				05C35D7C1EC388E600F373E7 /* THXTask.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				05CFB8301EC30B0B0020A075 /* main.m in Sources */,
 				05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */,
 				05C35D7D1EC388E600F373E7 /* THXTask.m in Sources */,
+				05C35D861EC3AE2000F373E7 /* THXPair.m in Sources */,
 				05C35D801EC38B2D00F373E7 /* THX.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,96 +23,21 @@
  ******************************************************************************/
 
 /*!
- * @file        THXAction.m
+ * @header      THXPair.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXAction.h"
-#import "THXTask.h"
-#import "THXArguments.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXAction()
+@interface THXPair< __covariant KeyType, __covariant ValueType >: NSObject
 
-@property( atomic, readwrite, strong           ) NSString             * name;
-@property( atomic, readwrite, strong           ) NSArray< THXTask * > * tasks;
-@property( atomic, readwrite, strong, nullable ) NSError              * error;
+@property( atomic, readwrite, strong ) KeyType   key;
+@property( atomic, readwrite, strong ) ValueType value;
+
+- ( instancetype )initWithKey: ( nullable KeyType )key value: ( nullable ValueType )value NS_DESIGNATED_INITIALIZER;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-@implementation THXAction
-
-+ ( instancetype )setupAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"coverage";
-    
-    return c;
-}
-
-+ ( instancetype )buildAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"build";
-    
-    return c;
-}
-
-+ ( instancetype )analyzeAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"analyze";
-    
-    return c;
-}
-
-+ ( instancetype )testAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"test";
-    
-    return c;
-}
-
-+ ( instancetype )coverageAction
-{
-    THXAction * c;
-    
-    c      = [ THXAction new ];
-    c.name = @"coverage";
-    
-    return c;
-}
-
-- ( instancetype )init
-{
-    if( ( self = [ super init ] ) )
-    {
-        self.name  = @"unknown";
-        self.tasks = @[];
-    }
-    
-    return self;
-}
-
-#pragma mark - THXRunableObject
-
-- ( BOOL )runWithArguments: ( THXArguments * )args
-{
-    ( void )args;
-    
-    return NO;
-}
-
-@end

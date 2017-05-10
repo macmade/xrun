@@ -30,6 +30,7 @@
 #import "THX.h"
 #import "THXArguments.h"
 #import "THXAction.h"
+#import "THXPair.h"
 
 #define THX_COLOR_NONE      "\x1B[0m"
 #define THX_COLOR_BLACK     "\x1B[30m"
@@ -132,6 +133,11 @@ NS_ASSUME_NONNULL_END
 
 - ( void )printError: ( nullable NSError * )error
 {
+    [ self printError: error step: nil ];
+}
+
+- ( void )printError: ( nullable NSError * )error step: ( nullable NSString * )step;
+{
     NSString * message;
     
     if( error.localizedDescription.length )
@@ -143,26 +149,52 @@ NS_ASSUME_NONNULL_END
         message = @"An unknown error occured";
     }
     
-    [ self printMessage: message status: THXStatusError color: THXColorRed ];
+    [ self printMessage: message step: step status: THXStatusError color: THXColorRed ];
 }
 
 - ( void )printErrorMessage: ( NSString * )message
+{
+    [ self printErrorMessage: message step: nil ];
+}
+
+- ( void )printErrorMessage: ( NSString * )message step: ( nullable NSString * )step
 {
     NSError * error;
     
     error = [ NSError errorWithDomain: NSCocoaErrorDomain code: 0 userInfo: @{ NSLocalizedDescriptionKey : message } ];
     
-    [ self printError: error ];
+    [ self printError: error step: step ];
 }
 
 - ( void )printMessage: ( NSString * )message status: ( THXStatus )status color: ( THXColor )color
 {
+    [ self printMessage: message step: nil status: status color: color ];
+}
+
+- ( void )printMessage: ( NSString * )message step: ( nullable NSString * )step status: ( THXStatus )status color: ( THXColor )color;
+{
+    NSString * stepString;
+    
+    if( step.length == 0 )
+    {
+        stepString = @"";
+    }
+    else
+    {
+        stepString = [ NSString stringWithFormat: @" [ %s%s%s ]> ", 
+            [ self stringForColor: THXColorYellow ].UTF8String,
+            step.UTF8String,
+            [ self stringForColor: THXColorNone ].UTF8String
+        ];
+    }
+    
     fprintf
     (
         stdout,
-        "[ %sTHX%s ]> %s  %s%s%s\n",
-        [ self stringForColor: THXColorYellow ].UTF8String,
+        "[ %sTHX%s ]>%s %s   %s%s%s\n",
+        [ self stringForColor: THXColorBlue ].UTF8String,
         [ self stringForColor: THXColorNone ].UTF8String,
+        stepString.UTF8String,
         [ self stringForStatus: status ].UTF8String,
         [ self stringForColor: color ].UTF8String,
         message.UTF8String,
@@ -185,6 +217,7 @@ NS_ASSUME_NONNULL_END
         case THXStatusIdea:     return @"💡";
         case THXStatusSettings: return @"⚙️";
         case THXStatusSecurity: return @"🔑";
+        case THXStatusExecute:  return @"🚦";
     }
 }
 
@@ -282,9 +315,23 @@ NS_ASSUME_NONNULL_END
         }
     }
     
+    if( actions.count == 0 )
+    {
+        [ self printErrorMessage: @"No action provided" ];
+        
+        return NO;
+    }
+    
     for( action in actions )
     {
+        [ self printMessage: @"Running..." step: action.name status: THXStatusExecute color: THXColorNone ];
         
+        if( [ action runWithArguments: self.args ] == NO )
+        {
+            [ self printError: action.error step: action.name ];
+            
+            return NO;
+        }
     }
     
     return YES;
