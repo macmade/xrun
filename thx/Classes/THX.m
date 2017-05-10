@@ -29,6 +29,7 @@
 
 #import "THX.h"
 #import "THXArguments.h"
+#import "THXAction.h"
 
 #define THX_COLOR_NONE      "\x1B[0m"
 #define THX_COLOR_BLACK     "\x1B[30m"
@@ -50,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - ( NSString * )stringForStatus: ( THXStatus )status;
 - ( NSString * )stringForColor: ( THXColor )color;
+- ( BOOL )executeActions: ( NSArray< NSString * > * )names;
 
 @end
 
@@ -134,7 +136,7 @@ NS_ASSUME_NONNULL_END
     
     if( error.localizedDescription.length )
     {
-        message = [ NSString stringWithFormat: @"Error: %@", error.localizedDescription ];
+        message = [ NSString stringWithFormat: @"Error - %@", error.localizedDescription ];
     }
     else
     {
@@ -232,6 +234,57 @@ NS_ASSUME_NONNULL_END
     if( args.showHelp )
     {
         [ self printHelp ];
+    }
+    
+    if( args.actions.count )
+    {
+        return [ self executeActions: args.actions ];
+    }
+    
+    return YES;
+}
+
+- ( BOOL )executeActions: ( NSArray< NSString * > * )names
+{
+    NSString                      * name;
+    NSMutableArray< THXAction * > * actions;
+    THXAction                     * action;
+    
+    actions = [ NSMutableArray new ];
+    
+    for( name in names )
+    {
+        if( [ name isEqualToString: @"setup" ] )
+        {
+            [ actions addObject: [ THXAction setupAction ] ];
+        }
+        else if( [ name isEqualToString: @"build" ] )
+        {
+            [ actions addObject: [ THXAction buildAction ] ];
+        }
+        else if( [ name isEqualToString: @"analyze" ] )
+        {
+            [ actions addObject: [ THXAction analyzeAction ] ];
+        }
+        else if( [ name isEqualToString: @"test" ] )
+        {
+            [ actions addObject: [ THXAction testAction ] ];
+        }
+        else if( [ name isEqualToString: @"coverage" ] )
+        {
+            [ actions addObject: [ THXAction coverageAction ] ];
+        }
+        else
+        {
+            [ self printErrorMessage: [ NSString stringWithFormat: @"Invalid action: %@", name ] ];
+            
+            return NO;
+        }
+    }
+    
+    for( action in actions )
+    {
+        
     }
     
     return YES;

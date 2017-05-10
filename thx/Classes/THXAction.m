@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_END
 
 @implementation THXAction
 
-+ ( instancetype )setupCommand
++ ( instancetype )setupAction
 {
     THXAction * c;
     
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_END
     return c;
 }
 
-+ ( instancetype )buildCommand
++ ( instancetype )buildAction
 {
     THXAction * c;
     
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_END
     return c;
 }
 
-+ ( instancetype )analyzeCommand
++ ( instancetype )analyzeAction
 {
     THXAction * c;
     
@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_END
     return c;
 }
 
-+ ( instancetype )testCommand
++ ( instancetype )testAction
 {
     THXAction * c;
     
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_END
     return c;
 }
 
-+ ( instancetype )coverageCommand
++ ( instancetype )coverageAction
 {
     THXAction * c;
     

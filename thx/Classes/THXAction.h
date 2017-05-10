@@ -38,11 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property( atomic, readonly ) NSArray< THXTask * > * tasks;
 
-+ ( instancetype )setupCommand;
-+ ( instancetype )buildCommand;
-+ ( instancetype )analyzeCommand;
-+ ( instancetype )testCommand;
-+ ( instancetype )coverageCommand;
++ ( instancetype )setupAction;
++ ( instancetype )buildAction;
++ ( instancetype )analyzeAction;
++ ( instancetype )testAction;
++ ( instancetype )coverageAction;
 
 @end
 
