@@ -1,0 +1,5 @@
+language: objective-c
+script:
+- xcodebuild -project "thx.xcodeproj" -scheme "thx" build
+notifications:
+    slack: xs-labs:FXh1yLXNkpcVxKZhZU6icdhI
