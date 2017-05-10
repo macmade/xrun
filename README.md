@@ -51,7 +51,7 @@ Usage
 License
 -------
 
-CrashGuard is released under the terms of the MIT license.
+THX is released under the terms of the MIT license.
 
 Repository Infos
 ----------------
