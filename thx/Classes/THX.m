@@ -194,7 +194,7 @@ NS_ASSUME_NONNULL_END
     (
         stdout,
         "[ %sTHX%s ]>%s %s   %s%s%s\n",
-        [ self stringForColor: THXColorCyan ].UTF8String,
+        [ self stringForColor: THXColorPurple ].UTF8String,
         [ self stringForColor: THXColorNone ].UTF8String,
         stepString.UTF8String,
         [ self stringForStatus: status ].UTF8String,

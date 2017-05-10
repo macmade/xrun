@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_END
     
     ( void )args;
     
-    [ [ THX sharedInstance ] printMessage: self.script step: self.step status: self.status color: THXColorPurple ];
+    [ [ THX sharedInstance ] printMessage: self.script step: self.step status: self.status color: THXColorCyan ];
     
     task            = [ NSTask new ];
     task.launchPath = @"/bin/sh";
