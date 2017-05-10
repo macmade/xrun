@@ -182,7 +182,7 @@ NS_ASSUME_NONNULL_END
     else
     {
         stepString = [ NSString stringWithFormat: @" [ %s%s%s ]> ", 
-            [ self stringForColor: THXColorYellow ].UTF8String,
+            [ self stringForColor: THXColorBlue ].UTF8String,
             step.UTF8String,
             [ self stringForColor: THXColorNone ].UTF8String
         ];
@@ -192,7 +192,7 @@ NS_ASSUME_NONNULL_END
     (
         stdout,
         "[ %sTHX%s ]>%s %s   %s%s%s\n",
-        [ self stringForColor: THXColorBlue ].UTF8String,
+        [ self stringForColor: THXColorCyan ].UTF8String,
         [ self stringForColor: THXColorNone ].UTF8String,
         stepString.UTF8String,
         [ self stringForStatus: status ].UTF8String,
@@ -212,7 +212,7 @@ NS_ASSUME_NONNULL_END
         case THXStatusWarning:  return @"⚠️";
         case THXStatusInfo:     return @"ℹ️";
         case THXStatusDebug:    return @"🚸";
-        case THXStatusBuild:    return @"⚒";
+        case THXStatusBuild:    return @"🔧";
         case THXStatusInstall:  return @"📦";
         case THXStatusIdea:     return @"💡";
         case THXStatusSettings: return @"⚙️";
@@ -324,8 +324,6 @@ NS_ASSUME_NONNULL_END
     
     for( action in actions )
     {
-        [ self printMessage: @"Executing action..." step: action.name status: THXStatusExecute color: THXColorNone ];
-        
         if( [ action runWithArguments: self.args ] == NO )
         {
             [ self printError: action.error step: action.name ];

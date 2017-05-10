@@ -28,10 +28,17 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "THXRunableObject.h"
+#import "THX.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXTask: NSObject
+@interface THXTask: NSObject < THXRunableObject >
+
+- ( instancetype )initWithShellScript: ( NSString * )script;
+- ( instancetype )initWithShellScript: ( NSString * )script status: ( THXStatus )status;
+- ( instancetype )initWithShellScript: ( NSString * )script step: ( nullable NSString * )step;
+- ( instancetype )initWithShellScript: ( NSString * )script step: ( nullable NSString * )step status: ( THXStatus )status NS_DESIGNATED_INITIALIZER;
 
 @end
 

@@ -30,6 +30,7 @@
 #import "THXAction.h"
 #import "THXTask.h"
 #import "THXArguments.h"
+#import "THX.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong           ) NSString             * name;
 @property( atomic, readwrite, strong           ) NSArray< THXTask * > * tasks;
 @property( atomic, readwrite, strong, nullable ) NSError              * error;
+
+- ( NSError * )errorWithDescription: ( NSString * )description;
 
 @end
 
@@ -49,8 +52,13 @@ NS_ASSUME_NONNULL_END
 {
     THXAction * c;
     
-    c      = [ THXAction new ];
-    c.name = @"setup";
+    c       = [ THXAction new ];
+    c.name  = @"setup";
+    c.tasks =
+    @[
+        [ [ THXTask alloc ] initWithShellScript: @"true"  step: c.name status: THXStatusInstall ],
+        [ [ THXTask alloc ] initWithShellScript: @"false" step: c.name status: THXStatusInstall ]
+    ];
     
     return c;
 }
@@ -106,13 +114,41 @@ NS_ASSUME_NONNULL_END
     return self;
 }
 
+- ( NSError * )errorWithDescription: ( NSString * )description
+{
+    return [ NSError errorWithDomain: @"com.xs-THXTask" code: 0 userInfo: @{ NSLocalizedDescriptionKey : description } ];
+}
+
 #pragma mark - THXRunableObject
 
 - ( BOOL )runWithArguments: ( THXArguments * )args
 {
-    ( void )args;
+    THXTask * task;
     
-    return NO;
+    if( self.tasks.count == 0 )
+    {
+        self.error = [ self errorWithDescription: @"No task defined for action" ];
+        
+        return NO;
+    }
+    
+    for( task in self.tasks )
+    {
+        [ [ THX sharedInstance ] printMessage: @"Executing action:" step: self.name status: THXStatusExecute color: THXColorNone ];
+        
+        if( [ task runWithArguments: args ] == NO )
+        {
+            self.error = task.error;
+            
+            return NO;
+        }
+        else
+        {
+            [ [ THX sharedInstance ] printMessage: @"Task completed successfully" step: self.name status: THXStatusSuccess color: THXColorGreen ];
+        }
+    }
+    
+    return YES;
 }
 
 @end

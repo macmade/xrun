@@ -33,10 +33,86 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface THXTask()
 
+@property( atomic, readwrite, strong, nullable ) NSError  * error;
+@property( atomic, readwrite, strong           ) NSString * script;
+@property( atomic, readwrite, assign           ) THXStatus  status;
+@property( atomic, readwrite, strong, nullable ) NSString * step;
+
+- ( NSError * )errorWithDescription: ( NSString * )description;
+
 @end
 
 NS_ASSUME_NONNULL_END
 
 @implementation THXTask
+
+- ( instancetype )init
+{
+    return [ self initWithShellScript: @"true" ];
+}
+
+- ( instancetype )initWithShellScript: ( NSString * )script
+{
+    return [ self initWithShellScript: script status: THXStatusExecute ];
+}
+
+- ( instancetype )initWithShellScript: ( NSString * )script status: ( THXStatus )status
+{
+    return [ self initWithShellScript: script step: nil status: status ];
+}
+
+- ( instancetype )initWithShellScript: ( NSString * )script step: ( nullable NSString * )step
+{
+    return [ self initWithShellScript: script step: step status: THXStatusExecute ];
+}
+
+- ( instancetype )initWithShellScript: ( NSString * )script step: ( nullable NSString * )step status: ( THXStatus )status
+{
+    if( ( self = [ super init ] ) )
+    {
+        self.script = script;
+        self.step   = step;
+        self.status = status;
+    }
+    
+    return self;
+}
+
+- ( NSError * )errorWithDescription: ( NSString * )description
+{
+    return [ NSError errorWithDomain: @"com.xs-THXTask" code: 0 userInfo: @{ NSLocalizedDescriptionKey : description } ];
+}
+
+#pragma mark - THXRunableObject
+
+- ( BOOL )runWithArguments: ( THXArguments * )args
+{
+    NSTask * task;
+    
+    ( void )args;
+    
+    [ [ THX sharedInstance ] printMessage: self.script step: self.step status: self.status color: THXColorYellow ];
+    
+    task            = [ NSTask new ];
+    task.launchPath = @"/bin/sh";
+    task.arguments  =
+    @[
+        @"-l",
+        @"-c",
+        self.script
+    ];
+    
+    [ task launch ];
+    [ task waitUntilExit ];
+    
+    if( task.terminationStatus != 0 )
+    {
+        self.error = [ self errorWithDescription: [ NSString stringWithFormat: @"Task exited with status %li", ( long )( task.terminationStatus ) ] ];
+        
+        return NO;
+    }
+    
+    return YES;
+}
 
 @end
