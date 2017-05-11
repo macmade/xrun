@@ -14,6 +14,13 @@ THX
 Travis Helper for Xcode
 -----------------------
 
+...
+
+Installation
+------------
+
+...
+
 Usage
 -----
 
@@ -47,6 +54,11 @@ Usage
                     If none, defaults to the first available Xcode project file.
        -schemes     Schemes to build.
                     You can pass multiple schemes, separated by a space.
+
+Example Travis configuration
+----------------------------
+
+...
 
 License
 -------
