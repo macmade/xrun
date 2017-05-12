@@ -29,6 +29,7 @@
 
 #import "THX.h"
 #import "THXArguments.h"
+#import "THXActions.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -177,9 +178,9 @@ NS_ASSUME_NONNULL_END
 
 - ( BOOL )executeActions: ( NSArray< NSString * > * )names
 {
-    NSString                        * name;
-    NSMutableArray< SKTaskGroup * > * actions;
-    SKTaskGroup                     * action;
+    NSString                                * name;
+    NSMutableArray< id< SKRunableObject > > * actions;
+    id< SKRunableObject >                     action;
     
     actions = [ NSMutableArray new ];
     
@@ -187,7 +188,7 @@ NS_ASSUME_NONNULL_END
     {
         if( [ name isEqualToString: @"setup" ] )
         {
-            
+            [ actions addObject: [ THXActions setup ] ];
         }
         else if( [ name isEqualToString: @"build" ] )
         {

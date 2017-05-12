@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		058F79131EC5F7DB007CFF3A /* libShellKit-Static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 058F79101EC5F7C8007CFF3A /* libShellKit-Static.a */; };
+		058F791A1EC60D3D007CFF3A /* THXActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79191EC60D3D007CFF3A /* THXActions.m */; };
+		058F791D1EC60DAD007CFF3A /* THXStaticClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F791C1EC60DAD007CFF3A /* THXStaticClass.m */; };
+		058F79201EC60DFF007CFF3A /* THXSetupTasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F791F1EC60DFF007CFF3A /* THXSetupTasks.m */; };
 		05C35D801EC38B2D00F373E7 /* THX.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* THX.m */; };
 		05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */; };
 		05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CFB82C1EC30AF70020A075 /* Cocoa.framework */; };
@@ -63,6 +66,12 @@
 		05110D051C1F121C00EE6851 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		055FBCB41E83D9D7001301A9 /* thx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = thx; sourceTree = BUILT_PRODUCTS_DIR; };
 		058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShellKit.xcodeproj; path = Submodules/ShellKit/ShellKit.xcodeproj; sourceTree = "<group>"; };
+		058F79181EC60D3D007CFF3A /* THXActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXActions.h; sourceTree = "<group>"; };
+		058F79191EC60D3D007CFF3A /* THXActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXActions.m; sourceTree = "<group>"; };
+		058F791B1EC60DAD007CFF3A /* THXStaticClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXStaticClass.h; sourceTree = "<group>"; };
+		058F791C1EC60DAD007CFF3A /* THXStaticClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXStaticClass.m; sourceTree = "<group>"; };
+		058F791E1EC60DFF007CFF3A /* THXSetupTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXSetupTasks.h; sourceTree = "<group>"; };
+		058F791F1EC60DFF007CFF3A /* THXSetupTasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXSetupTasks.m; sourceTree = "<group>"; };
 		05C35D7E1EC38B2D00F373E7 /* THX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THX.h; sourceTree = "<group>"; };
 		05C35D7F1EC38B2D00F373E7 /* THX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THX.m; sourceTree = "<group>"; };
 		05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
@@ -139,8 +148,14 @@
 			children = (
 				05C35D7E1EC38B2D00F373E7 /* THX.h */,
 				05C35D7F1EC38B2D00F373E7 /* THX.m */,
+				058F79181EC60D3D007CFF3A /* THXActions.h */,
+				058F79191EC60D3D007CFF3A /* THXActions.m */,
 				05CFB8321EC30DEE0020A075 /* THXArguments.h */,
 				05CFB8331EC30DEE0020A075 /* THXArguments.m */,
+				058F791E1EC60DFF007CFF3A /* THXSetupTasks.h */,
+				058F791F1EC60DFF007CFF3A /* THXSetupTasks.m */,
+				058F791B1EC60DAD007CFF3A /* THXStaticClass.h */,
+				058F791C1EC60DAD007CFF3A /* THXStaticClass.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -233,9 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058F791A1EC60D3D007CFF3A /* THXActions.m in Sources */,
 				05CFB8301EC30B0B0020A075 /* main.m in Sources */,
 				05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */,
+				058F791D1EC60DAD007CFF3A /* THXStaticClass.m in Sources */,
 				05C35D801EC38B2D00F373E7 /* THX.m in Sources */,
+				058F79201EC60DFF007CFF3A /* THXSetupTasks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
