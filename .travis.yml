@@ -1,5 +1,8 @@
 language: objective-c
+install:
+- rvm get head
+- gem install xcpretty
 script:
-- xcodebuild -project "thx.xcodeproj" -scheme "thx" build
+- set -o pipefail && xcodebuild -project "thx.xcodeproj" -scheme "thx" build | xcpretty
 notifications:
     slack: xs-labs:FXh1yLXNkpcVxKZhZU6icdhI
