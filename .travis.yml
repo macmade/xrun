@@ -6,6 +6,6 @@ script:
 - set -o pipefail && xcodebuild -project "thx.xcodeproj" -scheme "thx" build | xcpretty
 - set -o pipefail && xcodebuild -project "thx.xcodeproj" -scheme "thx" install DSTROOT="/" | xcpretty
 - /usr/local/bin/thx --setup
-- /usr/local/bin/thx --build --analyze -scheme thx
+- /usr/local/bin/thx --build --analyze -schemes thx
 notifications:
     slack: xs-labs:FXh1yLXNkpcVxKZhZU6icdhI
