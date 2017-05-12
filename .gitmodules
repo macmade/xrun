@@ -1,0 +1,3 @@
+[submodule "Submodules/ShellKit"]
+	path = Submodules/ShellKit
+	url = https://github.com/macmade/ShellKit.git
