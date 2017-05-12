@@ -33,16 +33,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface THXXcodeTask()
 
+@property( atomic, readwrite, strong ) NSError  * error;
 @property( atomic, readwrite, strong ) NSString * action;
 @property( atomic, readwrite, strong ) NSString * scheme;
 
 - ( instancetype )initWithAction: ( NSString * )action scheme: ( NSString * )scheme;
+- ( nullable NSString * )findXcodeProject;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
 @implementation THXXcodeTask
+
+@dynamic error;
 
 + ( instancetype )buildTaskForScheme: ( NSString * )scheme
 {
@@ -97,11 +101,49 @@ NS_ASSUME_NONNULL_END
     [ vars setObject: self.action forKey: @"action" ];
     [ vars setObject: self.scheme forKey: @"scheme" ];
     
+    if( [ vars objectForKey: @"project" ] == nil )
+    {
+        {
+            NSString * project;
+            
+            project = [ self findXcodeProject ];
+            
+            if( project == nil )
+            {
+                self.error = [ self errorWithDescription: @"Cannot find an Xcode project in the current directory" ];
+                
+                [ [ SKShell currentShell ] printError: self.error ];
+                
+                return NO;
+            }
+            
+            [ vars setObject: project forKey: @"project" ];
+        }
+    }
+    
     ret = [ super run: vars ];
     
     [ [ SKShell currentShell ] removeLastPromptPart ];
     
     return ret;
+}
+
+- ( nullable NSString * )findXcodeProject
+{
+    NSString * dir;
+    NSString * path;
+    
+    dir = [ [ NSFileManager defaultManager ] currentDirectoryPath ];
+    
+    for( path in [ [ NSFileManager defaultManager ] contentsOfDirectoryAtPath: dir error: NULL ] )
+    {
+        if( [ path.pathExtension isEqualToString: @"xcodeproj" ] )
+        {
+            return path;
+        }
+    }
+    
+    return nil;
 }
 
 @end
