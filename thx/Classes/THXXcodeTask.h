@@ -23,24 +23,24 @@
  ******************************************************************************/
 
 /*!
- * @header      THXActions.h
+ * @header      THXXcodeTask.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 #import <Foundation/Foundation.h>
 #import <ShellKit/ShellKit.h>
-#import "THXStaticClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXActions: THXStaticClass
+@interface THXXcodeTask: SKTask
 
-+ ( id< SKRunableObject > )setup;
-+ ( id< SKRunableObject > )build: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )analyze: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )test: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )clean: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )coverage;
+@property( atomic, readonly ) NSString * action;
+@property( atomic, readonly ) NSString * scheme;
+
++ ( instancetype )buildTaskForScheme: ( NSString * )scheme;
++ ( instancetype )analyzeTaskForScheme: ( NSString * )scheme;
++ ( instancetype )testTaskForScheme: ( NSString * )scheme;
++ ( instancetype )cleanTaskForScheme: ( NSString * )scheme;
 
 @end
 

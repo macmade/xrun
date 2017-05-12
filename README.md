@@ -39,6 +39,9 @@ Usage
         --test      Test Xcode scheme(s), invoking `xcodebuild`.
                     This requires the `-schemes` argument.
         
+        --clean     Clean Xcode scheme(s), invoking `xcodebuild`.
+                    This requires the `-schemes` argument.
+        
         --setup     Performs initial setip and install additional dependancies.
                     You would typically execute this in the `install:` hook.
         

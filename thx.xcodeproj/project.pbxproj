@@ -11,6 +11,7 @@
 		058F791A1EC60D3D007CFF3A /* THXActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79191EC60D3D007CFF3A /* THXActions.m */; };
 		058F791D1EC60DAD007CFF3A /* THXStaticClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F791C1EC60DAD007CFF3A /* THXStaticClass.m */; };
 		058F79201EC60DFF007CFF3A /* THXSetupTasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F791F1EC60DFF007CFF3A /* THXSetupTasks.m */; };
+		058F79281EC62621007CFF3A /* THXXcodeTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79271EC62621007CFF3A /* THXXcodeTask.m */; };
 		05C35D801EC38B2D00F373E7 /* THX.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* THX.m */; };
 		05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */; };
 		05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CFB82C1EC30AF70020A075 /* Cocoa.framework */; };
@@ -72,6 +73,8 @@
 		058F791C1EC60DAD007CFF3A /* THXStaticClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXStaticClass.m; sourceTree = "<group>"; };
 		058F791E1EC60DFF007CFF3A /* THXSetupTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXSetupTasks.h; sourceTree = "<group>"; };
 		058F791F1EC60DFF007CFF3A /* THXSetupTasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXSetupTasks.m; sourceTree = "<group>"; };
+		058F79261EC62621007CFF3A /* THXXcodeTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXXcodeTask.h; sourceTree = "<group>"; };
+		058F79271EC62621007CFF3A /* THXXcodeTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXXcodeTask.m; sourceTree = "<group>"; };
 		05C35D7E1EC38B2D00F373E7 /* THX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THX.h; sourceTree = "<group>"; };
 		05C35D7F1EC38B2D00F373E7 /* THX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THX.m; sourceTree = "<group>"; };
 		05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
@@ -156,6 +159,8 @@
 				058F791F1EC60DFF007CFF3A /* THXSetupTasks.m */,
 				058F791B1EC60DAD007CFF3A /* THXStaticClass.h */,
 				058F791C1EC60DAD007CFF3A /* THXStaticClass.m */,
+				058F79261EC62621007CFF3A /* THXXcodeTask.h */,
+				058F79271EC62621007CFF3A /* THXXcodeTask.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */,
 				058F791D1EC60DAD007CFF3A /* THXStaticClass.m in Sources */,
 				05C35D801EC38B2D00F373E7 /* THX.m in Sources */,
+				058F79281EC62621007CFF3A /* THXXcodeTask.m in Sources */,
 				058F79201EC60DFF007CFF3A /* THXSetupTasks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,6 +29,9 @@
 
 #import "THXActions.h"
 #import "THXSetupTasks.h"
+#import "THXArguments.h"
+#import "THXXcodeTask.h"
+#import "THXXcodeTask.h"
 
 @implementation THXActions
 
@@ -46,6 +49,78 @@
     ];
     
     return [ SKTaskGroup taskGroupWithName: @"setup" tasks: tasks ];
+}
+
++ ( id< SKRunableObject > )build: ( NSArray< NSString * > * )schemes;
+{
+    NSMutableArray * tasks;
+    NSString       * scheme;
+    
+    tasks = [ NSMutableArray new ];
+    
+    for( scheme in schemes )
+    {
+        [ tasks addObject: [ THXXcodeTask buildTaskForScheme: scheme ] ];
+    }
+    
+    return [ SKTaskGroup taskGroupWithName: @"build" tasks: tasks ];
+}
+
++ ( id< SKRunableObject > )analyze: ( NSArray< NSString * > * )schemes;
+{
+    NSMutableArray * tasks;
+    NSString       * scheme;
+    
+    tasks = [ NSMutableArray new ];
+    
+    for( scheme in schemes )
+    {
+        [ tasks addObject: [ THXXcodeTask analyzeTaskForScheme: scheme ] ];
+    }
+    
+    return [ SKTaskGroup taskGroupWithName: @"analyze" tasks: tasks ];
+}
+
++ ( id< SKRunableObject > )test: ( NSArray< NSString * > * )schemes;
+{
+    NSMutableArray * tasks;
+    NSString       * scheme;
+    
+    tasks = [ NSMutableArray new ];
+    
+    for( scheme in schemes )
+    {
+        [ tasks addObject: [ THXXcodeTask testTaskForScheme: scheme ] ];
+    }
+    
+    return [ SKTaskGroup taskGroupWithName: @"test" tasks: tasks ];
+}
+
++ ( id< SKRunableObject > )clean: ( NSArray< NSString * > * )schemes;
+{
+    NSMutableArray * tasks;
+    NSString       * scheme;
+    
+    tasks = [ NSMutableArray new ];
+    
+    for( scheme in schemes )
+    {
+        [ tasks addObject: [ THXXcodeTask cleanTaskForScheme: scheme ] ];
+    }
+    
+    return [ SKTaskGroup taskGroupWithName: @"clean" tasks: tasks ];
+}
+
++ ( id< SKRunableObject > )coverage
+{
+    NSArray * tasks;
+    
+    tasks =
+    @[
+        
+    ];
+    
+    return [ SKTaskGroup taskGroupWithName: @"coverage" tasks: tasks ];
 }
 
 @end

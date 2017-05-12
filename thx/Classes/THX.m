@@ -178,33 +178,54 @@ NS_ASSUME_NONNULL_END
 
 - ( BOOL )executeActions: ( NSArray< NSString * > * )names
 {
-    NSString                                * name;
-    NSMutableArray< id< SKRunableObject > > * actions;
-    id< SKRunableObject >                     action;
+    NSString                                      * name;
+    NSMutableArray< id< SKRunableObject > >       * actions;
+    id< SKRunableObject >                           action;
+    NSMutableDictionary< NSString *, NSString * > * vars;
     
     actions = [ NSMutableArray new ];
     
     for( name in names )
     {
+        if
+        (
+            self.args.schemes.count == 0
+            &&
+            (
+                   [ name isEqualToString: @"build" ]
+                || [ name isEqualToString: @"analyze" ]
+                || [ name isEqualToString: @"test" ]
+            )
+        )
+        {
+            [ [ SKShell currentShell ] printErrorMessage: @"No scheme provided for %@ action", name ];
+            
+            return NO;
+        }
+        
         if( [ name isEqualToString: @"setup" ] )
         {
             [ actions addObject: [ THXActions setup ] ];
         }
         else if( [ name isEqualToString: @"build" ] )
         {
-            
+            [ actions addObject: [ THXActions build: self.args.schemes ] ];
         }
         else if( [ name isEqualToString: @"analyze" ] )
         {
-            
+            [ actions addObject: [ THXActions analyze: self.args.schemes ] ];
         }
         else if( [ name isEqualToString: @"test" ] )
         {
-            
+            [ actions addObject: [ THXActions test: self.args.schemes ] ];
+        }
+        else if( [ name isEqualToString: @"clean" ] )
+        {
+            [ actions addObject: [ THXActions clean: self.args.schemes ] ];
         }
         else if( [ name isEqualToString: @"coverage" ] )
         {
-            
+            [ actions addObject: [ THXActions coverage ] ];
         }
         else
         {
@@ -221,9 +242,16 @@ NS_ASSUME_NONNULL_END
         return NO;
     }
     
+    vars = [ NSMutableDictionary new ];
+    
+    if( self.args.project.length )
+    {
+        [ vars setObject: self.args.project forKey: @"project" ];
+    }
+    
     for( action in actions )
     {
-        if( [ action run: nil ] == NO )
+        if( [ action run: vars ] == NO )
         {
             return NO;
         }
