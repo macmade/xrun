@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface THXSetupTasks: THXStaticClass
 
 + ( id< SKRunableObject > )updateHomebrew;
++ ( id< SKRunableObject > )installCCache;
 + ( id< SKRunableObject > )installXCPretty;
 + ( id< SKRunableObject > )installXcodeCoveralls;
 

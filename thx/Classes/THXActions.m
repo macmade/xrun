@@ -39,6 +39,7 @@
     tasks =
     @[
         [ THXSetupTasks updateHomebrew ],
+        [ THXSetupTasks installCCache ],
         [ THXSetupTasks installXCPretty ],
         [ THXSetupTasks installXcodeCoveralls ]
     ];
