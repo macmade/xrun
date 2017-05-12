@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "979FE50FCEA5ED489C82B9DE0D1EAAFC32D631B3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8FA2B5DB7EE42342B5C7BA178451614F9A92C38B" : 9223372036854775807,
+    "979FE50FCEA5ED489C82B9DE0D1EAAFC32D631B3" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4AB2B552-9712-4B32-9928-76AA4CBEEBFB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8FA2B5DB7EE42342B5C7BA178451614F9A92C38B" : "thx\/Submodules\/ShellKit\/",
+    "979FE50FCEA5ED489C82B9DE0D1EAAFC32D631B3" : "thx\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "thx",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "thx.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/macmade\/ShellKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8FA2B5DB7EE42342B5C7BA178451614F9A92C38B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:macmade\/thx.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "979FE50FCEA5ED489C82B9DE0D1EAAFC32D631B3"
+    }
+  ]
+}

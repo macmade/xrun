@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058F79131EC5F7DB007CFF3A /* libShellKit-Static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 058F79101EC5F7C8007CFF3A /* libShellKit-Static.a */; };
 		05C35D7A1EC388DA00F373E7 /* THXAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D791EC388DA00F373E7 /* THXAction.m */; };
 		05C35D7D1EC388E600F373E7 /* THXTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7C1EC388E600F373E7 /* THXTask.m */; };
 		05C35D801EC38B2D00F373E7 /* THX.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* THX.m */; };
@@ -17,6 +18,37 @@
 		05CFB8301EC30B0B0020A075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB82F1EC30B0B0020A075 /* main.m */; };
 		05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB8331EC30DEE0020A075 /* THXArguments.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		058F790D1EC5F7C8007CFF3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 054BFFEE1EC4E60B0032B500;
+			remoteInfo = ShellKit;
+		};
+		058F790F1EC5F7C8007CFF3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 054BFFFB1EC4E6670032B500;
+			remoteInfo = "ShellKit-Static";
+		};
+		058F79111EC5F7C8007CFF3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05CF703A1EC4FE2C00A39841;
+			remoteInfo = "ShellKit-Test";
+		};
+		058F79141EC5F80E007CFF3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 054BFFFA1EC4E6670032B500;
+			remoteInfo = "ShellKit-Static";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		055FBCB21E83D9D7001301A9 /* CopyFiles */ = {
@@ -34,6 +66,7 @@
 		05110D041C1F121C00EE6851 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		05110D051C1F121C00EE6851 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		055FBCB41E83D9D7001301A9 /* thx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = thx; sourceTree = BUILT_PRODUCTS_DIR; };
+		058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShellKit.xcodeproj; path = Submodules/ShellKit/ShellKit.xcodeproj; sourceTree = "<group>"; };
 		05C35D781EC388DA00F373E7 /* THXAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXAction.h; sourceTree = "<group>"; };
 		05C35D791EC388DA00F373E7 /* THXAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXAction.m; sourceTree = "<group>"; };
 		05C35D7B1EC388E600F373E7 /* THXTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXTask.h; sourceTree = "<group>"; };
@@ -57,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058F79131EC5F7DB007CFF3A /* libShellKit-Static.a in Frameworks */,
 				05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */,
 				05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */,
 			);
@@ -74,9 +108,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		058F79081EC5F7C8007CFF3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				058F790E1EC5F7C8007CFF3A /* ShellKit.framework */,
+				058F79101EC5F7C8007CFF3A /* libShellKit-Static.a */,
+				058F79121EC5F7C8007CFF3A /* ShellKit-Test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		05BD89491A13FF4700A43CD8 = {
 			isa = PBXGroup;
 			children = (
+				058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */,
 				05110D041C1F121C00EE6851 /* LICENSE */,
 				05110D051C1F121C00EE6851 /* README.md */,
 				05CFB82B1EC30ACD0020A075 /* thx */,
@@ -136,6 +181,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				058F79151EC5F80E007CFF3A /* PBXTargetDependency */,
 			);
 			name = thx;
 			productName = Test;
@@ -167,12 +213,42 @@
 			mainGroup = 05BD89491A13FF4700A43CD8;
 			productRefGroup = 05BD89531A13FF4700A43CD8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 058F79081EC5F7C8007CFF3A /* Products */;
+					ProjectRef = 058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				055FBCB31E83D9D7001301A9 /* thx */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		058F790E1EC5F7C8007CFF3A /* ShellKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShellKit.framework;
+			remoteRef = 058F790D1EC5F7C8007CFF3A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		058F79101EC5F7C8007CFF3A /* libShellKit-Static.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libShellKit-Static.a";
+			remoteRef = 058F790F1EC5F7C8007CFF3A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		058F79121EC5F7C8007CFF3A /* ShellKit-Test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "ShellKit-Test";
+			remoteRef = 058F79111EC5F7C8007CFF3A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		055FBCB01E83D9D7001301A9 /* Sources */ = {
@@ -191,11 +267,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		058F79151EC5F80E007CFF3A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ShellKit-Static";
+			targetProxy = 058F79141EC5F80E007CFF3A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		055FBCB91E83D9D7001301A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
@@ -205,6 +293,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
