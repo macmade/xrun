@@ -4,5 +4,7 @@ install:
 - gem install xcpretty
 script:
 - set -o pipefail && xcodebuild -project "thx.xcodeproj" -scheme "thx" build | xcpretty
+- set -o pipefail && xcodebuild -project "thx.xcodeproj" -scheme "thx" install DSTROOT="/" | xcpretty
+- /usr/local/bin/thx --setup
 notifications:
     slack: xs-labs:FXh1yLXNkpcVxKZhZU6icdhI
