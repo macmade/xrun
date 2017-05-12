@@ -38,6 +38,7 @@
     
     tasks =
     @[
+        [ THXSetupTasks fixRVM ],
         [ THXSetupTasks updateHomebrew ],
         [ THXSetupTasks installCCache ],
         [ THXSetupTasks installXCPretty ],

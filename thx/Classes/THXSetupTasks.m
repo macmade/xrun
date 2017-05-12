@@ -31,6 +31,11 @@
 
 @implementation THXSetupTasks
 
++ ( id< SKRunableObject > )fixRVM
+{
+    return [ SKOptionalTask taskWithShellScript: @"rvm get head" ];
+}
+
 + ( id< SKRunableObject > )updateHomebrew
 {
     return [ SKTask taskWithShellScript: @"brew update" ];
