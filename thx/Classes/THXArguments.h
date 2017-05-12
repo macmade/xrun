@@ -28,11 +28,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "THXObject.h"
+#import <ShellKit/ShellKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXArguments: THXObject
+@interface THXArguments: SKObject
 
 @property( atomic, readonly           ) BOOL                    showHelp;
 @property( atomic, readonly           ) BOOL                    showVersion;

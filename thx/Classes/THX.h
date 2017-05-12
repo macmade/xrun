@@ -28,58 +28,22 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "THXObject.h"
-#import "THXRunableObject.h"
+#import <ShellKit/ShellKit.h>
+
+@class THXArguments;
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM( NSInteger, THXStatus )
-{
-    THXStatusSuccess,
-    THXStatusFatal,
-    THXStatusError,
-    THXStatusWarning,
-    THXStatusInfo,
-    THXStatusDebug,
-    THXStatusBuild,
-    THXStatusInstall,
-    THXStatusIdea,
-    THXStatusSettings,
-    THXStatusSecurity,
-    THXStatusExecute,
-    THXStatusSearch
-};
-
-typedef NS_ENUM( NSInteger, THXColor )
-{
-    THXColorNone,
-    THXColorBlack,
-    THXColorRed,
-    THXColorGreen,
-    THXColorYellow,
-    THXColorBlue,
-    THXColorPurple,
-    THXColorWhite,
-    THXColorCyan
-};
-
-@interface THX: THXObject < THXRunableObject >
+@interface THX: SKObject
 
 @property( atomic, readonly ) NSString * version;
-@property( atomic, readonly ) BOOL       terminalSupportsColors;
 
 + ( instancetype )sharedInstance;
 
 - ( void )printHelp;
 - ( void )printVersion;
-- ( void )printError: ( nullable NSError * )error;
-- ( void )printError: ( nullable NSError * )error step: ( nullable NSString * )step;
-- ( void )printErrorMessage: ( NSString * )message;
-- ( void )printErrorMessage: ( NSString * )message step: ( nullable NSString * )step;
-- ( void )printMessage: ( NSString * )message status: ( THXStatus )status color: ( THXColor )color;
-- ( void )printMessage: ( NSString * )message step: ( nullable NSString * )step status: ( THXStatus )status color: ( THXColor )color;
 - ( BOOL )checkEnvironment;
-- ( BOOL )checkIfCommandIsAvailable: ( NSString * )command;
+- ( BOOL )runWithArguments: ( THXArguments * )arg;
 
 @end
 

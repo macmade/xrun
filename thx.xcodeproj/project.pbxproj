@@ -8,11 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		058F79131EC5F7DB007CFF3A /* libShellKit-Static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 058F79101EC5F7C8007CFF3A /* libShellKit-Static.a */; };
-		05C35D7A1EC388DA00F373E7 /* THXAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D791EC388DA00F373E7 /* THXAction.m */; };
-		05C35D7D1EC388E600F373E7 /* THXTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7C1EC388E600F373E7 /* THXTask.m */; };
 		05C35D801EC38B2D00F373E7 /* THX.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* THX.m */; };
-		05C35D861EC3AE2000F373E7 /* THXPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D851EC3AE2000F373E7 /* THXPair.m */; };
-		05C35D891EC3C96D00F373E7 /* THXObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D881EC3C96D00F373E7 /* THXObject.m */; };
 		05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */; };
 		05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CFB82C1EC30AF70020A075 /* Cocoa.framework */; };
 		05CFB8301EC30B0B0020A075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB82F1EC30B0B0020A075 /* main.m */; };
@@ -67,17 +63,8 @@
 		05110D051C1F121C00EE6851 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		055FBCB41E83D9D7001301A9 /* thx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = thx; sourceTree = BUILT_PRODUCTS_DIR; };
 		058F79071EC5F7C8007CFF3A /* ShellKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShellKit.xcodeproj; path = Submodules/ShellKit/ShellKit.xcodeproj; sourceTree = "<group>"; };
-		05C35D781EC388DA00F373E7 /* THXAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXAction.h; sourceTree = "<group>"; };
-		05C35D791EC388DA00F373E7 /* THXAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXAction.m; sourceTree = "<group>"; };
-		05C35D7B1EC388E600F373E7 /* THXTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXTask.h; sourceTree = "<group>"; };
-		05C35D7C1EC388E600F373E7 /* THXTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXTask.m; sourceTree = "<group>"; };
 		05C35D7E1EC38B2D00F373E7 /* THX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THX.h; sourceTree = "<group>"; };
 		05C35D7F1EC38B2D00F373E7 /* THX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THX.m; sourceTree = "<group>"; };
-		05C35D811EC3972C00F373E7 /* THXRunableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXRunableObject.h; sourceTree = "<group>"; };
-		05C35D841EC3AE2000F373E7 /* THXPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXPair.h; sourceTree = "<group>"; };
-		05C35D851EC3AE2000F373E7 /* THXPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXPair.m; sourceTree = "<group>"; };
-		05C35D871EC3C96D00F373E7 /* THXObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXObject.h; sourceTree = "<group>"; };
-		05C35D881EC3C96D00F373E7 /* THXObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXObject.m; sourceTree = "<group>"; };
 		05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
 		05CFB82C1EC30AF70020A075 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05CFB82F1EC30B0B0020A075 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -152,17 +139,8 @@
 			children = (
 				05C35D7E1EC38B2D00F373E7 /* THX.h */,
 				05C35D7F1EC38B2D00F373E7 /* THX.m */,
-				05C35D781EC388DA00F373E7 /* THXAction.h */,
-				05C35D791EC388DA00F373E7 /* THXAction.m */,
 				05CFB8321EC30DEE0020A075 /* THXArguments.h */,
 				05CFB8331EC30DEE0020A075 /* THXArguments.m */,
-				05C35D871EC3C96D00F373E7 /* THXObject.h */,
-				05C35D881EC3C96D00F373E7 /* THXObject.m */,
-				05C35D841EC3AE2000F373E7 /* THXPair.h */,
-				05C35D851EC3AE2000F373E7 /* THXPair.m */,
-				05C35D811EC3972C00F373E7 /* THXRunableObject.h */,
-				05C35D7B1EC388E600F373E7 /* THXTask.h */,
-				05C35D7C1EC388E600F373E7 /* THXTask.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -255,13 +233,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C35D7A1EC388DA00F373E7 /* THXAction.m in Sources */,
 				05CFB8301EC30B0B0020A075 /* main.m in Sources */,
 				05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */,
-				05C35D7D1EC388E600F373E7 /* THXTask.m in Sources */,
-				05C35D861EC3AE2000F373E7 /* THXPair.m in Sources */,
 				05C35D801EC38B2D00F373E7 /* THX.m in Sources */,
-				05C35D891EC3C96D00F373E7 /* THXObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,10 +381,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					CrashGuard/include/,
-					Submodules/PIMPL/PIMPL/include,
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Submodules/ShellKit/ShellKit/Classes/";
 				LLVM_LTO = YES_THIN;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -518,10 +489,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					CrashGuard/include/,
-					Submodules/PIMPL/PIMPL/include,
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Submodules/ShellKit/ShellKit/Classes/";
 				LLVM_LTO = YES_THIN;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				RUN_CLANG_STATIC_ANALYZER = YES;
