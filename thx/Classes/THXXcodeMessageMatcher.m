@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_END
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCheckDependenciesMatcher    status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionShellCommandMatcher         status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCleanRemoveMatcher          status: SKStatusNone    resultFormat: @"" ],
-        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCleanTargetMatcher          status: SKStatusNone    resultFormat: @"" ],
+        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCleanTargetMatcher          status: SKStatusTarget  resultFormat: @"Cleaning target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCodesignMatcher             status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCodesignFrameworkMatcher    status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCompileMatcher              status: SKStatusBuild   resultFormat: @"Compiling $(yellow)$(2)$(clear)" ],
