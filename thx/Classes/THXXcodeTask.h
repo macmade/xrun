@@ -32,10 +32,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class THXXcodeOutputProcessor;
+
 @interface THXXcodeTask: SKTask
 
-@property( atomic, readonly ) NSString * action;
-@property( atomic, readonly ) NSString * scheme;
+@property( atomic, readonly          ) NSString                * action;
+@property( atomic, readonly          ) NSString                * scheme;
+@property( atomic, readwrite, strong ) THXXcodeOutputProcessor * outputProcessor;
 
 + ( instancetype )buildTaskForScheme: ( NSString * )scheme;
 + ( instancetype )analyzeTaskForScheme: ( NSString * )scheme;

@@ -80,12 +80,20 @@ NS_ASSUME_NONNULL_END
     return self;
 }
 
+- ( instancetype )initWithShellScript: ( NSString * )script recoverTasks: ( nullable NSArray< SKTask * > * )recover
+{
+    if( ( self = [ super initWithShellScript: script recoverTasks: recover ] ) )
+    {
+        self.outputProcessor = [ THXXcodeOutputProcessor defaultOutputProcessor ];
+    }
+    
+    return self;
+}
+
 - ( BOOL )run: ( NSDictionary< NSString *, NSString * > * )variables
 {
     BOOL                                            ret;
     NSMutableDictionary< NSString *, NSString * > * vars;
-    THXXcodeOutputProcessor                       * processor;
-
     
     [ [ SKShell currentShell ] addPromptPart: self.scheme ];
     
@@ -114,8 +122,7 @@ NS_ASSUME_NONNULL_END
         }
     }
     
-    processor     = [ THXXcodeOutputProcessor new ];
-    self.delegate = processor;
+    self.delegate = self.outputProcessor;
     ret           = [ super run: vars ];
     self.delegate = nil;
     

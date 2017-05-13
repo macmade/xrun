@@ -14,6 +14,7 @@
 		058F79281EC62621007CFF3A /* THXXcodeTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79271EC62621007CFF3A /* THXXcodeTask.m */; };
 		058F79411EC730DA007CFF3A /* THXRegularExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79401EC730DA007CFF3A /* THXRegularExpressions.m */; };
 		058F79441EC73807007CFF3A /* THXXcodeOutputProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79431EC73807007CFF3A /* THXXcodeOutputProcessor.m */; };
+		058F79471EC73CA7007CFF3A /* THXXcodeMessageMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79461EC73CA7007CFF3A /* THXXcodeMessageMatcher.m */; };
 		05C35D801EC38B2D00F373E7 /* THX.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* THX.m */; };
 		05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */; };
 		05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CFB82C1EC30AF70020A075 /* Cocoa.framework */; };
@@ -81,6 +82,8 @@
 		058F79401EC730DA007CFF3A /* THXRegularExpressions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXRegularExpressions.m; sourceTree = "<group>"; };
 		058F79421EC73807007CFF3A /* THXXcodeOutputProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXXcodeOutputProcessor.h; sourceTree = "<group>"; };
 		058F79431EC73807007CFF3A /* THXXcodeOutputProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXXcodeOutputProcessor.m; sourceTree = "<group>"; };
+		058F79451EC73CA7007CFF3A /* THXXcodeMessageMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THXXcodeMessageMatcher.h; sourceTree = "<group>"; };
+		058F79461EC73CA7007CFF3A /* THXXcodeMessageMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THXXcodeMessageMatcher.m; sourceTree = "<group>"; };
 		05C35D7E1EC38B2D00F373E7 /* THX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THX.h; sourceTree = "<group>"; };
 		05C35D7F1EC38B2D00F373E7 /* THX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THX.m; sourceTree = "<group>"; };
 		05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
@@ -167,6 +170,8 @@
 				058F791F1EC60DFF007CFF3A /* THXSetupTasks.m */,
 				058F791B1EC60DAD007CFF3A /* THXStaticClass.h */,
 				058F791C1EC60DAD007CFF3A /* THXStaticClass.m */,
+				058F79451EC73CA7007CFF3A /* THXXcodeMessageMatcher.h */,
+				058F79461EC73CA7007CFF3A /* THXXcodeMessageMatcher.m */,
 				058F79421EC73807007CFF3A /* THXXcodeOutputProcessor.h */,
 				058F79431EC73807007CFF3A /* THXXcodeOutputProcessor.m */,
 				058F79261EC62621007CFF3A /* THXXcodeTask.h */,
@@ -264,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058F791A1EC60D3D007CFF3A /* THXActions.m in Sources */,
+				058F79471EC73CA7007CFF3A /* THXXcodeMessageMatcher.m in Sources */,
 				05CFB8301EC30B0B0020A075 /* main.m in Sources */,
 				058F79441EC73807007CFF3A /* THXXcodeOutputProcessor.m in Sources */,
 				05CFB8341EC30DEE0020A075 /* THXArguments.m in Sources */,

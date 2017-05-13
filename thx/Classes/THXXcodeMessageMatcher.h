@@ -23,26 +23,31 @@
  ******************************************************************************/
 
 /*!
- * @header      THXXcodeOutputProcessor.h
+ * @header      THXXcodeMessageMatcher.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 #import <Foundation/Foundation.h>
 #import <ShellKit/ShellKit.h>
 
-@class THXXcodeMessageMatcher;
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXXcodeOutputProcessor: SKObject < SKTaskDelegate >
+@interface THXXcodeMessageMatcher: SKObject
 
-@property( atomic, readonly           ) BOOL       hasWarnings;
-@property( atomic, readonly           ) BOOL       hasErrors;
-@property( atomic, readonly           ) BOOL       hasStandardErrorOutput;
-@property( atomic, readonly, nullable ) NSString * standardErrorOutput;
+@property( atomic, readonly ) NSString            * expression;
+@property( atomic, readonly ) NSRegularExpression * regularExpression;
+@property( atomic, readonly ) NSString            * resultFormat;
+@property( atomic, readonly ) SKStatus              status;
 
-+ ( instancetype )defaultOutputProcessor;
-- ( instancetype )initWithMessageMatchers: ( NSArray< THXXcodeMessageMatcher * > * )messages warningMatchers: ( NSArray< THXXcodeMessageMatcher * > * )warnings errorMatchers: ( NSArray< THXXcodeMessageMatcher * > * )errors NS_DESIGNATED_INITIALIZER;
++ ( NSArray< THXXcodeMessageMatcher * > * )defaultMessageMatchers;
++ ( NSArray< THXXcodeMessageMatcher * > * )defaultWarningMatchers;
++ ( NSArray< THXXcodeMessageMatcher * > * )defaultErrorMatchers;
+
++ ( instancetype )matcherWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
++ ( instancetype )matcherWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format;
+
+- ( instancetype )initWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
+- ( instancetype )initWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format NS_DESIGNATED_INITIALIZER;
 
 @end
 
