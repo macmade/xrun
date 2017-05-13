@@ -28,6 +28,7 @@
  */
 
 #import "THXXcodeTask.h"
+#import "THXXcodeOutputProcessor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -83,6 +84,8 @@ NS_ASSUME_NONNULL_END
 {
     BOOL                                            ret;
     NSMutableDictionary< NSString *, NSString * > * vars;
+    THXXcodeOutputProcessor                       * processor;
+
     
     [ [ SKShell currentShell ] addPromptPart: self.scheme ];
     
@@ -111,7 +114,10 @@ NS_ASSUME_NONNULL_END
         }
     }
     
-    ret = [ super run: vars ];
+    processor     = [ THXXcodeOutputProcessor new ];
+    self.delegate = processor;
+    ret           = [ super run: vars ];
+    self.delegate = nil;
     
     [ [ SKShell currentShell ] removeLastPromptPart ];
     
