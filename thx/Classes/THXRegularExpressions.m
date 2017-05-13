@@ -239,7 +239,8 @@ NSString * const THXRegularExpressionTestCasePendingMatcher = @"Test Case\\s'-\\
 NSString * const THXRegularExpressionTestCaseMeasuredMatcher = @"[^:]*:[^:]*:\\sTest Case\\s'-\\[(.*)\\s(.*)\\]'\\smeasured\\s\\[Time,\\sseconds\\]\\saverage:\\s(\\d*\\.\\d{3}),";
 
 /*
- * Captured groups: none
+ * Captured groups:
+ * - 1: phase
  */
 NSString * const THXRegularExpressionPhaseSuccessMatcher = @"\\*\\*\\s(.*)\\sSUCCEEDED\\s\\*\\*";
 

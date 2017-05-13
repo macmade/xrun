@@ -49,9 +49,9 @@ NS_ASSUME_NONNULL_END
 {
     return @[
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionAnalyzeMatcher              status: SKStatusIdea    resultFormat: @"Analyzing $(yellow)$(2)$(clear)" ],
-        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionBuildTargetMatcher          status: SKStatusNone    resultFormat: @"" ],
-        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionAggregateTargetMatcher      status: SKStatusNone    resultFormat: @"" ],
-        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionAnalyzeTargetMatcher        status: SKStatusNone    resultFormat: @"" ],
+        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionBuildTargetMatcher          status: SKStatusTarget  resultFormat: @"Building target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
+        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionAggregateTargetMatcher      status: SKStatusTarget  resultFormat: @"Building aggregate target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
+        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionAnalyzeTargetMatcher        status: SKStatusTarget  resultFormat: @"Analyzing target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCheckDependenciesMatcher    status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionShellCommandMatcher         status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionCleanRemoveMatcher          status: SKStatusNone    resultFormat: @"" ],
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_END
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionTestCaseStartedMatcher      status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionTestCasePendingMatcher      status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionTestCaseMeasuredMatcher     status: SKStatusNone    resultFormat: @"" ],
-        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionPhaseSuccessMatcher         status: SKStatusNone    resultFormat: @"" ],
+        [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionPhaseSuccessMatcher         status: SKStatusSuccess resultFormat: @"$(green)$(1) succeeded$(clear)" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionPhaseScriptExecutionMatcher status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionProcessPCHMatcher           status: SKStatusNone    resultFormat: @"" ],
         [ THXXcodeMessageMatcher matcherWithExpression: THXRegularExpressionProcessPCHCommandMatcher    status: SKStatusNone    resultFormat: @"" ],
