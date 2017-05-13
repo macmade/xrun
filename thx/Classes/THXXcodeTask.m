@@ -79,16 +79,6 @@ NS_ASSUME_NONNULL_END
     return self;
 }
 
-- ( instancetype )initWithShellScript: ( NSString * )script
-{
-    if( [ [ SKShell currentShell ] isCommandAvailable: @"xcpretty" ] )
-    {
-        script = [ NSString stringWithFormat: @"set -o pipefail && %@ | xcpretty", script ];
-    }
-    
-    return [ super initWithShellScript: script ];
-}
-
 - ( BOOL )run: ( NSDictionary< NSString *, NSString * > * )variables
 {
     BOOL                                            ret;

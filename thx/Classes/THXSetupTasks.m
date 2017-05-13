@@ -46,11 +46,6 @@
     return [ SKTask taskWithShellScript: @"brew install ccache" recoverTask: [ SKTask taskWithShellScript: @"brew upgrade ccache" ] ];
 }
 
-+ ( id< SKRunableObject > )installXCPretty
-{
-    return [ SKOptionalTask taskWithShellScript: @"gem install xcpretty" ];
-}
-
 + ( id< SKRunableObject > )installXcodeCoveralls
 {
     return [ SKTask taskWithShellScript: @"brew install macmade/tap/xcode-coveralls" recoverTask: [ SKTask taskWithShellScript: @"brew upgrade xcode-coveralls" ] ];
