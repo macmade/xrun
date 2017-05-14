@@ -37,8 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong           ) NSError  * error;
 @property( atomic, readwrite, strong           ) NSString * action;
 @property( atomic, readwrite, strong, nullable ) NSString * scheme;
+@property( atomic, readwrite, assign           ) BOOL       verbose;
 
-- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options;
+- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose;
 - ( nullable NSString * )findXcodeProject;
 
 @end
@@ -49,12 +50,12 @@ NS_ASSUME_NONNULL_END
 
 @dynamic error;
 
-+ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options
++ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose
 {
-    return [ [ self alloc ] initWithAction: action scheme: scheme options: options ];
+    return [ [ self alloc ] initWithAction: action scheme: scheme options: options verbose: verbose ];
 }
 
-- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options
+- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose
 {
     NSString * script;
     
@@ -72,8 +73,9 @@ NS_ASSUME_NONNULL_END
     
     if( ( self = [ self initWithShellScript: script ] ) )
     {
-        self.action = action;
-        self.scheme = scheme;
+        self.action  = action;
+        self.scheme  = scheme;
+        self.verbose = verbose;
     }
     
     return self;
@@ -123,9 +125,10 @@ NS_ASSUME_NONNULL_END
         }
     }
     
-    self.delegate = self.outputProcessor;
-    ret           = [ super run: vars ];
-    self.delegate = nil;
+    self.outputProcessor.verbose = self.verbose;
+    self.delegate                = self.outputProcessor;
+    ret                          = [ super run: vars ];
+    self.delegate                = nil;
     
     if( self.scheme.length )
     {

@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + ( id< SKRunableObject > )setup;
 + ( id< SKRunableObject > )coverage;
-+ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action schemes: ( NSArray< NSString * > * )schemes options: ( NSArray< NSString * > * )options;
++ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action schemes: ( NSArray< NSString * > * )schemes options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose;
 
 @end
 

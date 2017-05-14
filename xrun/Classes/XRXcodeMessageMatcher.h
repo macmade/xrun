@@ -38,16 +38,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readonly ) NSRegularExpression * regularExpression;
 @property( atomic, readonly ) NSString            * resultFormat;
 @property( atomic, readonly ) SKStatus              status;
+@property( atomic, readonly ) BOOL                  verbose;
 
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultMessageMatchers;
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultWarningMatchers;
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultErrorMatchers;
 
-+ ( instancetype )matcherWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
-+ ( instancetype )matcherWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format;
-
-- ( instancetype )initWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
-- ( instancetype )initWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format NS_DESIGNATED_INITIALIZER;
++ ( instancetype )matcherWithExpression: ( NSString * )expr verbose: ( BOOL )verbose status: ( SKStatus )status resultFormat: ( NSString * )format;
+- ( instancetype )initWithExpression: ( NSString * )expr verbose: ( BOOL )verbose status: ( SKStatus )status resultFormat: ( NSString * )format NS_DESIGNATED_INITIALIZER;
 
 @end
 

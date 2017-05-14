@@ -199,6 +199,11 @@ NS_ASSUME_NONNULL_END
     NSString                          * capture;
     NSUInteger                          i;
     
+    if( self.verbose == NO && matcher.verbose == YES )
+    {
+        return NO;
+    }
+    
     results = [ matcher.regularExpression matchesInString: str options: ( NSMatchingOptions )0 range: NSMakeRange( 0, str.length ) ];
     
     if( results.count == 0 )

@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readonly, nullable ) NSString               * scheme;
 @property( atomic, readwrite, strong  ) XRXcodeOutputProcessor * outputProcessor;
 
-+ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options;
++ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose;
 
 @end
 

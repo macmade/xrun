@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XRXcodeOutputProcessor: SKObject < SKTaskDelegate >
 
+@property( atomic, readwrite, assign  ) BOOL       verbose;
 @property( atomic, readonly           ) BOOL       hasWarnings;
 @property( atomic, readonly           ) BOOL       hasErrors;
 @property( atomic, readonly           ) BOOL       hasStandardErrorOutput;

@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Xrun()
 
-@property( atomic, readwrite, strong           ) NSString     * version;
+@property( atomic, readwrite, strong           ) NSString    * version;
 @property( atomic, readwrite, strong, nullable ) XRArguments * args;
 
 - ( BOOL )executeActions: ( NSArray< NSString * > * )names;
@@ -225,7 +225,7 @@ NS_ASSUME_NONNULL_END
         }
         else if( [ name hasPrefix: @"xcodebuild:" ] )
         {
-            [ actions addObject: [ XRActions xcodeBuild: [ name substringFromIndex: 11 ] schemes: self.args.schemes options: self.args.additionalOptions ] ];
+            [ actions addObject: [ XRActions xcodeBuild: [ name substringFromIndex: 11 ] schemes: self.args.schemes options: self.args.additionalOptions verbose: self.args.verbose ] ];
         }
         else
         {
