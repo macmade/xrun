@@ -29,6 +29,7 @@
 
 #import "XRXcodeOutputProcessor.h"
 #import "XRXcodeMessageMatcher.h"
+#import "XRRegularExpressions.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -68,7 +69,7 @@ NS_ASSUME_NONNULL_END
 {
     if( ( self = [ super init ] ) )
     {
-        self.queue    = dispatch_queue_create( "com.xs-labs.Xrun.XRXcodeOutputProcessor", DISPATCH_QUEUE_CONCURRENT );
+        self.queue    = dispatch_queue_create( "com.xs-labs.Xrun.XRXcodeOutputProcessor", DISPATCH_QUEUE_SERIAL );
         self.matchers = @{ @"messages" : messages, @"warnings" : warnings, @"errors" : errors };
     }
     
@@ -133,10 +134,6 @@ NS_ASSUME_NONNULL_END
     if( type == SKTaskOutputTypeStandardError )
     {
         self.hasStandardErrorOutput = YES;
-        
-        [ self.errBuffer appendString: output ];
-        
-        return;
     }
     
     [ self.outBuffer appendString: output ];
@@ -151,6 +148,7 @@ NS_ASSUME_NONNULL_END
     str = [ self.outBuffer substringWithRange: NSMakeRange( 0, range.location + range.length ) ];
     
     [ self.outBuffer deleteCharactersInRange: NSMakeRange( 0, range.location + range.length ) ];
+    
     
     dispatch_async
     (

@@ -101,6 +101,7 @@ FOUNDATION_EXPORT NSString * const XRRegularExpressionWillNotBeCodeSignedMatcher
  * ERRORS
  ******************************************************************************/
 
+FOUNDATION_EXPORT NSString * const XRRegularExpressionPhaseFailedMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionClangErrorMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionCheckDependenciesErrorsMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionProvisioningProfileRequiredMatcher;

@@ -366,6 +366,12 @@ NSString * const XRRegularExpressionWillNotBeCodeSignedMatcher = @"(.* will not 
 
 /*
  * Captured groups:
+ * - 1: phase
+ */
+NSString * const XRRegularExpressionPhaseFailedMatcher = @"\\*\\* (.*) FAILED \\*\\*";
+
+/*
+ * Captured groups:
  * - 1: whole error
  */
 NSString * const XRRegularExpressionClangErrorMatcher = @"(clang: error:.*)$";
