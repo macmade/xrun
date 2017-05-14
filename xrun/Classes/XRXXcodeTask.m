@@ -138,6 +138,13 @@ NS_ASSUME_NONNULL_END
         ret = NO;
     }
     
+    if( self.outputProcessor.hasAnalyzerWarnings && self.arguments.failOnAnalyzeErrors )
+    {
+        [ [ SKShell currentShell ] printErrorMessage: @"Task produced analyzer diagnostics" ];
+        
+        ret = NO;
+    }
+    
     if( self.scheme.length )
     {
         [ [ SKShell currentShell ] removeLastPromptPart ];

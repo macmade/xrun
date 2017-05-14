@@ -129,6 +129,13 @@ NS_ASSUME_NONNULL_END
     ];
 }
 
++ ( NSArray< XRXcodeMessageMatcher * > * )defaultAnalyzerMatchers
+{
+    return @[
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzerWarningMatcher verbose: NO status: SKStatusError resultFormat: @"$(yellow)$(2):$(3):$(4):$(clear) $(red)$(5)$(clear)" ],
+    ];
+}
+
 + ( instancetype )matcherWithExpression: ( NSString * )expr verbose: ( BOOL )verbose status: ( SKStatus )status resultFormat: ( NSString * )format
 {
     return [ [ self alloc ] initWithExpression: expr verbose: verbose status: status resultFormat: format ];
@@ -149,7 +156,7 @@ NS_ASSUME_NONNULL_END
         self.resultFormat      = format;
         self.status            = status;
         self.verbose           = verbose;
-        self.regularExpression = [ NSRegularExpression regularExpressionWithPattern: self.expression options: ( NSRegularExpressionOptions )0 error: &error ];
+        self.regularExpression = [ NSRegularExpression regularExpressionWithPattern: self.expression options: NSRegularExpressionAnchorsMatchLines error: &error ];
         
         if( error != nil )
         {

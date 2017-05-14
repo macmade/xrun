@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultMessageMatchers;
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultWarningMatchers;
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultErrorMatchers;
++ ( NSArray< XRXcodeMessageMatcher * > * )defaultAnalyzerMatchers;
 
 + ( instancetype )matcherWithExpression: ( NSString * )expr verbose: ( BOOL )verbose status: ( SKStatus )status resultFormat: ( NSString * )format;
 - ( instancetype )initWithExpression: ( NSString * )expr verbose: ( BOOL )verbose status: ( SKStatus )status resultFormat: ( NSString * )format NS_DESIGNATED_INITIALIZER;

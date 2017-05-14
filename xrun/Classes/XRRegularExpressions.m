@@ -32,8 +32,8 @@
 /*******************************************************************************
  * Copyright Notice
  * 
- * The following regular expressions have been borrowed from the xcpretty
- * project, by Marin Usalj.
+ * Most of the following regular expressions have been borrowed from the
+ * xcpretty project, by Marin Usalj, and adapted for this project.
  * 
  * xcpretty is released under the terms of the MIT license:
  * 
@@ -320,7 +320,7 @@ NSString * const XRRegularExpressionTouchMatcher = @"Touch (.*\\/(.+))";
 /*
  * Captured groups:
  * - 1: file path
- * - 1: file name
+ * - 2: file name
  */
 NSString * const XRRegularExpressionWriteFileMatcher = @"write-file (.*\\/(.+))";
 
@@ -328,6 +328,20 @@ NSString * const XRRegularExpressionWriteFileMatcher = @"write-file (.*\\/(.+))"
  * Captured groups: none
  */
 NSString * const XRRegularExpressionWriteAuxiliaryFiles = @"Write auxiliary files";
+
+/*******************************************************************************
+ * ANALYZER WARNINGS
+ ******************************************************************************/
+ 
+/*
+ * Captured groups:
+ * - 1: file path
+ * - 2: file name
+ * - 3: line number
+ * - 4: column number
+ * - 5: diagnostic
+ */
+NSString * const XRRegularExpressionAnalyzerWarningMatcher = @"^(.*\\/(.+)):([0-9]+):([0-9]+): warning: ([^\\n]+)";
 
 /*******************************************************************************
  * WARNINGS

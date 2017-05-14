@@ -39,11 +39,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, assign  ) BOOL       verbose;
 @property( atomic, readonly           ) BOOL       hasWarnings;
 @property( atomic, readonly           ) BOOL       hasErrors;
+@property( atomic, readonly           ) BOOL       hasAnalyzerWarnings;
 @property( atomic, readonly           ) BOOL       hasStandardErrorOutput;
 @property( atomic, readonly, nullable ) NSString * standardErrorOutput;
 
 + ( instancetype )defaultOutputProcessor;
-- ( instancetype )initWithMessageMatchers: ( NSArray< XRXcodeMessageMatcher * > * )messages warningMatchers: ( NSArray< XRXcodeMessageMatcher * > * )warnings errorMatchers: ( NSArray< XRXcodeMessageMatcher * > * )errors NS_DESIGNATED_INITIALIZER;
+- ( instancetype )initWithMessageMatchers:  ( NSArray< XRXcodeMessageMatcher * > * )messages
+                  warningMatchers:          ( NSArray< XRXcodeMessageMatcher * > * )warnings 
+                  errorMatchers:            ( NSArray< XRXcodeMessageMatcher * > * )errors
+                  analyzerMatchers:         ( NSArray< XRXcodeMessageMatcher * > * )analyzer
+                  NS_DESIGNATED_INITIALIZER;
 
 @end
 

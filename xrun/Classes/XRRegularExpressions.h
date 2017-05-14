@@ -89,6 +89,12 @@ FOUNDATION_EXPORT NSString * const XRRegularExpressionWriteFileMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionWriteAuxiliaryFiles;
 
 /*******************************************************************************
+ * ANALYZER WARNINGS
+ ******************************************************************************/
+
+FOUNDATION_EXPORT NSString * const XRRegularExpressionAnalyzerWarningMatcher;
+
+/*******************************************************************************
  * WARNINGS
  ******************************************************************************/
 

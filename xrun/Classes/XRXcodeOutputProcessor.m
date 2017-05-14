@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong, nullable ) NSMutableString                                                   * outBuffer;
 @property( atomic, readwrite, strong, nullable ) NSMutableString                                                   * errBuffer;
 @property( atomic, readwrite, assign           ) BOOL                                                                hasWarnings;
+@property( atomic, readwrite, assign           ) BOOL                                                                hasAnalyzerWarnings;
 @property( atomic, readwrite, assign           ) BOOL                                                                hasErrors;
 @property( atomic, readwrite, assign           ) BOOL                                                                hasStandardErrorOutput;
 @property( atomic, readwrite, strong           ) dispatch_queue_t                                                    queue;
@@ -57,20 +58,24 @@ NS_ASSUME_NONNULL_END
     return [ [ self alloc ] initWithMessageMatchers: [ XRXcodeMessageMatcher defaultMessageMatchers ]
                             warningMatchers:         [ XRXcodeMessageMatcher defaultWarningMatchers ]
                             errorMatchers:           [ XRXcodeMessageMatcher defaultErrorMatchers ]
+                            analyzerMatchers:        [ XRXcodeMessageMatcher defaultAnalyzerMatchers ]
            ];
 }
 
 - ( instancetype )init
 {
-    return [ self initWithMessageMatchers: @[] warningMatchers: @[] errorMatchers: @[] ];
+    return [ self initWithMessageMatchers: @[] warningMatchers: @[] errorMatchers: @[] analyzerMatchers: @[] ];
 }
 
-- ( instancetype )initWithMessageMatchers: ( NSArray< XRXcodeMessageMatcher * > * )messages warningMatchers: ( NSArray< XRXcodeMessageMatcher * > * )warnings errorMatchers: ( NSArray< XRXcodeMessageMatcher * > * )errors
+- ( instancetype )initWithMessageMatchers:  ( NSArray< XRXcodeMessageMatcher * > * )messages
+                  warningMatchers:          ( NSArray< XRXcodeMessageMatcher * > * )warnings 
+                  errorMatchers:            ( NSArray< XRXcodeMessageMatcher * > * )errors
+                  analyzerMatchers:         ( NSArray< XRXcodeMessageMatcher * > * )analyzer
 {
     if( ( self = [ super init ] ) )
     {
         self.queue    = dispatch_queue_create( "com.xs-labs.Xrun.XRXcodeOutputProcessor", DISPATCH_QUEUE_SERIAL );
-        self.matchers = @{ @"messages" : messages, @"warnings" : warnings, @"errors" : errors };
+        self.matchers = @{ @"messages" : messages, @"warnings" : warnings, @"errors" : errors, @"analyzer" : analyzer };
     }
     
     return self;
@@ -184,6 +189,10 @@ NS_ASSUME_NONNULL_END
             {
                 self.hasErrors = YES;
             }
+            else if( match && [ key isEqualToString: @"analyzer" ] )
+            {
+                self.hasAnalyzerWarnings = YES;
+            }
         }
     }
 }
@@ -197,6 +206,11 @@ NS_ASSUME_NONNULL_END
     NSUInteger                          i;
     
     if( self.verbose == NO && matcher.verbose == YES )
+    {
+        return NO;
+    }
+    
+    if( matcher.expression.length == 0 )
     {
         return NO;
     }
