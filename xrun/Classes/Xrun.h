@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - ( void )printHelp;
 - ( void )printVersion;
+- ( void )printLicense;
 - ( BOOL )checkEnvironment;
 - ( BOOL )runWithArguments: ( XRArguments * )arg;
 

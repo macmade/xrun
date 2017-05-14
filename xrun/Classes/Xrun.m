@@ -114,6 +114,34 @@ NS_ASSUME_NONNULL_END
     ];
 }
 
+- ( void )printLicense
+{
+    [ [ SKShell currentShell ] printMessage:
+        @"The MIT License (MIT)\n"
+        @"\n"
+        @"Copyright (c) 2015 Jean-David Gadina - www.xs-labs.com\n"
+        @"\n"
+        @"Permission is hereby granted, free of charge, to any person obtaining a copy\n"
+        @"of this software and associated documentation files (the \"Software\"), to deal\n"
+        @"in the Software without restriction, including without limitation the rights\n"
+        @"to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n"
+        @"copies of the Software, and to permit persons to whom the Software is\n"
+        @"furnished to do so, subject to the following conditions:\n"
+        @"\n"
+        @"The above copyright notice and this permission notice shall be included in\n"
+        @"all copies or substantial portions of the Software.\n"
+        @"\n"
+        @"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n"
+        @"IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n"
+        @"FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n"
+        @"AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n"
+        @"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n"
+        @"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\n"
+        @"THE SOFTWARE."
+        status: SKStatusInfo
+    ];
+}
+
 - ( void )printVersion
 {
     [ [ SKShell currentShell ] printMessage: @"Version %@" status: SKStatusInfo, self.version ];
@@ -187,45 +215,17 @@ NS_ASSUME_NONNULL_END
     
     for( name in names )
     {
-        if
-        (
-            self.args.schemes.count == 0
-            &&
-            (
-                   [ name isEqualToString: @"build" ]
-                || [ name isEqualToString: @"analyze" ]
-                || [ name isEqualToString: @"test" ]
-            )
-        )
-        {
-            [ [ SKShell currentShell ] printErrorMessage: @"No scheme provided for %@ action", name ];
-            
-            return NO;
-        }
-        
         if( [ name isEqualToString: @"setup" ] )
         {
             [ actions addObject: [ XRActions setup ] ];
         }
-        else if( [ name isEqualToString: @"build" ] )
-        {
-            [ actions addObject: [ XRActions build: self.args.schemes ] ];
-        }
-        else if( [ name isEqualToString: @"analyze" ] )
-        {
-            [ actions addObject: [ XRActions analyze: self.args.schemes ] ];
-        }
-        else if( [ name isEqualToString: @"test" ] )
-        {
-            [ actions addObject: [ XRActions test: self.args.schemes ] ];
-        }
-        else if( [ name isEqualToString: @"clean" ] )
-        {
-            [ actions addObject: [ XRActions clean: self.args.schemes ] ];
-        }
         else if( [ name isEqualToString: @"coverage" ] )
         {
             [ actions addObject: [ XRActions coverage ] ];
+        }
+        else if( [ name hasPrefix: @"xcodebuild:" ] )
+        {
+            [ actions addObject: [ XRActions xcodeBuild: [ name substringFromIndex: 11 ] schemes: self.args.schemes options: self.args.additionalOptions ] ];
         }
         else
         {
@@ -272,7 +272,28 @@ NS_ASSUME_NONNULL_END
         return NO;
     }
     
-    if( args.showVersion == NO && args.showHelp == NO && args.actions.count == 0 )
+    if( args.showVersion )
+    {
+        [ self printVersion ];
+        
+        return YES;
+    }
+    
+    if( args.showHelp )
+    {
+        [ self printHelp ];
+        
+        return YES;
+    }
+    
+    if( args.showLicense )
+    {
+        [ self printLicense ];
+        
+        return YES;
+    }
+    
+    if( args.actions.count == 0 )
     {
         [ [ SKShell currentShell ] printErrorMessage: @"No action provided" ];
         [ self printHelp ];
@@ -283,16 +304,6 @@ NS_ASSUME_NONNULL_END
     if( [ self checkEnvironment ] == NO )
     {
         return NO;
-    }
-    
-    if( args.showVersion )
-    {
-        [ self printVersion ];
-    }
-    
-    if( args.showHelp )
-    {
-        [ self printHelp ];
     }
     
     if( args.actions.count )

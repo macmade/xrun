@@ -36,14 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XRXcodeTask: SKTask
 
-@property( atomic, readonly          ) NSString                * action;
-@property( atomic, readonly          ) NSString                * scheme;
-@property( atomic, readwrite, strong ) XRXcodeOutputProcessor * outputProcessor;
+@property( atomic, readonly           ) NSString               * action;
+@property( atomic, readonly, nullable ) NSString               * scheme;
+@property( atomic, readwrite, strong  ) XRXcodeOutputProcessor * outputProcessor;
 
-+ ( instancetype )buildTaskForScheme: ( NSString * )scheme;
-+ ( instancetype )analyzeTaskForScheme: ( NSString * )scheme;
-+ ( instancetype )testTaskForScheme: ( NSString * )scheme;
-+ ( instancetype )cleanTaskForScheme: ( NSString * )scheme;
++ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options;
 
 @end
 

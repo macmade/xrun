@@ -34,11 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XRXcodeTask()
 
-@property( atomic, readwrite, strong ) NSError  * error;
-@property( atomic, readwrite, strong ) NSString * action;
-@property( atomic, readwrite, strong ) NSString * scheme;
+@property( atomic, readwrite, strong           ) NSError  * error;
+@property( atomic, readwrite, strong           ) NSString * action;
+@property( atomic, readwrite, strong, nullable ) NSString * scheme;
 
-- ( instancetype )initWithAction: ( NSString * )action scheme: ( NSString * )scheme;
+- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options;
 - ( nullable NSString * )findXcodeProject;
 
 @end
@@ -49,29 +49,28 @@ NS_ASSUME_NONNULL_END
 
 @dynamic error;
 
-+ ( instancetype )buildTaskForScheme: ( NSString * )scheme
++ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options
 {
-    return [ [ self alloc ] initWithAction: @"build" scheme: scheme ];
+    return [ [ self alloc ] initWithAction: action scheme: scheme options: options ];
 }
 
-+ ( instancetype )analyzeTaskForScheme: ( NSString * )scheme
+- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options
 {
-    return [ [ self alloc ] initWithAction: @"analyze" scheme: scheme ];
-}
-
-+ ( instancetype )testTaskForScheme: ( NSString * )scheme
-{
-    return [ [ self alloc ] initWithAction: @"test" scheme: scheme ];
-}
-
-+ ( instancetype )cleanTaskForScheme: ( NSString * )scheme
-{
-    return [ [ self alloc ] initWithAction: @"clean" scheme: scheme ];
-}
-
-- ( instancetype )initWithAction: ( NSString * )action scheme: ( NSString * )scheme
-{
-    if( ( self = [ self initWithShellScript: @"xcodebuild %{action}% -scheme %{scheme}% -project %{project}%" ] ) )
+    NSString * script;
+    
+    script = @"xcodebuild %{action}% -project %{project}%";
+    
+    if( scheme.length )
+    {
+        script = [ script stringByAppendingFormat: @" -scheme %@", scheme ];
+    }
+    
+    if( options.count )
+    {
+        script = [ script stringByAppendingFormat: @" %@", [ options componentsJoinedByString: @" " ] ];
+    }
+    
+    if( ( self = [ self initWithShellScript: script ] ) )
     {
         self.action = action;
         self.scheme = scheme;
@@ -95,12 +94,14 @@ NS_ASSUME_NONNULL_END
     BOOL                                            ret;
     NSMutableDictionary< NSString *, NSString * > * vars;
     
-    [ [ SKShell currentShell ] addPromptPart: self.scheme ];
+    if( self.scheme.length )
+    {
+        [ [ SKShell currentShell ] addPromptPart: self.scheme ];
+    }
     
     vars = variables.mutableCopy;
     
     [ vars setObject: self.action forKey: @"action" ];
-    [ vars setObject: self.scheme forKey: @"scheme" ];
     
     if( [ vars objectForKey: @"project" ] == nil )
     {
@@ -126,7 +127,10 @@ NS_ASSUME_NONNULL_END
     ret           = [ super run: vars ];
     self.delegate = nil;
     
-    [ [ SKShell currentShell ] removeLastPromptPart ];
+    if( self.scheme.length )
+    {
+        [ [ SKShell currentShell ] removeLastPromptPart ];
+    }
     
     return ret;
 }

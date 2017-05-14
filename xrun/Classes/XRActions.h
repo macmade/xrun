@@ -36,11 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XRActions: XRStaticClass
 
 + ( id< SKRunableObject > )setup;
-+ ( id< SKRunableObject > )build: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )analyze: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )test: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )clean: ( NSArray< NSString * > * )schemes;
 + ( id< SKRunableObject > )coverage;
++ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action schemes: ( NSArray< NSString * > * )schemes options: ( NSArray< NSString * > * )options;
 
 @end
 

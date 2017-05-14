@@ -36,11 +36,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property( atomic, readonly           ) BOOL                    showHelp;
 @property( atomic, readonly           ) BOOL                    showVersion;
+@property( atomic, readonly           ) BOOL                    showLicense;
+@property( atomic, readonly           ) BOOL                    verbose;
 @property( atomic, readonly           ) NSArray< NSString * > * actions;
+@property( atomic, readonly           ) NSArray< NSString * > * xcodeActions;
 @property( atomic, readonly, nullable ) NSString              * project;
 @property( atomic, readonly           ) NSArray< NSString * > * schemes;
 @property( atomic, readonly, nullable ) NSError               * error;
 @property( atomic, readonly           ) NSString              * executable;
+@property( atomic, readonly           ) NSArray< NSString * > * additionalOptions;
 
 - ( instancetype )initWithArguments: ( const char * _Nonnull * _Nullable )argv count: ( int )argc NS_DESIGNATED_INITIALIZER;
 

@@ -35,11 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property( atomic, readwrite, assign           ) BOOL                    showHelp;
 @property( atomic, readwrite, assign           ) BOOL                    showVersion;
+@property( atomic, readwrite, assign           ) BOOL                    showLicense;
+@property( atomic, readwrite, assign           ) BOOL                    verbose;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * actions;
 @property( atomic, readwrite, strong, nullable ) NSString              * project;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * schemes;
 @property( atomic, readwrite, strong, nullable ) NSError               * error;
 @property( atomic, readwrite, strong           ) NSString              * executable;
+@property( atomic, readwrite, strong           ) NSArray< NSString * > * additionalOptions;
 
 - ( void )parse: ( NSArray< NSString * > * )args;
 
@@ -103,37 +106,55 @@ NS_ASSUME_NONNULL_END
     NSString                     * arg;
     NSMutableArray< NSString * > * actions;
     NSMutableArray< NSString * > * schemes;
+    NSMutableArray< NSString * > * additionalOptions;
     
-    enumerator = [ args objectEnumerator ];
-    actions    = [ NSMutableArray new ];
-    schemes    = [ NSMutableArray new ];
+    enumerator          = [ args objectEnumerator ];
+    actions             = [ NSMutableArray new ];
+    schemes             = [ NSMutableArray new ];
+    additionalOptions   = [ NSMutableArray new ];
     
     while( ( arg = [ enumerator nextObject ] ) )
     {
-        loop:
-        
-        if( [ arg isEqualToString: @"-h" ] )
+        if( [ arg isEqualToString: @"-help" ] )
         {
             self.showHelp = YES;
-            
-            continue;
         }
-        
-        if( [ arg isEqualToString: @"-v" ] )
+        else if( [ arg isEqualToString: @"-version" ] )
         {
             self.showVersion = YES;
-            
-            continue;
         }
-        
-        if( [ arg hasPrefix: @"--" ] && arg.length > 2 )
+        else if( [ arg isEqualToString: @"-license" ] )
         {
-            [ actions addObject: [ arg substringFromIndex: 2 ] ];
-            
-            continue;
+            self.showLicense = YES;
         }
-        
-        if( [ arg isEqualToString: @"-project" ] )
+        else if( [ arg isEqualToString: @"-verbose" ] )
+        {
+            self.verbose = YES;
+        }
+        else if
+        (
+               [ arg isEqualToString: @"build" ]
+            || [ arg isEqualToString: @"build-for-testing" ]
+            || [ arg isEqualToString: @"analyze" ]
+            || [ arg isEqualToString: @"archive" ]
+            || [ arg isEqualToString: @"test" ]
+            || [ arg isEqualToString: @"test-without-building" ]
+            || [ arg isEqualToString: @"install-src" ]
+            || [ arg isEqualToString: @"install" ]
+            || [ arg isEqualToString: @"clean" ]
+        )
+        {
+            [ actions addObject: [ NSString stringWithFormat: @"xcodebuild:%@", arg ] ];
+        }
+        else if
+        (
+               [ arg isEqualToString: @"setup" ]
+            || [ arg isEqualToString: @"coverage" ]
+        )
+        {
+            [ actions addObject: arg ];
+        }
+        else if( [ arg isEqualToString: @"-project" ] )
         {
             arg = [ enumerator nextObject ];
             
@@ -146,23 +167,28 @@ NS_ASSUME_NONNULL_END
             
             self.project = arg;
         }
-        
-        if( [ arg isEqualToString: @"-schemes" ] )
+        else if( [ arg isEqualToString: @"-scheme" ] )
         {
-            while( ( arg = [ enumerator nextObject ] ) )
+            arg = [ enumerator nextObject ];
+            
+            if( arg == nil )
             {
-                if( [ arg hasPrefix: @"-" ] )
-                {
-                    goto loop;
-                }
+                self.error = [ self errorWithDescription: @"No scheme provided" ];
                 
-                [ schemes addObject: arg ];
+                break;
             }
+                
+            [ schemes addObject: arg ];
+        }
+        else
+        {
+            [ additionalOptions addObject: arg ];
         }
     }
     
-    self.actions = [ NSArray arrayWithArray: actions ];
-    self.schemes = [ NSArray arrayWithArray: schemes ];
+    self.actions           = [ NSArray arrayWithArray: actions ];
+    self.schemes           = [ NSArray arrayWithArray: schemes ];
+    self.additionalOptions = [ NSArray arrayWithArray: additionalOptions ];
 }
 
 - ( NSString * )description

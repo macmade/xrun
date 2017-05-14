@@ -50,66 +50,6 @@
     return [ SKTaskGroup taskGroupWithName: @"setup" tasks: tasks ];
 }
 
-+ ( id< SKRunableObject > )build: ( NSArray< NSString * > * )schemes;
-{
-    NSMutableArray * tasks;
-    NSString       * scheme;
-    
-    tasks = [ NSMutableArray new ];
-    
-    for( scheme in schemes )
-    {
-        [ tasks addObject: [ XRXcodeTask buildTaskForScheme: scheme ] ];
-    }
-    
-    return [ SKTaskGroup taskGroupWithName: @"build" tasks: tasks ];
-}
-
-+ ( id< SKRunableObject > )analyze: ( NSArray< NSString * > * )schemes;
-{
-    NSMutableArray * tasks;
-    NSString       * scheme;
-    
-    tasks = [ NSMutableArray new ];
-    
-    for( scheme in schemes )
-    {
-        [ tasks addObject: [ XRXcodeTask analyzeTaskForScheme: scheme ] ];
-    }
-    
-    return [ SKTaskGroup taskGroupWithName: @"analyze" tasks: tasks ];
-}
-
-+ ( id< SKRunableObject > )test: ( NSArray< NSString * > * )schemes;
-{
-    NSMutableArray * tasks;
-    NSString       * scheme;
-    
-    tasks = [ NSMutableArray new ];
-    
-    for( scheme in schemes )
-    {
-        [ tasks addObject: [ XRXcodeTask testTaskForScheme: scheme ] ];
-    }
-    
-    return [ SKTaskGroup taskGroupWithName: @"test" tasks: tasks ];
-}
-
-+ ( id< SKRunableObject > )clean: ( NSArray< NSString * > * )schemes;
-{
-    NSMutableArray * tasks;
-    NSString       * scheme;
-    
-    tasks = [ NSMutableArray new ];
-    
-    for( scheme in schemes )
-    {
-        [ tasks addObject: [ XRXcodeTask cleanTaskForScheme: scheme ] ];
-    }
-    
-    return [ SKTaskGroup taskGroupWithName: @"clean" tasks: tasks ];
-}
-
 + ( id< SKRunableObject > )coverage
 {
     NSArray * tasks;
@@ -120,6 +60,28 @@
     ];
     
     return [ SKTaskGroup taskGroupWithName: @"coverage" tasks: tasks ];
+}
+
++ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action schemes: ( NSArray< NSString * > * )schemes options: ( NSArray< NSString * > * )options
+{
+    NSMutableArray * tasks;
+    NSString       * scheme;
+    
+    tasks = [ NSMutableArray new ];
+    
+    if( schemes.count )
+    {
+        for( scheme in schemes )
+        {
+            [ tasks addObject: [ XRXcodeTask taskWithAction: action scheme: scheme options: options ] ];
+        }
+    }
+    else
+    {
+            [ tasks addObject: [ XRXcodeTask taskWithAction: action scheme: nil options: options ] ];
+    }
+    
+    return [ SKTaskGroup taskGroupWithName: action tasks: tasks ];
 }
 
 @end
