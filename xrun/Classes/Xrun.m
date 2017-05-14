@@ -132,14 +132,16 @@ NS_ASSUME_NONNULL_END
         @"\n"
         @"Options:\n"
         @"    \n"
-        @"    -help       Displays the command usage.\n"
-        @"    -version    Displays the Xrun version.\n"
-        @"    -license    Displays the Xrun license.\n"
-        @"    -verbose    Enables verbose mode.\n"
-        @"    -project    Specifies the Xcode project.\n"
-        @"    -scheme     Specifies the Xcode scheme.\n"
-        @"                This argument may be supplied multiple times.\n"
-        @"    -no-prompt  Disables the prompt hierarchy.",
+        @"    -help           Displays the command usage.\n"
+        @"    -version        Displays the Xrun version.\n"
+        @"    -license        Displays the Xrun license.\n"
+        @"    -verbose        Enables verbose mode.\n"
+        @"    -project        Specifies the Xcode project.\n"
+        @"    -scheme         Specifies the Xcode scheme.\n"
+        @"                    This argument may be supplied multiple times.\n"
+        @"    -no-prompt      Disables the prompt hierarchy."
+        @"    -fail-warn      Fails when detecting warnings."
+        @"    -fail-analyze   Fails when detecting analyzer errors.",
         ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
     
@@ -270,7 +272,7 @@ NS_ASSUME_NONNULL_END
         }
         else if( [ name hasPrefix: @"xcodebuild:" ] )
         {
-            [ actions addObject: [ XRActions xcodeBuild: [ name substringFromIndex: 11 ] schemes: self.args.schemes options: self.args.additionalOptions verbose: self.args.verbose ] ];
+            [ actions addObject: [ XRActions xcodeBuild: [ name substringFromIndex: 11 ] arguments: self.args ] ];
         }
         else
         {

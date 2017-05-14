@@ -31,13 +31,15 @@
 #import <ShellKit/ShellKit.h>
 #import "XRStaticClass.h"
 
+@class XRArguments;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XRActions: XRStaticClass
 
 + ( id< SKRunableObject > )setup;
 + ( id< SKRunableObject > )coverage;
-+ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action schemes: ( NSArray< NSString * > * )schemes options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose;
++ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action arguments: ( XRArguments * )args;
 
 @end
 

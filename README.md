@@ -115,14 +115,16 @@ Usage
     
     Options:
         
-        -help       Displays the command usage.
-        -version    Displays the Xrun version.
-        -license    Displays the Xrun license.
-        -verbose    Enables verbose mode.
-        -project    Specifies the Xcode project.
-        -scheme     Specifies the Xcode scheme.
-                    This argument may be supplied multiple times.
-        -no-prompt  Disables prompt hierarchy.
+        -help           Displays the command usage.
+        -version        Displays the Xrun version.
+        -license        Displays the Xrun license.
+        -verbose        Enables verbose mode.
+        -project        Specifies the Xcode project.
+        -scheme         Specifies the Xcode scheme.
+                        This argument may be supplied multiple times.
+        -no-prompt      Disables prompt hierarchy.
+        -fail-warn      Fails when detecting warnings.
+        -fail-analyze   Fails when detecting analyzer errors.
 
 License
 -------

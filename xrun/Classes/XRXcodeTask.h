@@ -33,6 +33,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class XRXcodeOutputProcessor;
+@class XRArguments;
 
 @interface XRXcodeTask: SKTask
 
@@ -40,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readonly, nullable ) NSString               * scheme;
 @property( atomic, readwrite, strong  ) XRXcodeOutputProcessor * outputProcessor;
 
-+ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose;
++ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args;
 
 @end
 

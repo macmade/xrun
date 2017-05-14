@@ -29,17 +29,18 @@
 
 #import "XRXcodeTask.h"
 #import "XRXcodeOutputProcessor.h"
+#import "XRArguments.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XRXcodeTask()
 
-@property( atomic, readwrite, strong           ) NSError  * error;
-@property( atomic, readwrite, strong           ) NSString * action;
-@property( atomic, readwrite, strong, nullable ) NSString * scheme;
-@property( atomic, readwrite, assign           ) BOOL       verbose;
+@property( atomic, readwrite, strong           ) NSError     * error;
+@property( atomic, readwrite, strong           ) NSString    * action;
+@property( atomic, readwrite, strong, nullable ) NSString    * scheme;
+@property( atomic, readwrite, strong           ) XRArguments * arguments;
 
-- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose;
+- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args;
 - ( nullable NSString * )findXcodeProject;
 
 @end
@@ -50,12 +51,12 @@ NS_ASSUME_NONNULL_END
 
 @dynamic error;
 
-+ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose
++ ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args
 {
-    return [ [ self alloc ] initWithAction: action scheme: scheme options: options verbose: verbose ];
+    return [ [ self alloc ] initWithAction: action scheme: scheme arguments: args ];
 }
 
-- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose
+- ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args
 {
     NSString * script;
     
@@ -66,16 +67,16 @@ NS_ASSUME_NONNULL_END
         script = [ script stringByAppendingFormat: @" -scheme %@", scheme ];
     }
     
-    if( options.count )
+    if( args.additionalOptions.count )
     {
-        script = [ script stringByAppendingFormat: @" %@", [ options componentsJoinedByString: @" " ] ];
+        script = [ script stringByAppendingFormat: @" %@", [ args.additionalOptions componentsJoinedByString: @" " ] ];
     }
     
     if( ( self = [ self initWithShellScript: script ] ) )
     {
-        self.action  = action;
-        self.scheme  = scheme;
-        self.verbose = verbose;
+        self.action    = action;
+        self.scheme    = scheme;
+        self.arguments = args;
     }
     
     return self;
@@ -125,10 +126,17 @@ NS_ASSUME_NONNULL_END
         }
     }
     
-    self.outputProcessor.verbose = self.verbose;
+    self.outputProcessor.verbose = self.arguments.verbose;
     self.delegate                = self.outputProcessor;
     ret                          = [ super run: vars ];
     self.delegate                = nil;
+    
+    if( self.outputProcessor.hasWarnings && self.arguments.failOnWarnings )
+    {
+        [ [ SKShell currentShell ] printErrorMessage: @"Task produced warnings" ];
+        
+        ret = NO;
+    }
     
     if( self.scheme.length )
     {

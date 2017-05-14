@@ -62,23 +62,23 @@
     return [ SKTaskGroup taskGroupWithName: @"coverage" tasks: tasks ];
 }
 
-+ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action schemes: ( NSArray< NSString * > * )schemes options: ( NSArray< NSString * > * )options verbose: ( BOOL )verbose
++ ( id< SKRunableObject > )xcodeBuild: ( NSString * )action arguments: ( XRArguments * )args
 {
     NSMutableArray * tasks;
     NSString       * scheme;
     
     tasks = [ NSMutableArray new ];
     
-    if( schemes.count )
+    if( args.schemes.count )
     {
-        for( scheme in schemes )
+        for( scheme in args.schemes )
         {
-            [ tasks addObject: [ XRXcodeTask taskWithAction: action scheme: scheme options: options verbose: verbose ] ];
+            [ tasks addObject: [ XRXcodeTask taskWithAction: action scheme: scheme arguments: args ] ];
         }
     }
     else
     {
-        [ tasks addObject: [ XRXcodeTask taskWithAction: action scheme: nil options: options verbose: verbose ] ];
+        [ tasks addObject: [ XRXcodeTask taskWithAction: action scheme: nil arguments: args ] ];
     }
     
     return [ SKTaskGroup taskGroupWithName: action tasks: tasks ];
