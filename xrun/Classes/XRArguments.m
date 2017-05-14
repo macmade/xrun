@@ -39,7 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, assign           ) BOOL                    verbose;
 @property( atomic, readwrite, assign           ) BOOL                    noPrompt;
 @property( atomic, readwrite, assign           ) BOOL                    failOnWarnings;
-@property( atomic, readwrite, assign           ) BOOL                    failOnAnalyzeErrors;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * actions;
 @property( atomic, readwrite, strong, nullable ) NSString              * project;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * schemes;
@@ -165,14 +164,6 @@ NS_ASSUME_NONNULL_END
         )
         {
             self.failOnWarnings = YES;
-        }
-        else if
-        (
-               [ arg isEqualToString: @"-fail-analyze" ]
-            || [ arg isEqualToString: @"--fail-analyze" ]
-        )
-        {
-            self.failOnAnalyzeErrors = YES;
         }
         else if
         (

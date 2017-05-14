@@ -75,7 +75,7 @@ Xrun can take an optional `-fail-warn` flag that will fail the build process if 
 With `xcodebuild`, warnings from the static analyzer are not considered as errors, and the whole analysis phase, if enabled, will succeed even if it detected issues.
 
 **This can be a huge issue, especially with continuous integration.**  
-Xrun can solve this problem when invoked with the `-fail-analyze` flag, which will fail the analysis when an issue is detected.
+For this reason, Xrun's `-fail-warn` flag also applies to static analysis.
 
 Usage
 -----
@@ -139,7 +139,6 @@ Usage
                         This argument may be supplied multiple times.
         -no-prompt      Disables prompt hierarchy.
         -fail-warn      Fails when detecting warnings.
-        -fail-analyze   Fails when detecting analyzer errors.
 
 License
 -------

@@ -100,10 +100,10 @@ NS_ASSUME_NONNULL_END
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultWarningMatchers;
 {
     return @[
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileWarningMatcher       verbose: NO  status: SKStatusWarning resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionLDWarningMatcher            verbose: NO  status: SKStatusWarning resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionGenericWarningMatcher       verbose: NO  status: SKStatusWarning resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionWillNotBeCodeSignedMatcher  verbose: NO  status: SKStatusWarning resultFormat: @"" ]
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileWarningMatcher       verbose: NO  status: SKStatusWarning resultFormat: @"$(yellow)$(2):$(3):$(4):$(clear) $(red)$(5)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionLDWarningMatcher            verbose: NO  status: SKStatusWarning resultFormat: @"$(yellow)LD warning:$(clear) $(red)$(1)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionGenericWarningMatcher       verbose: NO  status: SKStatusWarning resultFormat: @"$(yellow)warning:$(clear) $(red)$(1)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionWillNotBeCodeSignedMatcher  verbose: NO  status: SKStatusWarning resultFormat: @"$(red)$(1)$(clear)" ]
     ];
 }
 
@@ -126,13 +126,6 @@ NS_ASSUME_NONNULL_END
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionLinkerUndefinedSymbolsMatcher           verbose: NO  status: SKStatusError resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionPodsErrorMatcher                        verbose: NO  status: SKStatusError resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionSymbolReferencedFromMatcher             verbose: NO  status: SKStatusError resultFormat: @"" ]
-    ];
-}
-
-+ ( NSArray< XRXcodeMessageMatcher * > * )defaultAnalyzerMatchers
-{
-    return @[
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzerWarningMatcher verbose: NO status: SKStatusError resultFormat: @"$(yellow)$(2):$(3):$(4):$(clear) $(red)$(5)$(clear)" ],
     ];
 }
 

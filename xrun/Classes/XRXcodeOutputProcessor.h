@@ -47,7 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 - ( instancetype )initWithMessageMatchers:  ( NSArray< XRXcodeMessageMatcher * > * )messages
                   warningMatchers:          ( NSArray< XRXcodeMessageMatcher * > * )warnings 
                   errorMatchers:            ( NSArray< XRXcodeMessageMatcher * > * )errors
-                  analyzerMatchers:         ( NSArray< XRXcodeMessageMatcher * > * )analyzer
                   NS_DESIGNATED_INITIALIZER;
 
 @end

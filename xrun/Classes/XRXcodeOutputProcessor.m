@@ -58,24 +58,22 @@ NS_ASSUME_NONNULL_END
     return [ [ self alloc ] initWithMessageMatchers: [ XRXcodeMessageMatcher defaultMessageMatchers ]
                             warningMatchers:         [ XRXcodeMessageMatcher defaultWarningMatchers ]
                             errorMatchers:           [ XRXcodeMessageMatcher defaultErrorMatchers ]
-                            analyzerMatchers:        [ XRXcodeMessageMatcher defaultAnalyzerMatchers ]
            ];
 }
 
 - ( instancetype )init
 {
-    return [ self initWithMessageMatchers: @[] warningMatchers: @[] errorMatchers: @[] analyzerMatchers: @[] ];
+    return [ self initWithMessageMatchers: @[] warningMatchers: @[] errorMatchers: @[] ];
 }
 
 - ( instancetype )initWithMessageMatchers:  ( NSArray< XRXcodeMessageMatcher * > * )messages
                   warningMatchers:          ( NSArray< XRXcodeMessageMatcher * > * )warnings 
                   errorMatchers:            ( NSArray< XRXcodeMessageMatcher * > * )errors
-                  analyzerMatchers:         ( NSArray< XRXcodeMessageMatcher * > * )analyzer
 {
     if( ( self = [ super init ] ) )
     {
         self.queue    = dispatch_queue_create( "com.xs-labs.Xrun.XRXcodeOutputProcessor", DISPATCH_QUEUE_SERIAL );
-        self.matchers = @{ @"messages" : messages, @"warnings" : warnings, @"errors" : errors, @"analyzer" : analyzer };
+        self.matchers = @{ @"messages" : messages, @"warnings" : warnings, @"errors" : errors };
     }
     
     return self;

@@ -140,8 +140,7 @@ NS_ASSUME_NONNULL_END
         @"    -scheme         Specifies the Xcode scheme.\n"
         @"                    This argument may be supplied multiple times.\n"
         @"    -no-prompt      Disables the prompt hierarchy."
-        @"    -fail-warn      Fails when detecting warnings."
-        @"    -fail-analyze   Fails when detecting analyzer errors.",
+        @"    -fail-warn      Fails when detecting warnings.",
         ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
     

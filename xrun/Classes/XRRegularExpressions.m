@@ -50,7 +50,7 @@
  * - 1: file path
  * - 2: file name
  */
-NSString * const XRRegularExpressionAnalyzeMatcher = @"Analyze(?:Shallow)? (.*\\/(.*\\.(?:m|mm|cc|cpp|c|cxx))) *";
+NSString * const XRRegularExpressionAnalyzeMatcher = @"^Analyze(?:Shallow)? (.*\\/(.*\\.(?:m|mm|cc|cpp|c|cxx))) *";
 
 /*
  * Captured groups:
@@ -58,7 +58,7 @@ NSString * const XRRegularExpressionAnalyzeMatcher = @"Analyze(?:Shallow)? (.*\\
  * - 2: project
  * - 3: configuration
  */
-NSString * const XRRegularExpressionBuildTargetMatcher = @"=== BUILD TARGET (.*) OF PROJECT (.*) WITH.*CONFIGURATION (.*) ===";
+NSString * const XRRegularExpressionBuildTargetMatcher = @"^=== BUILD TARGET (.*) OF PROJECT (.*) WITH.*CONFIGURATION (.*) ===";
 
 /*
  * Captured groups:
@@ -66,7 +66,7 @@ NSString * const XRRegularExpressionBuildTargetMatcher = @"=== BUILD TARGET (.*)
  * - 2: project
  * - 3: configuration
  */
-NSString * const XRRegularExpressionAggregateTargetMatcher = @"=== BUILD AGGREGATE TARGET (.*) OF PROJECT (.*) WITH.*CONFIGURATION (.*) ===";
+NSString * const XRRegularExpressionAggregateTargetMatcher = @"^=== BUILD AGGREGATE TARGET (.*) OF PROJECT (.*) WITH.*CONFIGURATION (.*) ===";
 
 /*
  * Captured groups:
@@ -74,7 +74,7 @@ NSString * const XRRegularExpressionAggregateTargetMatcher = @"=== BUILD AGGREGA
  * - 2: project
  * - 3: configuration
  */
-NSString * const XRRegularExpressionAnalyzeTargetMatcher = @"=== ANALYZE TARGET (.*) OF PROJECT (.*) WITH.*CONFIGURATION (.*) ===";
+NSString * const XRRegularExpressionAnalyzeTargetMatcher = @"^=== ANALYZE TARGET (.*) OF PROJECT (.*) WITH.*CONFIGURATION (.*) ===";
 
 /*
  * Captured groups: none
@@ -93,7 +93,7 @@ NSString * const XRRegularExpressionShellCommandMatcher = @" {4}(cd|setenv|(?:[\
  * - 1: file path
  * - 1: file name
  */
-NSString * const XRRegularExpressionCleanRemoveMatcher = @"Clean.Remove clean (.*\\/(.+))";
+NSString * const XRRegularExpressionCleanRemoveMatcher = @"^Clean.Remove clean (.*\\/(.+))";
 
 /*
  * Captured groups:
@@ -101,28 +101,28 @@ NSString * const XRRegularExpressionCleanRemoveMatcher = @"Clean.Remove clean (.
  * - 2: project
  * - 3: configuration
  */
-NSString * const XRRegularExpressionCleanTargetMatcher = @"=== CLEAN TARGET (.*) OF PROJECT (.*) WITH CONFIGURATION (.*) ===";
+NSString * const XRRegularExpressionCleanTargetMatcher = @"^=== CLEAN TARGET (.*) OF PROJECT (.*) WITH CONFIGURATION (.*) ===";
 
 /*
  * Captured groups:
  * - 1: file path
  * - 2: file name
  */
-NSString * const XRRegularExpressionCodesignMatcher = @"CodeSign (.*\\/(.+))";
+NSString * const XRRegularExpressionCodesignMatcher = @"^CodeSign (.*\\/(.+))";
 
 /*
  * Captured groups:
  * - 1: file path
  * - 1: file name
  */
-NSString * const XRRegularExpressionCodesignFrameworkMatcher = @"CodeSign (.*\\/(.+\\.framework))\\/Versions";
+NSString * const XRRegularExpressionCodesignFrameworkMatcher = @"^CodeSign (.*\\/(.+\\.framework))\\/Versions";
 
 /*
  * Captured groups:
  * - 1: file path
  * - 2: file name
  */
-NSString * const XRRegularExpressionCompileMatcher = @"Compile[\\w]+ .+? ((?:\\\\.|[^ ])+\\/((?:\\\\.|[^ ])+\\.(?:m|mm|c|cc|cpp|cxx|swift))) .*";
+NSString * const XRRegularExpressionCompileMatcher = @"^Compile[\\w]+ .+? ((?:\\\\.|[^ ])+\\/((?:\\\\.|[^ ])+\\.(?:m|mm|c|cc|cpp|cxx|swift))) .*";
 
 /*
  * Captured groups:
@@ -210,7 +210,7 @@ NSString * const XRRegularExpressionLibtoolMatcher = @"Libtool.*\\/(.*\\.a)";
  * - 2: build variants
  * - 3: architecture
  */
-NSString * const XRRegularExpressionLinkingMatcher = @"Ld \\/?.*\\/(.*?) (.*) (.*)";
+NSString * const XRRegularExpressionLinkingMatcher = @"^Ld \\/?.*\\/(.*?) (.*) (.*)";
 
 /*
  * Captured groups:
@@ -246,7 +246,7 @@ NSString * const XRRegularExpressionTestCaseMeasuredMatcher = @"[^:]*:[^:]*: Tes
  * Captured groups:
  * - 1: phase
  */
-NSString * const XRRegularExpressionPhaseSuccessMatcher = @"\\*\\* (.*) SUCCEEDED \\*\\*";
+NSString * const XRRegularExpressionPhaseSuccessMatcher = @"^\\*\\* (.*) SUCCEEDED \\*\\*";
 
 /*
  * Captured groups:
@@ -322,26 +322,12 @@ NSString * const XRRegularExpressionTouchMatcher = @"Touch (.*\\/(.+))";
  * - 1: file path
  * - 2: file name
  */
-NSString * const XRRegularExpressionWriteFileMatcher = @"write-file (.*\\/(.+))";
+NSString * const XRRegularExpressionWriteFileMatcher = @"^write-file (.*\\/(.+))";
 
 /*
  * Captured groups: none
  */
-NSString * const XRRegularExpressionWriteAuxiliaryFiles = @"Write auxiliary files";
-
-/*******************************************************************************
- * ANALYZER WARNINGS
- ******************************************************************************/
- 
-/*
- * Captured groups:
- * - 1: file path
- * - 2: file name
- * - 3: line number
- * - 4: column number
- * - 5: diagnostic
- */
-NSString * const XRRegularExpressionAnalyzerWarningMatcher = @"^(.*\\/(.+)):([0-9]+):([0-9]+): warning: ([^\\n]+)";
+NSString * const XRRegularExpressionWriteAuxiliaryFiles = @"^Write auxiliary files";
 
 /*******************************************************************************
  * WARNINGS
@@ -351,28 +337,29 @@ NSString * const XRRegularExpressionAnalyzerWarningMatcher = @"^(.*\\/(.+)):([0-
  * Captured groups:
  * - 1: file path
  * - 2: file name
- * - 3: reason
+ * - 3: line number
+ * - 4: column number
+ * - 5: reason
  */
-NSString * const XRRegularExpressionCompileWarningMatcher = @"(\\/.+\\/(.*):.*:.*): warning: (.*)$";
+NSString * const XRRegularExpressionCompileWarningMatcher = @"^(.*\\/(.+)):([0-9]+):([0-9]+): warning: (.*)$";
 
 /*
  * Captured groups:
- * - 1: ld prefix
- * - 2: warning message
+ * - 1: reason
  */
-NSString * const XRRegularExpressionLDWarningMatcher = @"(ld: )warning: (.*)";
+NSString * const XRRegularExpressionLDWarningMatcher = @"^ld: warning: (.*)";
+
+/*
+ * Captured groups:
+ * - 1: reason
+ */
+NSString * const XRRegularExpressionGenericWarningMatcher = @"^warning: (.*)";
 
 /*
  * Captured groups:
  * - 1: whole warning
  */
-NSString * const XRRegularExpressionGenericWarningMatcher = @"warning: (.*)$";
-
-/*
- * Captured groups:
- * - 1: whole warning
- */
-NSString * const XRRegularExpressionWillNotBeCodeSignedMatcher = @"(.* will not be code signed because .*)$";
+NSString * const XRRegularExpressionWillNotBeCodeSignedMatcher = @"(.* will not be code signed because .*)";
 
 /*******************************************************************************
  * ERRORS
