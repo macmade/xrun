@@ -41,11 +41,15 @@
     
     tasks =
     @[
-        [ XRSetupTasks fixRVM ],
         [ XRSetupTasks updateHomebrew ],
         [ XRSetupTasks installCCache ],
         [ XRSetupTasks installXcodeCoveralls ]
     ];
+    
+    if( [ NSProcessInfo processInfo ].environment[ @"TRAVIS" ] && [ [ SKShell currentShell ] isCommandAvailable: @"rvm" ] )
+    {
+        tasks = [ @[ [ XRSetupTasks fixRVM ] ] arrayByAddingObjectsFromArray: tasks ];
+    }
     
     return [ SKTaskGroup taskGroupWithName: @"setup" tasks: tasks ];
 }
