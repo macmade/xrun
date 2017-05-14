@@ -394,7 +394,7 @@ NSString * const XRRegularExpressionNoCertificateMatcher = @"(No certificate mat
  * - 2: file name
  * - 3: reason
  */
-NSString * const XRRegularExpressionCompileErrorMatcher = @"(\\/.+\\/(.*):.*:.*): (?:fatal )?error: (.*)$";
+NSString * const XRRegularExpressionCompileErrorMatcher = @"(\\/.+\\/(.*):.*:.*): (?:fatal )?error: (.*)";
 
 /*
  * Captured groups:

@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_END
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCheckDependenciesErrorsMatcher          verbose: NO  status: SKStatusError resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionProvisioningProfileRequiredMatcher      verbose: NO  status: SKStatusError resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionNoCertificateMatcher                    verbose: NO  status: SKStatusError resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileErrorMatcher                     verbose: NO  status: SKStatusError resultFormat: @"" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileErrorMatcher                     verbose: NO  status: SKStatusError resultFormat: @"$(yellow)$(2)$(clear): $(red)$(3)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCursorMatcher                           verbose: NO  status: SKStatusError resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionFatalErrorMatcher                       verbose: NO  status: SKStatusError resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionFileMissingErrorMatcher                 verbose: NO  status: SKStatusError resultFormat: @"" ],
