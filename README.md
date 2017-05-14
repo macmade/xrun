@@ -35,11 +35,11 @@ Xrun can be easily installed with [Homebrew](http://brew.sh):
 Basic examples
 --------------
 
-xrun clean build
+    xrun clean build
     
 Cleans the build directory and builds the first target in the Xcode project in the directory from which xrun was started.
 
-xrun -project Foo.xcodeproj -scheme Bar analyze test
+    xrun -project Foo.xcodeproj -scheme Bar analyze test
     
 Analyses and tests the scheme `Bar` of the `Foo.xcodeproj` project.
 
@@ -60,7 +60,7 @@ Compatibility with `xcodebuild`
 
 Xrun is fully compatible with `xcodebuild`, and can be used with the same command line options:
 
-xrun install DSTROOT=/ -alltargets
+    xrun install DSTROOT=/ -alltargets
 
 Failures
 --------
