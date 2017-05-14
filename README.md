@@ -62,6 +62,21 @@ Xrun is fully compatible with `xcodebuild`, and can be used with the same comman
 
 xrun install DSTROOT=/ -alltargets
 
+Failures
+--------
+
+**Xrun allows a better control on failures compared to `xcodebuild`.**
+
+When building a project, unless `-Werror` is specified, `xcodebuild` will exit successfully even if warnings were produced.
+
+Xrun can take an optional `-fail-warn` flag that will fail the build process if a warning is detected.
+
+**The same applies for the static analyzer.**  
+With `xcodebuild`, warnings from the static analyzer are not considered as errors, and the whole analysis phase, if enabled, will succeed even if it detected issues.
+
+**This can be a huge issue, especially with continuous integration.**  
+Xrun can solve this problem when invoked with the `-fail-analyze` flag, which will fail the analysis when an issue is detected.
+
 Usage
 -----
 
