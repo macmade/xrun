@@ -138,7 +138,8 @@ NS_ASSUME_NONNULL_END
         @"    -verbose    Enables verbose mode.\n"
         @"    -project    Specifies the Xcode project.\n"
         @"    -scheme     Specifies the Xcode scheme.\n"
-        @"                This argument may be supplied multiple times.",
+        @"                This argument may be supplied multiple times.\n"
+        @"    -no-prompt  Disables the prompt hierarchy.",
         ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
     
@@ -314,6 +315,11 @@ NS_ASSUME_NONNULL_END
         [ self printHelp ];
         
         return NO;
+    }
+    
+    if( args.noPrompt )
+    {
+        [ SKShell currentShell ].allowPromptHierarchy = NO;
     }
     
     if( args.showVersion )

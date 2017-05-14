@@ -120,6 +120,7 @@ Usage
         -project    Specifies the Xcode project.
         -scheme     Specifies the Xcode scheme.
                     This argument may be supplied multiple times.
+        -no-prompt  Disables prompt hierarchy.
 
 License
 -------

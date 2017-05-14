@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, assign           ) BOOL                    showVersion;
 @property( atomic, readwrite, assign           ) BOOL                    showLicense;
 @property( atomic, readwrite, assign           ) BOOL                    verbose;
+@property( atomic, readwrite, assign           ) BOOL                    noPrompt;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * actions;
 @property( atomic, readwrite, strong, nullable ) NSString              * project;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * schemes;
@@ -146,6 +147,14 @@ NS_ASSUME_NONNULL_END
         )
         {
             self.verbose = YES;
+        }
+        else if
+        (
+               [ arg isEqualToString: @"-no-prompt" ]
+            || [ arg isEqualToString: @"--no-prompt" ]
+        )
+        {
+            self.noPrompt = YES;
         }
         else if
         (

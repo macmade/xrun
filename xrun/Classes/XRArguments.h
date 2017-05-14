@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readonly           ) BOOL                    showHelp;
 @property( atomic, readonly           ) BOOL                    showVersion;
 @property( atomic, readonly           ) BOOL                    showLicense;
+@property( atomic, readonly           ) BOOL                    noPrompt;
 @property( atomic, readonly           ) BOOL                    verbose;
 @property( atomic, readonly           ) NSArray< NSString * > * actions;
 @property( atomic, readonly           ) NSArray< NSString * > * xcodeActions;
