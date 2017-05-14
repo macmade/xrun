@@ -23,32 +23,32 @@
  ******************************************************************************/
 
 /*!
- * @file        THXSetupTasks.m
+ * @header      XRXcodeMessageMatcher.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXSetupTasks.h"
+#import <Foundation/Foundation.h>
+#import <ShellKit/ShellKit.h>
 
-@implementation THXSetupTasks
+NS_ASSUME_NONNULL_BEGIN
 
-+ ( id< SKRunableObject > )fixRVM
-{
-    return [ SKOptionalTask taskWithShellScript: @"rvm get head" ];
-}
+@interface XRXcodeMessageMatcher: SKObject
 
-+ ( id< SKRunableObject > )updateHomebrew
-{
-    return [ SKTask taskWithShellScript: @"brew update" ];
-}
+@property( atomic, readonly ) NSString            * expression;
+@property( atomic, readonly ) NSRegularExpression * regularExpression;
+@property( atomic, readonly ) NSString            * resultFormat;
+@property( atomic, readonly ) SKStatus              status;
 
-+ ( id< SKRunableObject > )installCCache
-{
-    return [ SKTask taskWithShellScript: @"brew install ccache" recoverTask: [ SKTask taskWithShellScript: @"brew upgrade ccache" ] ];
-}
++ ( NSArray< XRXcodeMessageMatcher * > * )defaultMessageMatchers;
++ ( NSArray< XRXcodeMessageMatcher * > * )defaultWarningMatchers;
++ ( NSArray< XRXcodeMessageMatcher * > * )defaultErrorMatchers;
 
-+ ( id< SKRunableObject > )installXcodeCoveralls
-{
-    return [ SKTask taskWithShellScript: @"brew install macmade/tap/xcode-coveralls" recoverTask: [ SKTask taskWithShellScript: @"brew upgrade xcode-coveralls" ] ];
-}
++ ( instancetype )matcherWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
++ ( instancetype )matcherWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format;
+
+- ( instancetype )initWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
+- ( instancetype )initWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END

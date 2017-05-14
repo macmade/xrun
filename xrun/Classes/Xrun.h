@@ -23,29 +23,28 @@
  ******************************************************************************/
 
 /*!
- * @file        main.m
+ * @header      Xrun.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import <Cocoa/Cocoa.h>
-#import "THXArguments.h"
-#import "THX.h"
+#import <Foundation/Foundation.h>
+#import <ShellKit/ShellKit.h>
 
-    #include <stdlib.h>
-#include <curses.h>
-#include <term.h>
+@class XRArguments;
 
+NS_ASSUME_NONNULL_BEGIN
 
-int main( int argc, const char * argv[] )
-{
-    THXArguments * args;
-    BOOL           success;
-    
-    @autoreleasepool
-    {
-        args    = [ [ THXArguments alloc ] initWithArguments: argv count: argc ];
-        success = [ [ THX sharedInstance ] runWithArguments: args ];
-        
-        return ( success ) ? EXIT_SUCCESS : EXIT_FAILURE;
-    }
-}
+@interface Xrun: SKObject
+
+@property( atomic, readonly ) NSString * version;
+
++ ( instancetype )sharedInstance;
+
+- ( void )printHelp;
+- ( void )printVersion;
+- ( BOOL )checkEnvironment;
+- ( BOOL )runWithArguments: ( XRArguments * )arg;
+
+@end
+
+NS_ASSUME_NONNULL_END

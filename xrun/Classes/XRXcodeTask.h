@@ -23,22 +23,27 @@
  ******************************************************************************/
 
 /*!
- * @header      THXSetupTasks.h
+ * @header      XRXcodeTask.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 #import <Foundation/Foundation.h>
 #import <ShellKit/ShellKit.h>
-#import "THXStaticClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXSetupTasks: THXStaticClass
+@class XRXcodeOutputProcessor;
 
-+ ( id< SKRunableObject > )fixRVM;
-+ ( id< SKRunableObject > )updateHomebrew;
-+ ( id< SKRunableObject > )installCCache;
-+ ( id< SKRunableObject > )installXcodeCoveralls;
+@interface XRXcodeTask: SKTask
+
+@property( atomic, readonly          ) NSString                * action;
+@property( atomic, readonly          ) NSString                * scheme;
+@property( atomic, readwrite, strong ) XRXcodeOutputProcessor * outputProcessor;
+
++ ( instancetype )buildTaskForScheme: ( NSString * )scheme;
++ ( instancetype )analyzeTaskForScheme: ( NSString * )scheme;
++ ( instancetype )testTaskForScheme: ( NSString * )scheme;
++ ( instancetype )cleanTaskForScheme: ( NSString * )scheme;
 
 @end
 

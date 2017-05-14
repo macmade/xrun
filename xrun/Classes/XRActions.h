@@ -23,27 +23,24 @@
  ******************************************************************************/
 
 /*!
- * @header      THX.h
+ * @header      XRActions.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 #import <Foundation/Foundation.h>
 #import <ShellKit/ShellKit.h>
-
-@class THXArguments;
+#import "XRStaticClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THX: SKObject
+@interface XRActions: XRStaticClass
 
-@property( atomic, readonly ) NSString * version;
-
-+ ( instancetype )sharedInstance;
-
-- ( void )printHelp;
-- ( void )printVersion;
-- ( BOOL )checkEnvironment;
-- ( BOOL )runWithArguments: ( THXArguments * )arg;
++ ( id< SKRunableObject > )setup;
++ ( id< SKRunableObject > )build: ( NSArray< NSString * > * )schemes;
++ ( id< SKRunableObject > )analyze: ( NSArray< NSString * > * )schemes;
++ ( id< SKRunableObject > )test: ( NSArray< NSString * > * )schemes;
++ ( id< SKRunableObject > )clean: ( NSArray< NSString * > * )schemes;
++ ( id< SKRunableObject > )coverage;
 
 @end
 

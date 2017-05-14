@@ -1,9 +1,9 @@
-THX
-===
+Xrun
+====
 
-[![Build Status](https://img.shields.io/travis/macmade/thx.svg?branch=master&style=flat)](https://travis-ci.org/macmade/thx)
-[![Coverage Status](https://img.shields.io/coveralls/macmade/thx.svg?branch=master&style=flat)](https://coveralls.io/r/macmade/thx?branch=master)
-[![Issues](http://img.shields.io/github/issues/macmade/thx.svg?style=flat)](https://github.com/macmade/thx/issues)
+[![Build Status](https://img.shields.io/travis/macmade/xrun.svg?branch=master&style=flat)](https://travis-ci.org/macmade/xrun)
+[![Coverage Status](https://img.shields.io/coveralls/macmade/xrun.svg?branch=master&style=flat)](https://coveralls.io/r/macmade/xrun?branch=master)
+[![Issues](http://img.shields.io/github/issues/macmade/xrun.svg?style=flat)](https://github.com/macmade/xrun/issues)
 ![Status](https://img.shields.io/badge/status-active-brightgreen.svg?style=flat)
 ![License](https://img.shields.io/badge/license-mit-brightgreen.svg?style=flat)
 [![Contact](https://img.shields.io/badge/contact-@macmade-blue.svg?style=flat)](https://twitter.com/macmade)  
@@ -11,8 +11,8 @@ THX
 [![Donate-Gratipay](https://img.shields.io/badge/donate-gratipay-yellow.svg?style=flat)](https://www.gratipay.com/macmade)
 [![Donate-Paypal](https://img.shields.io/badge/donate-paypal-yellow.svg?style=flat)](https://paypal.me/xslabs)
 
-Travis Helper for Xcode
------------------------
+About
+-----
 
 ...
 
@@ -21,10 +21,15 @@ Installation
 
 ...
 
+Exampes
+-------
+
+...
+
 Usage
 -----
 
-    Usage: thx [-h] [-v] [actions...] [-project <projectname>] [-schemes <schemename>...]
+    Usage: xrun [-h] [-v] [actions...] [-project <projectname>] [-schemes <schemename>...]
     
     Available actions:
         
@@ -52,7 +57,7 @@ Usage
     Options:
         
        -h           Shows the command usage.
-       -v           Shows the THX version number.
+       -v           Shows the Xrun version number.
        -project     Specifies the Xcode project.
                     If none, defaults to the first available Xcode project file.
        -schemes     Schemes to build.
@@ -66,7 +71,7 @@ Example Travis configuration
 License
 -------
 
-THX is released under the terms of the MIT license.
+Xrun is released under the terms of the MIT license.
 
 Repository Infos
 ----------------

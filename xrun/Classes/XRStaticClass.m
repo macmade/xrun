@@ -23,28 +23,19 @@
  ******************************************************************************/
 
 /*!
- * @header      THXXcodeTask.h
+ * @file        XRStaticClass.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import <Foundation/Foundation.h>
-#import <ShellKit/ShellKit.h>
+#import "XRStaticClass.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation XRStaticClass
 
-@class THXXcodeOutputProcessor;
-
-@interface THXXcodeTask: SKTask
-
-@property( atomic, readonly          ) NSString                * action;
-@property( atomic, readonly          ) NSString                * scheme;
-@property( atomic, readwrite, strong ) THXXcodeOutputProcessor * outputProcessor;
-
-+ ( instancetype )buildTaskForScheme: ( NSString * )scheme;
-+ ( instancetype )analyzeTaskForScheme: ( NSString * )scheme;
-+ ( instancetype )testTaskForScheme: ( NSString * )scheme;
-+ ( instancetype )cleanTaskForScheme: ( NSString * )scheme;
++ ( nullable instancetype )allocWithZone: ( struct _NSZone * )zone
+{
+    ( void )zone;
+    
+    return nil;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

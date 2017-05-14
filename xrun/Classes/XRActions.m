@@ -23,17 +23,17 @@
  ******************************************************************************/
 
 /*!
- * @file        THXActions.m
+ * @file        XRActions.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXActions.h"
-#import "THXSetupTasks.h"
-#import "THXArguments.h"
-#import "THXXcodeTask.h"
-#import "THXXcodeTask.h"
+#import "XRActions.h"
+#import "XRSetupTasks.h"
+#import "XRArguments.h"
+#import "XRXcodeTask.h"
+#import "XRXcodeTask.h"
 
-@implementation THXActions
+@implementation XRActions
 
 + ( id< SKRunableObject > )setup
 {
@@ -41,10 +41,10 @@
     
     tasks =
     @[
-        [ THXSetupTasks fixRVM ],
-        [ THXSetupTasks updateHomebrew ],
-        [ THXSetupTasks installCCache ],
-        [ THXSetupTasks installXcodeCoveralls ]
+        [ XRSetupTasks fixRVM ],
+        [ XRSetupTasks updateHomebrew ],
+        [ XRSetupTasks installCCache ],
+        [ XRSetupTasks installXcodeCoveralls ]
     ];
     
     return [ SKTaskGroup taskGroupWithName: @"setup" tasks: tasks ];
@@ -59,7 +59,7 @@
     
     for( scheme in schemes )
     {
-        [ tasks addObject: [ THXXcodeTask buildTaskForScheme: scheme ] ];
+        [ tasks addObject: [ XRXcodeTask buildTaskForScheme: scheme ] ];
     }
     
     return [ SKTaskGroup taskGroupWithName: @"build" tasks: tasks ];
@@ -74,7 +74,7 @@
     
     for( scheme in schemes )
     {
-        [ tasks addObject: [ THXXcodeTask analyzeTaskForScheme: scheme ] ];
+        [ tasks addObject: [ XRXcodeTask analyzeTaskForScheme: scheme ] ];
     }
     
     return [ SKTaskGroup taskGroupWithName: @"analyze" tasks: tasks ];
@@ -89,7 +89,7 @@
     
     for( scheme in schemes )
     {
-        [ tasks addObject: [ THXXcodeTask testTaskForScheme: scheme ] ];
+        [ tasks addObject: [ XRXcodeTask testTaskForScheme: scheme ] ];
     }
     
     return [ SKTaskGroup taskGroupWithName: @"test" tasks: tasks ];
@@ -104,7 +104,7 @@
     
     for( scheme in schemes )
     {
-        [ tasks addObject: [ THXXcodeTask cleanTaskForScheme: scheme ] ];
+        [ tasks addObject: [ XRXcodeTask cleanTaskForScheme: scheme ] ];
     }
     
     return [ SKTaskGroup taskGroupWithName: @"clean" tasks: tasks ];

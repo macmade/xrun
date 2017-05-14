@@ -23,15 +23,15 @@
  ******************************************************************************/
 
 /*!
- * @file        THXArguments.m
+ * @file        XRArguments.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXArguments.h"
+#import "XRArguments.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXArguments()
+@interface XRArguments()
 
 @property( atomic, readwrite, assign           ) BOOL                    showHelp;
 @property( atomic, readwrite, assign           ) BOOL                    showVersion;
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-@implementation THXArguments
+@implementation XRArguments
 
 - ( instancetype )init
 {
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_END
     {
         self.actions    = @[];
         self.schemes    = @[];
-        self.executable = @"thx";
+        self.executable = @"xrun";
         
         if( argc > 0 )
         {

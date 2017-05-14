@@ -23,20 +23,20 @@
  ******************************************************************************/
 
 /*!
- * @file        THX.m
+ * @file        Xrun.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THX.h"
-#import "THXArguments.h"
-#import "THXActions.h"
+#import "Xrun.h"
+#import "XRArguments.h"
+#import "XRActions.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THX()
+@interface Xrun()
 
 @property( atomic, readwrite, strong           ) NSString     * version;
-@property( atomic, readwrite, strong, nullable ) THXArguments * args;
+@property( atomic, readwrite, strong, nullable ) XRArguments * args;
 
 - ( BOOL )executeActions: ( NSArray< NSString * > * )names;
 
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-@implementation THX
+@implementation Xrun
 
 + ( instancetype )sharedInstance
 {
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_END
     if( ( self = [ super init ] ) )
     {
         self.version                         = @"0.1.0";
-        [ SKShell currentShell ].promptParts = @[ @"THX" ];
+        [ SKShell currentShell ].promptParts = @[ @"xrun" ];
     }
     
     return self;
@@ -104,13 +104,13 @@ NS_ASSUME_NONNULL_END
         @"Options:\n"
         @"    \n"
         @"   -h           Shows the command usage.\n"
-        @"   -v           Shows the THX version number.\n"
+        @"   -v           Shows the XR version number.\n"
         @"   -project     Specifies the Xcode project.\n"
         @"                If none, defaults to the first available Xcode project file.\n"
         @"   -schemes     Schemes to build.\n"
         @"                You can pass multiple schemes, separated by a space.\n"
         status: SKStatusIdea,
-        ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"thx"
+        ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
 }
 
@@ -205,27 +205,27 @@ NS_ASSUME_NONNULL_END
         
         if( [ name isEqualToString: @"setup" ] )
         {
-            [ actions addObject: [ THXActions setup ] ];
+            [ actions addObject: [ XRActions setup ] ];
         }
         else if( [ name isEqualToString: @"build" ] )
         {
-            [ actions addObject: [ THXActions build: self.args.schemes ] ];
+            [ actions addObject: [ XRActions build: self.args.schemes ] ];
         }
         else if( [ name isEqualToString: @"analyze" ] )
         {
-            [ actions addObject: [ THXActions analyze: self.args.schemes ] ];
+            [ actions addObject: [ XRActions analyze: self.args.schemes ] ];
         }
         else if( [ name isEqualToString: @"test" ] )
         {
-            [ actions addObject: [ THXActions test: self.args.schemes ] ];
+            [ actions addObject: [ XRActions test: self.args.schemes ] ];
         }
         else if( [ name isEqualToString: @"clean" ] )
         {
-            [ actions addObject: [ THXActions clean: self.args.schemes ] ];
+            [ actions addObject: [ XRActions clean: self.args.schemes ] ];
         }
         else if( [ name isEqualToString: @"coverage" ] )
         {
-            [ actions addObject: [ THXActions coverage ] ];
+            [ actions addObject: [ XRActions coverage ] ];
         }
         else
         {
@@ -260,7 +260,7 @@ NS_ASSUME_NONNULL_END
     return YES;
 }
 
-- ( BOOL )runWithArguments: ( THXArguments * )args
+- ( BOOL )runWithArguments: ( XRArguments * )args
 {
     self.args = args;
     

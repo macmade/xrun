@@ -23,31 +23,15 @@
  ******************************************************************************/
 
 /*!
- * @header      THXXcodeMessageMatcher.h
+ * @header      XRStaticClass.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 #import <Foundation/Foundation.h>
-#import <ShellKit/ShellKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXXcodeMessageMatcher: SKObject
-
-@property( atomic, readonly ) NSString            * expression;
-@property( atomic, readonly ) NSRegularExpression * regularExpression;
-@property( atomic, readonly ) NSString            * resultFormat;
-@property( atomic, readonly ) SKStatus              status;
-
-+ ( NSArray< THXXcodeMessageMatcher * > * )defaultMessageMatchers;
-+ ( NSArray< THXXcodeMessageMatcher * > * )defaultWarningMatchers;
-+ ( NSArray< THXXcodeMessageMatcher * > * )defaultErrorMatchers;
-
-+ ( instancetype )matcherWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
-+ ( instancetype )matcherWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format;
-
-- ( instancetype )initWithExpression: ( NSString * )expr resultFormat: ( NSString * )format;
-- ( instancetype )initWithExpression: ( NSString * )expr status: ( SKStatus )status resultFormat: ( NSString * )format NS_DESIGNATED_INITIALIZER;
+@interface XRStaticClass: NSObject
 
 @end
 

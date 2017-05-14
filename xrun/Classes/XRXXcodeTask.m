@@ -23,16 +23,16 @@
  ******************************************************************************/
 
 /*!
- * @file        THXXcodeTask.m
+ * @file        XRXcodeTask.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXXcodeTask.h"
-#import "THXXcodeOutputProcessor.h"
+#import "XRXcodeTask.h"
+#import "XRXcodeOutputProcessor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXXcodeTask()
+@interface XRXcodeTask()
 
 @property( atomic, readwrite, strong ) NSError  * error;
 @property( atomic, readwrite, strong ) NSString * action;
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-@implementation THXXcodeTask
+@implementation XRXcodeTask
 
 @dynamic error;
 
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_END
 {
     if( ( self = [ super initWithShellScript: script recoverTasks: recover ] ) )
     {
-        self.outputProcessor = [ THXXcodeOutputProcessor defaultOutputProcessor ];
+        self.outputProcessor = [ XRXcodeOutputProcessor defaultOutputProcessor ];
     }
     
     return self;

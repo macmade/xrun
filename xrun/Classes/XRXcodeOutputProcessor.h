@@ -23,26 +23,26 @@
  ******************************************************************************/
 
 /*!
- * @header      THXArguments.h
+ * @header      XRXcodeOutputProcessor.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 #import <Foundation/Foundation.h>
 #import <ShellKit/ShellKit.h>
 
+@class XRXcodeMessageMatcher;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXArguments: SKObject
+@interface XRXcodeOutputProcessor: SKObject < SKTaskDelegate >
 
-@property( atomic, readonly           ) BOOL                    showHelp;
-@property( atomic, readonly           ) BOOL                    showVersion;
-@property( atomic, readonly           ) NSArray< NSString * > * actions;
-@property( atomic, readonly, nullable ) NSString              * project;
-@property( atomic, readonly           ) NSArray< NSString * > * schemes;
-@property( atomic, readonly, nullable ) NSError               * error;
-@property( atomic, readonly           ) NSString              * executable;
+@property( atomic, readonly           ) BOOL       hasWarnings;
+@property( atomic, readonly           ) BOOL       hasErrors;
+@property( atomic, readonly           ) BOOL       hasStandardErrorOutput;
+@property( atomic, readonly, nullable ) NSString * standardErrorOutput;
 
-- ( instancetype )initWithArguments: ( const char * _Nonnull * _Nullable )argv count: ( int )argc NS_DESIGNATED_INITIALIZER;
++ ( instancetype )defaultOutputProcessor;
+- ( instancetype )initWithMessageMatchers: ( NSArray< XRXcodeMessageMatcher * > * )messages warningMatchers: ( NSArray< XRXcodeMessageMatcher * > * )warnings errorMatchers: ( NSArray< XRXcodeMessageMatcher * > * )errors NS_DESIGNATED_INITIALIZER;
 
 @end
 

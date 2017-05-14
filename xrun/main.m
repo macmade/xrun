@@ -23,27 +23,29 @@
  ******************************************************************************/
 
 /*!
- * @header      THXXcodeOutputProcessor.h
+ * @file        main.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import <Foundation/Foundation.h>
-#import <ShellKit/ShellKit.h>
+#import <Cocoa/Cocoa.h>
+#import "XRArguments.h"
+#import "Xrun.h"
 
-@class THXXcodeMessageMatcher;
+    #include <stdlib.h>
+#include <curses.h>
+#include <term.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
-@interface THXXcodeOutputProcessor: SKObject < SKTaskDelegate >
-
-@property( atomic, readonly           ) BOOL       hasWarnings;
-@property( atomic, readonly           ) BOOL       hasErrors;
-@property( atomic, readonly           ) BOOL       hasStandardErrorOutput;
-@property( atomic, readonly, nullable ) NSString * standardErrorOutput;
-
-+ ( instancetype )defaultOutputProcessor;
-- ( instancetype )initWithMessageMatchers: ( NSArray< THXXcodeMessageMatcher * > * )messages warningMatchers: ( NSArray< THXXcodeMessageMatcher * > * )warnings errorMatchers: ( NSArray< THXXcodeMessageMatcher * > * )errors NS_DESIGNATED_INITIALIZER;
-
-@end
-
-NS_ASSUME_NONNULL_END
+int main( int argc, const char * argv[] )
+{
+    XRArguments * args;
+    BOOL           success;
+    
+    @autoreleasepool
+    {
+        args    = [ [ XRArguments alloc ] initWithArguments: argv count: argc ];
+        success = [ [ Xrun sharedInstance ] runWithArguments: args ];
+        
+        return ( success ) ? EXIT_SUCCESS : EXIT_FAILURE;
+    }
+}

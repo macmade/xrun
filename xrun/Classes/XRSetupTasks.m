@@ -23,25 +23,32 @@
  ******************************************************************************/
 
 /*!
- * @header      THXActions.h
+ * @file        XRSetupTasks.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import <Foundation/Foundation.h>
-#import <ShellKit/ShellKit.h>
-#import "THXStaticClass.h"
+#import "XRSetupTasks.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation XRSetupTasks
 
-@interface THXActions: THXStaticClass
++ ( id< SKRunableObject > )fixRVM
+{
+    return [ SKOptionalTask taskWithShellScript: @"rvm get head" ];
+}
 
-+ ( id< SKRunableObject > )setup;
-+ ( id< SKRunableObject > )build: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )analyze: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )test: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )clean: ( NSArray< NSString * > * )schemes;
-+ ( id< SKRunableObject > )coverage;
++ ( id< SKRunableObject > )updateHomebrew
+{
+    return [ SKTask taskWithShellScript: @"brew update" ];
+}
+
++ ( id< SKRunableObject > )installCCache
+{
+    return [ SKTask taskWithShellScript: @"brew install ccache" recoverTask: [ SKTask taskWithShellScript: @"brew upgrade ccache" ] ];
+}
+
++ ( id< SKRunableObject > )installXcodeCoveralls
+{
+    return [ SKTask taskWithShellScript: @"brew install macmade/tap/xcode-coveralls" recoverTask: [ SKTask taskWithShellScript: @"brew upgrade xcode-coveralls" ] ];
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

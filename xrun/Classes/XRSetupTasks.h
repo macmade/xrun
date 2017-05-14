@@ -23,15 +23,22 @@
  ******************************************************************************/
 
 /*!
- * @header      THXStaticClass.h
+ * @header      XRSetupTasks.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 #import <Foundation/Foundation.h>
+#import <ShellKit/ShellKit.h>
+#import "XRStaticClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXStaticClass: NSObject
+@interface XRSetupTasks: XRStaticClass
+
++ ( id< SKRunableObject > )fixRVM;
++ ( id< SKRunableObject > )updateHomebrew;
++ ( id< SKRunableObject > )installCCache;
++ ( id< SKRunableObject > )installXcodeCoveralls;
 
 @end
 

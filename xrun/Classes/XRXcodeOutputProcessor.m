@@ -23,16 +23,16 @@
  ******************************************************************************/
 
 /*!
- * @file        THXXcodeOutputProcessor.m
+ * @file        XRXcodeOutputProcessor.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXXcodeOutputProcessor.h"
-#import "THXXcodeMessageMatcher.h"
+#import "XRXcodeOutputProcessor.h"
+#import "XRXcodeMessageMatcher.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface THXXcodeOutputProcessor()
+@interface XRXcodeOutputProcessor()
 
 @property( atomic, readwrite, strong, nullable ) NSMutableString                                                   * outBuffer;
 @property( atomic, readwrite, strong, nullable ) NSMutableString                                                   * errBuffer;
@@ -40,22 +40,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, assign           ) BOOL                                                                hasErrors;
 @property( atomic, readwrite, assign           ) BOOL                                                                hasStandardErrorOutput;
 @property( atomic, readwrite, strong           ) dispatch_queue_t                                                    queue;
-@property( atomic, readwrite, strong           ) NSDictionary< NSString *, NSArray< THXXcodeMessageMatcher * > * > * matchers;
+@property( atomic, readwrite, strong           ) NSDictionary< NSString *, NSArray< XRXcodeMessageMatcher * > * > * matchers;
 
 - ( void )processMatchesInString: ( NSString * )str;
-- ( BOOL )processString: ( NSString * )str withMatcher: ( THXXcodeMessageMatcher * )matcher;
+- ( BOOL )processString: ( NSString * )str withMatcher: ( XRXcodeMessageMatcher * )matcher;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-@implementation THXXcodeOutputProcessor
+@implementation XRXcodeOutputProcessor
 
 + ( instancetype )defaultOutputProcessor
 {
-    return [ [ self alloc ] initWithMessageMatchers: [ THXXcodeMessageMatcher defaultMessageMatchers ]
-                            warningMatchers:         [ THXXcodeMessageMatcher defaultWarningMatchers ]
-                            errorMatchers:           [ THXXcodeMessageMatcher defaultErrorMatchers ]
+    return [ [ self alloc ] initWithMessageMatchers: [ XRXcodeMessageMatcher defaultMessageMatchers ]
+                            warningMatchers:         [ XRXcodeMessageMatcher defaultWarningMatchers ]
+                            errorMatchers:           [ XRXcodeMessageMatcher defaultErrorMatchers ]
            ];
 }
 
@@ -64,11 +64,11 @@ NS_ASSUME_NONNULL_END
     return [ self initWithMessageMatchers: @[] warningMatchers: @[] errorMatchers: @[] ];
 }
 
-- ( instancetype )initWithMessageMatchers: ( NSArray< THXXcodeMessageMatcher * > * )messages warningMatchers: ( NSArray< THXXcodeMessageMatcher * > * )warnings errorMatchers: ( NSArray< THXXcodeMessageMatcher * > * )errors
+- ( instancetype )initWithMessageMatchers: ( NSArray< XRXcodeMessageMatcher * > * )messages warningMatchers: ( NSArray< XRXcodeMessageMatcher * > * )warnings errorMatchers: ( NSArray< XRXcodeMessageMatcher * > * )errors
 {
     if( ( self = [ super init ] ) )
     {
-        self.queue    = dispatch_queue_create( "com.xs-labs.thx.THXXcodeOutputProcessor", DISPATCH_QUEUE_CONCURRENT );
+        self.queue    = dispatch_queue_create( "com.xs-labs.Xrun.XRXcodeOutputProcessor", DISPATCH_QUEUE_CONCURRENT );
         self.matchers = @{ @"messages" : messages, @"warnings" : warnings, @"errors" : errors };
     }
     
@@ -164,7 +164,7 @@ NS_ASSUME_NONNULL_END
 
 - ( void )processMatchesInString: ( NSString * )str
 {
-    THXXcodeMessageMatcher * matcher;
+    XRXcodeMessageMatcher * matcher;
     NSString               * key;
     BOOL                     match;
     
@@ -191,7 +191,7 @@ NS_ASSUME_NONNULL_END
     }
 }
 
-- ( BOOL )processString: ( NSString * )str withMatcher: ( THXXcodeMessageMatcher * )matcher
+- ( BOOL )processString: ( NSString * )str withMatcher: ( XRXcodeMessageMatcher * )matcher
 {
     NSArray< NSTextCheckingResult * > * results;
     NSTextCheckingResult              * result;

@@ -23,19 +23,27 @@
  ******************************************************************************/
 
 /*!
- * @file        THXStaticClass.m
+ * @header      XRArguments.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "THXStaticClass.h"
+#import <Foundation/Foundation.h>
+#import <ShellKit/ShellKit.h>
 
-@implementation THXStaticClass
+NS_ASSUME_NONNULL_BEGIN
 
-+ ( nullable instancetype )allocWithZone: ( struct _NSZone * )zone
-{
-    ( void )zone;
-    
-    return nil;
-}
+@interface XRArguments: SKObject
+
+@property( atomic, readonly           ) BOOL                    showHelp;
+@property( atomic, readonly           ) BOOL                    showVersion;
+@property( atomic, readonly           ) NSArray< NSString * > * actions;
+@property( atomic, readonly, nullable ) NSString              * project;
+@property( atomic, readonly           ) NSArray< NSString * > * schemes;
+@property( atomic, readonly, nullable ) NSError               * error;
+@property( atomic, readonly           ) NSString              * executable;
+
+- ( instancetype )initWithArguments: ( const char * _Nonnull * _Nullable )argv count: ( int )argc NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END
