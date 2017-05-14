@@ -149,7 +149,6 @@ NS_ASSUME_NONNULL_END
     
     [ self.outBuffer deleteCharactersInRange: NSMakeRange( 0, range.location + range.length ) ];
     
-    
     dispatch_async
     (
         self.queue,
