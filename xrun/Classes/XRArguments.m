@@ -115,19 +115,35 @@ NS_ASSUME_NONNULL_END
     
     while( ( arg = [ enumerator nextObject ] ) )
     {
-        if( [ arg isEqualToString: @"-help" ] )
+        if
+        (
+               [ arg isEqualToString: @"-help" ]
+            || [ arg isEqualToString: @"--help" ]
+        )
         {
             self.showHelp = YES;
         }
-        else if( [ arg isEqualToString: @"-version" ] )
+        else if
+        (
+               [ arg isEqualToString: @"-version" ]
+            || [ arg isEqualToString: @"--version" ]
+        )
         {
             self.showVersion = YES;
         }
-        else if( [ arg isEqualToString: @"-license" ] )
+        else if
+        (
+               [ arg isEqualToString: @"-license" ]
+            || [ arg isEqualToString: @"--license" ]
+        )
         {
             self.showLicense = YES;
         }
-        else if( [ arg isEqualToString: @"-verbose" ] )
+        else if
+        (
+               [ arg isEqualToString: @"-verbose" ]
+            || [ arg isEqualToString: @"--verbose" ]
+        )
         {
             self.verbose = YES;
         }

@@ -76,46 +76,82 @@ NS_ASSUME_NONNULL_END
 
 - ( void )printHelp
 {
+    NSArray< NSString * > * prompt;
+    
+    prompt                          = [ SKShell currentShell ].promptParts;
+    [ SKShell currentShell ].prompt = @"";
+    
     [ [ SKShell currentShell ] printMessage:
-        @"Usage:\n"
-        @"\n"
-        @"%@ [-h] [-v] [actions...] [-project <projectname>] [-schemes <schemename>...]\n"
+        @"Usage: %@ [-project <project>] [[-scheme <scheme>]...] [<action>]...\n"
         @"\n"
         @"Available actions:\n"
+        @"\n"
+        @"    build                   Build the target in the build root (SYMROOT).\n"
+        @"                            This is the default action, and is used if no\n"
+        @"                            action is given.\n"
         @"    \n"
-        @"    --build     Build Xcode scheme(s), invoking `xcodebuild`.\n"
-        @"                This requires the `-schemes` argument.\n"
+        @"    build-for-testing       Build the target and associated tests in the\n"
+        @"                            build root (SYMROOT).\n"
+        @"                            This will also produce an xctestrun file in the\n"
+        @"                            build root.\n"
+        @"                            This requires specifying a scheme.\n"
         @"    \n"
-        @"    --analyze   Analyze Xcode scheme(s), invoking `xcodebuild`.\n"
-        @"                This requires the `-schemes` argument.\n"
-        @"                Note that unlike `xcodebuild`, an analysis failure will\n"
-        @"                result in a non-zero exit status.\n"
+        @"    analyze                 Build and analyze a target or scheme from the\n"
+        @"                            build root (SYMROOT).\n"
+        @"                            This requires specifying a scheme.\n"
         @"    \n"
-        @"    --test      Test Xcode scheme(s), invoking `xcodebuild`.\n"
-        @"                This requires the `-schemes` argument.\n"
+        @"    archive                 Archive a scheme from the build root (SYMROOT). \n"
+        @"                            This requires specifying a scheme.\n"
         @"    \n"
-        @"    --setup     Performs initial setip and install additional dependancies.\n"
-        @"                You would typically execute this in the `install:` hook.\n"
+        @"    test                    Test a scheme from the build root (SYMROOT).\n"
+        @"                            This requires specifying a scheme and optionally\n"
+        @"                            a destination.\n"
         @"    \n"
-        @"    --coverage  Uploads code coverage data, if available, to coveralls.io.\n"
-        @"                You would typically execute this in the `after_success:`\n"
-        @"                hook.\n"
+        @"    test-without-building   Test compiled bundles. If a scheme is provided\n"
+        @"                            with -scheme then the command finds bundles in\n"
+        @"                            the build root (SRCROOT).\n"
+        @"                            If an xctestrun file is provided with -xctestrun\n"
+        @"                            then the command finds bundles at paths\n"
+        @"                            specified in the xctestrun file.\n"
+        @"    \n"
+        @"    install-src             Copy the source of the project to the source\n"
+        @"                            root (SRCROOT).\n"
+        @"    \n"
+        @"    install                 Build the target and install it into the\n"
+        @"                            target's installation directory in the\n"
+        @"                            distribution root (DSTROOT).\n"
+        @"    \n"
+        @"    clean                   Remove build products and intermediate files\n"
+        @"                            from the build root (SYMROOT).\n"
+        @"    \n"
+        @"    setup                   Performs initial setup and install additional\n"
+        @"                            dependancies.\n"
+        @"    \n"
+        @"    coverage                Uploads code coverage data, if available,\n"
+        @"                            to coveralls.io.\n"
         @"\n"
         @"Options:\n"
         @"    \n"
-        @"   -h           Shows the command usage.\n"
-        @"   -v           Shows the XR version number.\n"
-        @"   -project     Specifies the Xcode project.\n"
-        @"                If none, defaults to the first available Xcode project file.\n"
-        @"   -schemes     Schemes to build.\n"
-        @"                You can pass multiple schemes, separated by a space.\n"
-        status: SKStatusIdea,
+        @"    -help       Displays the command usage.\n"
+        @"    -version    Displays the Xrun version.\n"
+        @"    -license    Displays the Xrun license.\n"
+        @"    -verbose    Enables verbose mode.\n"
+        @"    -project    Specifies the Xcode project.\n"
+        @"    -scheme     Specifies the Xcode scheme.\n"
+        @"                This argument may be supplied multiple times.",
         ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
+    
+    [ SKShell currentShell ].promptParts = prompt;
 }
 
 - ( void )printLicense
 {
+    NSArray< NSString * > * prompt;
+    
+    prompt                          = [ SKShell currentShell ].promptParts;
+    [ SKShell currentShell ].prompt = @"";
+    
     [ [ SKShell currentShell ] printMessage:
         @"The MIT License (MIT)\n"
         @"\n"
@@ -138,13 +174,21 @@ NS_ASSUME_NONNULL_END
         @"LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n"
         @"OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\n"
         @"THE SOFTWARE."
-        status: SKStatusInfo
     ];
+    
+    [ SKShell currentShell ].promptParts = prompt;
 }
 
 - ( void )printVersion
 {
-    [ [ SKShell currentShell ] printMessage: @"Version %@" status: SKStatusInfo, self.version ];
+    NSArray< NSString * > * prompt;
+    
+    prompt                          = [ SKShell currentShell ].promptParts;
+    [ SKShell currentShell ].prompt = @"";
+    
+    [ [ SKShell currentShell ] printMessage: @"Xrun version %@", self.version ];
+    
+    [ SKShell currentShell ].promptParts = prompt;
 }
 
 - ( BOOL )checkEnvironment
