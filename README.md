@@ -30,35 +30,45 @@ Installation
 
 Xrun can be easily installed with [Homebrew](http://brew.sh):
 
-    brew install macmade/tap/xrun
+```sh
+brew install macmade/tap/xrun
+```
 
 Basic examples
 --------------
 
-    xrun clean build
+```sh
+xrun clean build
+```
     
 Cleans the build directory and builds the first target in the Xcode project in the directory from which xrun was started.
 
-    xrun -project Foo.xcodeproj -scheme Bar analyze test
+```sh
+xrun -project Foo.xcodeproj -scheme Bar analyze test
+```
     
 Analyses and tests the scheme `Bar` of the `Foo.xcodeproj` project.
 
 Example Travis configuration
 ----------------------------
 
-    language: objective-c
-    install:
-    - brew install macmade/tap/xrun
-    - xrun setup
-    script:
-    - xrun build analyse test 
+```yml
+language: objective-c
+install:
+- brew install macmade/tap/xrun
+- xrun setup
+script:
+- xrun build analyse test 
+```
 
 Compatibility with `xcodebuild`
 -------------------------------
 
 Xrun is fully compatible with `xcodebuild`, and can be used with the same command line options:
 
-    xrun install DSTROOT=/ -alltargets
+```sh
+xrun install DSTROOT=/ -alltargets
+```
 
 Usage
 -----
