@@ -337,14 +337,6 @@ NS_ASSUME_NONNULL_END
         return YES;
     }
     
-    if( args.actions.count == 0 )
-    {
-        [ [ SKShell currentShell ] printErrorMessage: @"No action provided" ];
-        [ self printHelp ];
-        
-        return NO;
-    }
-    
     if( [ self checkEnvironment ] == NO )
     {
         return NO;
@@ -353,6 +345,10 @@ NS_ASSUME_NONNULL_END
     if( args.actions.count )
     {
         return [ self executeActions: args.actions ];
+    }
+    else
+    {
+        return [ self executeActions: @[ @"xcodebuild:build" ] ];
     }
     
     return YES;
