@@ -5,7 +5,7 @@ install:
 script:
 - set -o pipefail && xcodebuild -project "xrun.xcodeproj" -scheme "xrun" build | xcpretty
 - set -o pipefail && xcodebuild -project "xrun.xcodeproj" -scheme "xrun" install DSTROOT="/" | xcpretty
-- /usr/local/bin/xrun --setup
-- /usr/local/bin/xrun --build --analyze -schemes xrun
+- /usr/local/bin/xrun setup
+- /usr/local/bin/xrun build analyze -scheme xrun
 notifications:
     slack: xs-labs:FXh1yLXNkpcVxKZhZU6icdhI
