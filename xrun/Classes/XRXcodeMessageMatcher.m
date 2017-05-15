@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_END
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionBuildTargetMatcher          verbose: NO  status: SKStatusTarget    resultFormat: @"Building target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAggregateTargetMatcher      verbose: NO  status: SKStatusTarget    resultFormat: @"Building aggregate target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzeTargetMatcher        verbose: NO  status: SKStatusTarget    resultFormat: @"Analyzing target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCheckDependenciesMatcher    verbose: NO  status: SKStatusNone      resultFormat: @"" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCheckDependenciesMatcher    verbose: YES status: SKStatusSearch    resultFormat: @"Checking dependencies" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionShellCommandMatcher         verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCleanRemoveMatcher          verbose: YES status: SKStatusTrash     resultFormat: @"Removing $(yellow)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCleanTargetMatcher          verbose: NO  status: SKStatusTarget    resultFormat: @"Cleaning target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
