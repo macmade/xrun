@@ -83,13 +83,6 @@ NSString * const XRRegularExpressionCheckDependenciesMatcher = @"Check dependenc
 
 /*
  * Captured groups:
- * - 1: command path
- * - 2: arguments
- */
-NSString * const XRRegularExpressionShellCommandMatcher = @" {4}(cd|setenv|(?:[\\w\\/:\\\\ \\-.]+?\\/)?[\\w\\-]+) (.*)$";
-
-/*
- * Captured groups:
  * - 1: file path
  * - 1: file name
  */
@@ -123,13 +116,6 @@ NSString * const XRRegularExpressionCodesignFrameworkMatcher = @"^CodeSign (.*\\
  * - 2: file name
  */
 NSString * const XRRegularExpressionCompileMatcher = @"^Compile[\\w]+ .+? ((?:\\\\.|[^ ])+\\/((?:\\\\.|[^ ])+\\.(?:m|mm|c|cc|cpp|cxx|swift))) .*$";
-
-/*
- * Captured groups:
- * - 1: compiler command
- * - 2: file path
- */
-NSString * const XRRegularExpressionCompileCommandMatcher = @" *(.*\\/bin\\/clang .* \\-c (.*\\.(?:m|mm|c|cc|cpp|cxx)) .*\\.o)$";
 
 /*
  * Captured groups:
