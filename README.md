@@ -124,9 +124,6 @@ Usage
         
         setup                   Performs initial setup and install additional
                                 dependancies.
-        
-        coverage                Uploads code coverage data, if available,
-                                to coveralls.io.
     
     Options:
         
