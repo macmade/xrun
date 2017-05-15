@@ -147,17 +147,21 @@ NSString * const XRRegularExpressionCompileStoryboardMatcher = @"CompileStoryboa
 
 /*
  * Captured groups:
- * - 1: source file
- * - 2: target file
+ * - 1: source file path
+ * - 1: source file name
+ * - 2: target file path
+ * - 2: target file name
  */
-NSString * const XRRegularExpressionCopyHeaderMatcher = @"CpHeader (.*\\.h) (.*\\.h)";
+NSString * const XRRegularExpressionCopyHeaderMatcher = @"^CpHeader (.*\\/(.+)) (.*\\/(.+))$";
 
 /*
  * Captured groups:
- * - 1: source file
- * - 2: target file
+ * - 1: source file path
+ * - 1: source file name
+ * - 2: target file path
+ * - 2: target file name
  */
-NSString * const XRRegularExpressionCopyPlistMatcher = @"CopyPlistFile (.*\\.plist) (.*\\.plist)";
+NSString * const XRRegularExpressionCopyPlistMatcher = @"CopyPlistFile (.*\\/(.+)) (.*\\/(.+))$";
 
 /*
  * Captured groups:
@@ -280,9 +284,12 @@ NSString * const XRRegularExpressionPBXCPMatcher = @"PBXCp ((?:\\\\ |[^ ])*)";
 
 /*
  * Captured groups:
- * - 1: file
+ * - 1: source file path
+ * - 1: source file name
+ * - 2: target file path
+ * - 2: target file name
  */
-NSString * const XRRegularExpressionProcessInfoPlistMatcher = @"ProcessInfoPlistFile .*\\.plist (.*\\/+(.*\\.plist))";
+NSString * const XRRegularExpressionProcessInfoPlistMatcher = @"ProcessInfoPlistFile (.*\\/(.+)) (.*\\/(.+))$";
 
 /*
  * Captured groups:
