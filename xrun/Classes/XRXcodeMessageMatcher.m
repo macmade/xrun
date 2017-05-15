@@ -48,9 +48,6 @@ NS_ASSUME_NONNULL_END
 
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultMessageMatchers;
 {
-    //char * s = NULL;
-    //*( s )   = 0;
-    
     return @[
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzeMatcher              verbose: NO  status: SKStatusIdea      resultFormat: @"Analyzing $(yellow)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionBuildTargetMatcher          verbose: NO  status: SKStatusTarget    resultFormat: @"Building target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
