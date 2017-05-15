@@ -46,7 +46,7 @@
         [ XRSetupTasks installXcodeCoveralls ]
     ];
     
-    if( [ NSProcessInfo processInfo ].environment[ @"TRAVIS" ] && [ [ SKShell currentShell ] isCommandAvailable: @"rvm" ] )
+    if( [ NSProcessInfo processInfo ].environment[ @"TRAVIS" ] && [ [ SKShell currentShell ] commandIsAvailable: @"rvm" ] )
     {
         tasks = [ @[ [ XRSetupTasks fixRVM ] ] arrayByAddingObjectsFromArray: tasks ];
     }
