@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args;
 - ( nullable NSString * )findXcodeProject;
+- ( NSString * )escapeArgument: ( NSString * )argument;
 
 @end
 
@@ -59,17 +60,18 @@ NS_ASSUME_NONNULL_END
 - ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args
 {
     NSString * script;
+    NSString * arg;
     
     script = @"xcodebuild %{action}% -project %{project}%";
     
     if( scheme.length )
     {
-        script = [ script stringByAppendingFormat: @" -scheme %@", scheme ];
+        script = [ script stringByAppendingFormat: @" -scheme %@", [ self escapeArgument: scheme ] ];
     }
     
-    if( args.additionalOptions.count )
+    for( arg in args.additionalOptions )
     {
-        script = [ script stringByAppendingFormat: @" %@", [ args.additionalOptions componentsJoinedByString: @" " ] ];
+        script = [ script stringByAppendingFormat: @" %@", [ self escapeArgument: arg ] ];
     }
     
     if( ( self = [ self initWithShellScript: script ] ) )
@@ -125,6 +127,10 @@ NS_ASSUME_NONNULL_END
             [ vars setObject: project forKey: @"project" ];
         }
     }
+    else
+    {
+        vars[ @"project" ] = [ self escapeArgument: vars[ @"project" ] ];
+    }
     
     self.outputProcessor.verbose = self.arguments.verbose;
     self.delegate                = self.outputProcessor;
@@ -162,6 +168,18 @@ NS_ASSUME_NONNULL_END
     }
     
     return nil;
+}
+
+- ( NSString * )escapeArgument: ( NSString * )argument
+{
+    
+    if( [ argument rangeOfString: @" " ].location != NSNotFound  )
+    {
+        argument = [ argument stringByReplacingOccurrencesOfString: @"\"" withString: @"\\\"" ];
+        argument = [ NSString stringWithFormat: @"\"%@\"", argument ];
+    }
+    
+    return argument;
 }
 
 @end
