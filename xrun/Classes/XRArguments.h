@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readonly           ) BOOL                    noPrompt;
 @property( atomic, readonly           ) BOOL                    verbose;
 @property( atomic, readonly           ) BOOL                    failOnWarnings;
+@property( atomic, readonly           ) BOOL                    disableColors;
+@property( atomic, readonly           ) BOOL                    disableIcons;
 @property( atomic, readonly           ) NSArray< NSString * > * actions;
 @property( atomic, readonly           ) NSArray< NSString * > * xcodeActions;
 @property( atomic, readonly, nullable ) NSString              * project;

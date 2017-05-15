@@ -136,6 +136,8 @@ Usage
                         This argument may be supplied multiple times.
         -no-prompt      Disables prompt hierarchy.
         -fail-warn      Fails when detecting warnings.
+        -disable-colors Disables the colored output.
+        -disable-icons  Disables the status icons.
 
 License
 -------

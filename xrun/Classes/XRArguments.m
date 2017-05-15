@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, assign           ) BOOL                    verbose;
 @property( atomic, readwrite, assign           ) BOOL                    noPrompt;
 @property( atomic, readwrite, assign           ) BOOL                    failOnWarnings;
+@property( atomic, readwrite, assign           ) BOOL                    disableColors;
+@property( atomic, readwrite, assign           ) BOOL                    disableIcons;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * actions;
 @property( atomic, readwrite, strong, nullable ) NSString              * project;
 @property( atomic, readwrite, strong           ) NSArray< NSString * > * schemes;
@@ -156,6 +158,22 @@ NS_ASSUME_NONNULL_END
         )
         {
             self.noPrompt = YES;
+        }
+        else if
+        (
+               [ arg isEqualToString: @"-disable-colors" ]
+            || [ arg isEqualToString: @"--disable-colors" ]
+        )
+        {
+            self.disableColors = YES;
+        }
+        else if
+        (
+               [ arg isEqualToString: @"-disable-icons" ]
+            || [ arg isEqualToString: @"--disable-icons" ]
+        )
+        {
+            self.disableIcons = YES;
         }
         else if
         (

@@ -137,7 +137,9 @@ NS_ASSUME_NONNULL_END
         @"    -scheme         Specifies the Xcode scheme.\n"
         @"                    This argument may be supplied multiple times.\n"
         @"    -no-prompt      Disables the prompt hierarchy."
-        @"    -fail-warn      Fails when detecting warnings.",
+        @"    -fail-warn      Fails when detecting warnings."
+        @"    -disable-colors Disables the colored output."
+        @"    -disable-icons  Disables the status icons.",
         ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
     
@@ -306,6 +308,16 @@ NS_ASSUME_NONNULL_END
 - ( BOOL )runWithArguments: ( XRArguments * )args
 {
     self.args = args;
+    
+    if( args.disableColors )
+    {
+        [ SKShell currentShell ].colorsEnabled = NO;
+    }
+    
+    if( args.disableIcons )
+    {
+        [ SKShell currentShell ].statusIconsEnabled = NO;
+    }
     
     if( args.error )
     {
