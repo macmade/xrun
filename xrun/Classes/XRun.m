@@ -129,17 +129,17 @@ NS_ASSUME_NONNULL_END
         @"\n"
         @"Options:\n"
         @"    \n"
-        @"    -help           Displays the command usage.\n"
-        @"    -version        Displays the xrun version.\n"
-        @"    -license        Displays the xrun license.\n"
-        @"    -verbose        Enables verbose mode.\n"
-        @"    -project        Specifies the Xcode project.\n"
-        @"    -scheme         Specifies the Xcode scheme.\n"
-        @"                    This argument may be supplied multiple times.\n"
-        @"    -no-prompt      Disables the prompt hierarchy."
-        @"    -fail-warn      Fails when detecting warnings."
-        @"    -disable-colors Disables the colored output."
-        @"    -disable-icons  Disables the status icons.",
+        @"    -help                   Displays the command usage.\n"
+        @"    -version                Displays the xrun version.\n"
+        @"    -license                Displays the xrun license.\n"
+        @"    -verbose                Enables verbose mode.\n"
+        @"    -project                Specifies the Xcode project.\n"
+        @"    -scheme                 Specifies the Xcode scheme.\n"
+        @"                            This argument may be supplied multiple times.\n"
+        @"    -no-prompt              Disables the prompt hierarchy."
+        @"    -fail-warn              Fails when detecting warnings."
+        @"    -disable-colors         Disables the colored output."
+        @"    -disable-icons          Disables the status icons.",
         ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
     
