@@ -26,8 +26,6 @@ About
 Installation
 ------------
 
-> **Note: xrun is currently in development, and no release have been published yet.**
-
 xrun can be easily installed with [Homebrew](http://brew.sh):
 
     brew install --HEAD macmade/tap/xrun
