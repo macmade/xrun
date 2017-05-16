@@ -4,7 +4,7 @@ install:
 - xrun setup
 script:
 - xrun -scheme xrun build analyze
-- xrun -project Test/TestApp/TestApp.xcodeproj -scheme TestApp build analyze test -verbose
-- xrun -project Test/TestApp/TestApp.xcodeproj -scheme TestApp build analyze test -verbose -fail-warn || if [ $? == 0 ]; then false; else true; fi    
+- xrun -project Tests/TestApp/TestApp.xcodeproj -scheme TestApp build analyze test -verbose
+- xrun -project Tests/TestApp/TestApp.xcodeproj -scheme TestApp build analyze test -verbose -fail-warn || if [ $? == 0 ]; then false; else true; fi    
 notifications:
     slack: xs-labs:FXh1yLXNkpcVxKZhZU6icdhI
