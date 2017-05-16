@@ -41,7 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong           ) XRArguments * arguments;
 
 - ( instancetype )initWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args;
-- ( nullable NSString * )findXcodeProject;
 - ( NSString * )escapeArgument: ( NSString * )argument;
 
 @end
@@ -113,7 +112,7 @@ NS_ASSUME_NONNULL_END
         {
             NSString * project;
             
-            project = [ self findXcodeProject ];
+            project = [ XRXcodeTask findXcodeProject ];
             
             if( project == nil )
             {
@@ -152,7 +151,7 @@ NS_ASSUME_NONNULL_END
     return ret;
 }
 
-- ( nullable NSString * )findXcodeProject
++ ( nullable NSString * )findXcodeProject
 {
     NSString * dir;
     NSString * path;

@@ -30,6 +30,7 @@
 #import "XRun.h"
 #import "XRArguments.h"
 #import "XRActions.h"
+#import "XRXcodeTask.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -136,9 +137,9 @@ NS_ASSUME_NONNULL_END
         @"    -project                Specifies the Xcode project.\n"
         @"    -scheme                 Specifies the Xcode scheme.\n"
         @"                            This argument may be supplied multiple times.\n"
-        @"    -no-prompt              Disables the prompt hierarchy."
-        @"    -fail-warn              Fails when detecting warnings."
-        @"    -disable-colors         Disables the colored output."
+        @"    -no-prompt              Disables the prompt hierarchy.\n"
+        @"    -fail-warn              Fails when detecting warnings.\n"
+        @"    -disable-colors         Disables the colored output.\n"
         @"    -disable-icons          Disables the status icons.",
         ( self.args.executable.length ) ? self.args.executable.lastPathComponent : @"xrun"
     ];
@@ -349,6 +350,19 @@ NS_ASSUME_NONNULL_END
     if( args.showLicense )
     {
         [ self printLicense ];
+        
+        return YES;
+    }
+    
+    if
+    (
+           args.actions.count               == 0
+        && args.project                     == nil
+        && args.schemes.count               == 0
+        && [ XRXcodeTask findXcodeProject ] == nil
+    )
+    {
+        [ self printHelp ];
         
         return YES;
     }

@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong  ) XRXcodeOutputProcessor * outputProcessor;
 
 + ( instancetype )taskWithAction: ( NSString * )action scheme: ( nullable NSString * )scheme arguments: ( XRArguments * )args;
++ ( nullable NSString * )findXcodeProject;
 
 @end
 
