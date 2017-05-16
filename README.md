@@ -30,7 +30,7 @@ Installation
 
 xrun can be easily installed with [Homebrew](http://brew.sh):
 
-    brew install macmade/tap/xrun
+    brew install --HEAD macmade/tap/xrun
 
 Basic examples
 --------------
