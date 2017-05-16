@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_END
 {
     if( ( self = [ super init ] ) )
     {
-        self.queue    = dispatch_queue_create( "com.xs-labs.Xrun.XRXcodeOutputProcessor", DISPATCH_QUEUE_SERIAL );
+        self.queue    = dispatch_queue_create( "com.xs-labs.xrun.XRXcodeOutputProcessor", DISPATCH_QUEUE_SERIAL );
         self.matchers = @{ @"messages" : messages, @"warnings" : warnings, @"errors" : errors };
     }
     

@@ -23,7 +23,7 @@
  ******************************************************************************/
 
 /*!
- * @header      Xrun.h
+ * @header      XRun.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
@@ -34,7 +34,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Xrun: SKObject
+@interface XRun: SKObject
 
 @property( atomic, readonly ) NSString * version;
 

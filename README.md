@@ -1,4 +1,4 @@
-Xrun
+xrun
 ====
 
 [![Build Status](https://img.shields.io/travis/macmade/xrun.svg?branch=master&style=flat)](https://travis-ci.org/macmade/xrun)
@@ -14,9 +14,9 @@ Xrun
 About
 -----
 
-### Xrun is a drop-in replacement for Apple's xcodebuild or Facebook's xctool
+### xrun is a drop-in replacement for Apple's xcodebuild or Facebook's xctool
 
-![Xrun](Assets/xrun.png "Xrun")
+![xrun](Assets/xrun.png "xrun")
 
  - **Fully compatible with `xcodebuild`**
  - **Designed to work with CI environment, like [Travis](http://travis-ci.org)**
@@ -26,9 +26,9 @@ About
 Installation
 ------------
 
-> **Note: Xrun is currently in development, and no release have been published yet.**
+> **Note: xrun is currently in development, and no release have been published yet.**
 
-Xrun can be easily installed with [Homebrew](http://brew.sh):
+xrun can be easily installed with [Homebrew](http://brew.sh):
 
     brew install macmade/tap/xrun
 
@@ -58,24 +58,24 @@ script:
 Compatibility with `xcodebuild`
 -------------------------------
 
-Xrun is fully compatible with `xcodebuild`, and can be used with the same command line options:
+xrun is fully compatible with `xcodebuild`, and can be used with the same command line options:
 
     xrun install DSTROOT=/ -alltargets
 
 Failures
 --------
 
-**Xrun allows a better control on failures compared to `xcodebuild`.**
+**xrun allows a better control on failures compared to `xcodebuild`.**
 
 When building a project, unless `-Werror` is specified, `xcodebuild` will exit successfully even if warnings were produced.
 
-Xrun can take an optional `-fail-warn` flag that will fail the build process if a warning is detected.
+xrun can take an optional `-fail-warn` flag that will fail the build process if a warning is detected.
 
 **The same applies for the static analyzer.**  
 With `xcodebuild`, warnings from the static analyzer are not considered as errors, and the whole analysis phase, if enabled, will succeed even if it detected issues.
 
 **This can be a huge issue, especially with continuous integration.**  
-For this reason, Xrun's `-fail-warn` flag also applies to static analysis.
+For this reason, xrun's `-fail-warn` flag also applies to static analysis.
 
 Usage
 -----
@@ -128,8 +128,8 @@ Usage
     Options:
         
         -help           Displays the command usage.
-        -version        Displays the Xrun version.
-        -license        Displays the Xrun license.
+        -version        Displays the xrun version.
+        -license        Displays the xrun license.
         -verbose        Enables verbose mode.
         -project        Specifies the Xcode project.
         -scheme         Specifies the Xcode scheme.
@@ -142,7 +142,7 @@ Usage
 License
 -------
 
-Xrun is released under the terms of the MIT license.
+xrun is released under the terms of the MIT license.
 
 Repository Infos
 ----------------

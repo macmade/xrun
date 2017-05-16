@@ -29,7 +29,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "XRArguments.h"
-#import "Xrun.h"
+#import "XRun.h"
 
     #include <stdlib.h>
 #include <curses.h>
@@ -44,7 +44,7 @@ int main( int argc, const char * argv[] )
     @autoreleasepool
     {
         args    = [ [ XRArguments alloc ] initWithArguments: argv count: argc ];
-        success = [ [ Xrun sharedInstance ] runWithArguments: args ];
+        success = [ [ XRun sharedInstance ] runWithArguments: args ];
         
         return ( success ) ? EXIT_SUCCESS : EXIT_FAILURE;
     }

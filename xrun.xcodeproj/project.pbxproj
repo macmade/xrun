@@ -15,7 +15,7 @@
 		058F79411EC730DA007CFF3A /* XRRegularExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79401EC730DA007CFF3A /* XRRegularExpressions.m */; };
 		058F79441EC73807007CFF3A /* XRXcodeOutputProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79431EC73807007CFF3A /* XRXcodeOutputProcessor.m */; };
 		058F79471EC73CA7007CFF3A /* XRXcodeMessageMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 058F79461EC73CA7007CFF3A /* XRXcodeMessageMatcher.m */; };
-		05C35D801EC38B2D00F373E7 /* Xrun.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* Xrun.m */; };
+		05C35D801EC38B2D00F373E7 /* XRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C35D7F1EC38B2D00F373E7 /* XRun.m */; };
 		05C35D8B1EC3D0F500F373E7 /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */; };
 		05CFB82D1EC30AF70020A075 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CFB82C1EC30AF70020A075 /* Cocoa.framework */; };
 		05CFB8301EC30B0B0020A075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CFB82F1EC30B0B0020A075 /* main.m */; };
@@ -84,8 +84,8 @@
 		058F79431EC73807007CFF3A /* XRXcodeOutputProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRXcodeOutputProcessor.m; sourceTree = "<group>"; };
 		058F79451EC73CA7007CFF3A /* XRXcodeMessageMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRXcodeMessageMatcher.h; sourceTree = "<group>"; };
 		058F79461EC73CA7007CFF3A /* XRXcodeMessageMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRXcodeMessageMatcher.m; sourceTree = "<group>"; };
-		05C35D7E1EC38B2D00F373E7 /* Xrun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xrun.h; sourceTree = "<group>"; };
-		05C35D7F1EC38B2D00F373E7 /* Xrun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Xrun.m; sourceTree = "<group>"; };
+		05C35D7E1EC38B2D00F373E7 /* XRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRun.h; sourceTree = "<group>"; };
+		05C35D7F1EC38B2D00F373E7 /* XRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRun.m; sourceTree = "<group>"; };
 		05C35D8A1EC3D0F500F373E7 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
 		05CFB82C1EC30AF70020A075 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		05CFB82F1EC30B0B0020A075 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 		05CFB8311EC30DC40020A075 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				05C35D7E1EC38B2D00F373E7 /* Xrun.h */,
-				05C35D7F1EC38B2D00F373E7 /* Xrun.m */,
+				05C35D7E1EC38B2D00F373E7 /* XRun.h */,
+				05C35D7F1EC38B2D00F373E7 /* XRun.m */,
 				058F79181EC60D3D007CFF3A /* XRActions.h */,
 				058F79191EC60D3D007CFF3A /* XRActions.m */,
 				05CFB8321EC30DEE0020A075 /* XRArguments.h */,
@@ -275,7 +275,7 @@
 				05CFB8341EC30DEE0020A075 /* XRArguments.m in Sources */,
 				058F79411EC730DA007CFF3A /* XRRegularExpressions.m in Sources */,
 				058F791D1EC60DAD007CFF3A /* XRStaticClass.m in Sources */,
-				05C35D801EC38B2D00F373E7 /* Xrun.m in Sources */,
+				05C35D801EC38B2D00F373E7 /* XRun.m in Sources */,
 				058F79281EC62621007CFF3A /* XRXXcodeTask.m in Sources */,
 				058F79201EC60DFF007CFF3A /* XRSetupTasks.m in Sources */,
 			);

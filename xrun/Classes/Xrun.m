@@ -23,17 +23,17 @@
  ******************************************************************************/
 
 /*!
- * @file        Xrun.m
+ * @file        XRun.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "Xrun.h"
+#import "XRun.h"
 #import "XRArguments.h"
 #import "XRActions.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Xrun()
+@interface XRun()
 
 @property( atomic, readwrite, strong           ) NSString    * version;
 @property( atomic, readwrite, strong, nullable ) XRArguments * args;
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-@implementation Xrun
+@implementation XRun
 
 + ( instancetype )sharedInstance
 {
@@ -130,8 +130,8 @@ NS_ASSUME_NONNULL_END
         @"Options:\n"
         @"    \n"
         @"    -help           Displays the command usage.\n"
-        @"    -version        Displays the Xrun version.\n"
-        @"    -license        Displays the Xrun license.\n"
+        @"    -version        Displays the xrun version.\n"
+        @"    -license        Displays the xrun license.\n"
         @"    -verbose        Enables verbose mode.\n"
         @"    -project        Specifies the Xcode project.\n"
         @"    -scheme         Specifies the Xcode scheme.\n"
@@ -187,7 +187,7 @@ NS_ASSUME_NONNULL_END
     prompt                          = [ SKShell currentShell ].promptParts;
     [ SKShell currentShell ].prompt = @"";
     
-    [ [ SKShell currentShell ] printMessage: @"Xrun version %@", self.version ];
+    [ [ SKShell currentShell ] printMessage: @"xrun version %@", self.version ];
     
     [ SKShell currentShell ].promptParts = prompt;
 }

@@ -147,13 +147,40 @@ NSString * const XRRegularExpressionCopyHeaderMatcher = @"^CpHeader (.*\\/(.+)) 
  * - 2: target file path
  * - 2: target file name
  */
-NSString * const XRRegularExpressionCopyPlistMatcher = @"CopyPlistFile (.*\\/(.+)) (.*\\/(.+))$";
+NSString * const XRRegularExpressionCopyPlistMatcher = @"^CopyPlistFile (.*\\/(.+)) (.*\\/(.+))";
 
 /*
  * Captured groups:
- * - 1: file
+ * - 1: file path
+ * - 1: file name
  */
-NSString * const XRRegularExpressionCopyStringsMatcher = @"CopyStringsFile.*\\/(.*.strings)";
+NSString * const XRRegularExpressionCopyStringsMatcher = @"^CopyStringsFile (.*\\/(.+))";
+
+/*
+ * Captured groups:
+ * - 1: file path
+ * - 1: file name
+ */
+NSString * const XRRegularExpressionDittoCopyMatcher = @"^Ditto (.*\\/(.+))";
+
+/*
+ * Captured groups:
+ * - 1: file path
+ * - 1: file name
+ */
+NSString * const XRRegularExpressionRegisterWithLSMatcher = @"^RegisterWithLaunchServices (.*\\/(.+))";
+
+/*
+ * Captured groups: none
+ */
+NSString * const XRRegularExpressionLinkStoryboardsMatcher = @"^LinkStoryboards";
+
+/*
+ * Captured groups:
+ * - 1: file path
+ * - 1: file name
+ */
+NSString * const XRRegularExpressionCompileAssetCatalogMatcher = @"^CompileAssetCatalog (.*\\/(.+))";
 
 /*
  * Captured groups:
@@ -308,7 +335,7 @@ NSString * const XRRegularExpressionTiffutilMatcher = @"TiffUtil (.*)";
  * - 1: file path
  * - 2: file name
  */
-NSString * const XRRegularExpressionTouchMatcher = @"Touch (.*\\/(.+))";
+NSString * const XRRegularExpressionTouchMatcher = @"^Touch (.*\\/(.+))";
 
 /*
  * Captured groups:
@@ -320,7 +347,7 @@ NSString * const XRRegularExpressionWriteFileMatcher = @"^write-file (.*\\/(.+))
 /*
  * Captured groups: none
  */
-NSString * const XRRegularExpressionWriteAuxiliaryFiles = @"^Write auxiliary files";
+NSString * const XRRegularExpressionWriteAuxiliaryFilesMatcher = @"^Write auxiliary files";
 
 /*******************************************************************************
  * WARNINGS

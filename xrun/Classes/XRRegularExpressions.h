@@ -60,6 +60,10 @@ FOUNDATION_EXPORT NSString * const XRRegularExpressionCompileStoryboardMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionCopyHeaderMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionCopyPlistMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionCopyStringsMatcher;
+FOUNDATION_EXPORT NSString * const XRRegularExpressionDittoCopyMatcher;
+FOUNDATION_EXPORT NSString * const XRRegularExpressionRegisterWithLSMatcher;
+FOUNDATION_EXPORT NSString * const XRRegularExpressionLinkStoryboardsMatcher;
+FOUNDATION_EXPORT NSString * const XRRegularExpressionCompileAssetCatalogMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionCpresourceMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionExecutedMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionFailingTestMatcher;
@@ -84,7 +88,7 @@ FOUNDATION_EXPORT NSString * const XRRegularExpressionTestSuiteStartMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionTiffutilMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionTouchMatcher;
 FOUNDATION_EXPORT NSString * const XRRegularExpressionWriteFileMatcher;
-FOUNDATION_EXPORT NSString * const XRRegularExpressionWriteAuxiliaryFiles;
+FOUNDATION_EXPORT NSString * const XRRegularExpressionWriteAuxiliaryFilesMatcher;
 
 /*******************************************************************************
  * ANALYZER WARNINGS

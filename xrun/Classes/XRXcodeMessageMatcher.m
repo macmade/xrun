@@ -49,28 +49,32 @@ NS_ASSUME_NONNULL_END
 + ( NSArray< XRXcodeMessageMatcher * > * )defaultMessageMatchers;
 {
     return @[
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzeMatcher              verbose: NO  status: SKStatusIdea      resultFormat: @"Analyzing $(yellow)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionBuildTargetMatcher          verbose: NO  status: SKStatusTarget    resultFormat: @"Building target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAggregateTargetMatcher      verbose: NO  status: SKStatusTarget    resultFormat: @"Building aggregate target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzeTargetMatcher        verbose: NO  status: SKStatusTarget    resultFormat: @"Analyzing target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCheckDependenciesMatcher    verbose: YES status: SKStatusSearch    resultFormat: @"Checking dependencies" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCleanRemoveMatcher          verbose: YES status: SKStatusTrash     resultFormat: @"Removing $(yellow)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCleanTargetMatcher          verbose: NO  status: SKStatusTarget    resultFormat: @"Cleaning target $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCodesignMatcher             verbose: NO  status: SKStatusSecurity  resultFormat: @"Code signing $(purple)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCodesignFrameworkMatcher    verbose: NO  status: SKStatusSecurity  resultFormat: @"Code signing $(purple)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileMatcher              verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling $(yellow)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileXIBMatcher           verbose: NO  status: SKStatusNone      resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileStoryboardMatcher    verbose: NO  status: SKStatusNone      resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyHeaderMatcher           verbose: NO  status: SKStatusFile      resultFormat: @"Copying header $(yellow)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyPlistMatcher            verbose: NO  status: SKStatusFile      resultFormat: @"Copying property list $(yellow)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyStringsMatcher          verbose: NO  status: SKStatusNone      resultFormat: @"" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzeMatcher              verbose: NO  status: SKStatusIdea      resultFormat: @"Analyzing: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionBuildTargetMatcher          verbose: NO  status: SKStatusTarget    resultFormat: @"Building target: $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAggregateTargetMatcher      verbose: NO  status: SKStatusTarget    resultFormat: @"Building aggregate target: $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionAnalyzeTargetMatcher        verbose: NO  status: SKStatusTarget    resultFormat: @"Analyzing target: $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCheckDependenciesMatcher    verbose: YES status: SKStatusSearch    resultFormat: @"Checking dependencies..." ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCleanRemoveMatcher          verbose: YES status: SKStatusTrash     resultFormat: @"Removing: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCleanTargetMatcher          verbose: NO  status: SKStatusTarget    resultFormat: @"Cleaning target: $(purple)$(1)$(clear) - $(blue)$(3)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCodesignMatcher             verbose: NO  status: SKStatusSecurity  resultFormat: @"Code signing: $(purple)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCodesignFrameworkMatcher    verbose: NO  status: SKStatusSecurity  resultFormat: @"Code signing: $(purple)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileMatcher              verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileXIBMatcher           verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling XIB fil:e $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileStoryboardMatcher    verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling Storyboard file: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyHeaderMatcher           verbose: NO  status: SKStatusFile      resultFormat: @"Copying header: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyPlistMatcher            verbose: NO  status: SKStatusFile      resultFormat: @"Copying property list: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyStringsMatcher          verbose: NO  status: SKStatusFile      resultFormat: @"Copying strings file: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionDittoCopyMatcher            verbose: NO  status: SKStatusFile      resultFormat: @"Copying: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionRegisterWithLSMatcher       verbose: YES status: SKStatusSettings  resultFormat: @"Registering with LaunchServices: $(purple)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionLinkStoryboardsMatcher      verbose: NO  status: SKStatusLink      resultFormat: @"Linking storyboards" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileAssetCatalogMatcher  verbose: NO  status: SKStatusLink      resultFormat: @"Compiling asset catalog: $(yellow)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCpresourceMatcher           verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionExecutedMatcher             verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionFailingTestMatcher          verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionUiFailingTestMatcher        verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionGenerateDsymMatcher         verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionLibtoolMatcher              verbose: NO  status: SKStatusNone      resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionLinkingMatcher              verbose: NO  status: SKStatusLink      resultFormat: @"Linking $(purple)$(1)$(clear) - $(blue)$(2) $(3)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionLinkingMatcher              verbose: NO  status: SKStatusLink      resultFormat: @"Linking: $(purple)$(1)$(clear) - $(blue)$(2) $(3)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTestCasePassedMatcher       verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTestCaseStartedMatcher      verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTestCasePendingMatcher      verbose: NO  status: SKStatusNone      resultFormat: @"" ],
@@ -81,14 +85,14 @@ NS_ASSUME_NONNULL_END
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionProcessPCHCommandMatcher    verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionPreprocessMatcher           verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionPBXCPMatcher                verbose: NO  status: SKStatusNone      resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionProcessInfoPlistMatcher     verbose: NO  status: SKStatusFile      resultFormat: @"Processing info property list $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionProcessInfoPlistMatcher     verbose: NO  status: SKStatusFile      resultFormat: @"Processing info property list: $(yellow)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTestsRunCompletionMatcher   verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTestSuiteStartedMatcher     verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTestSuiteStartMatcher       verbose: NO  status: SKStatusNone      resultFormat: @"" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTiffutilMatcher             verbose: NO  status: SKStatusNone      resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTouchMatcher                verbose: NO  status: SKStatusNone      resultFormat: @"" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionWriteFileMatcher            verbose: YES status: SKStatusFile      resultFormat: @"Writing file $(yellow)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionWriteAuxiliaryFiles         verbose: YES status: SKStatusFolder    resultFormat: @"Writing auxiliary files" ]
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionTouchMatcher                verbose: YES status: SKStatusFolder    resultFormat: @"Touching: $(purple)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionWriteFileMatcher            verbose: YES status: SKStatusFile      resultFormat: @"Writing file: $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionWriteAuxiliaryFilesMatcher  verbose: YES status: SKStatusFolder    resultFormat: @"Writing auxiliary files..." ]
     ];
 }
 
@@ -148,7 +152,7 @@ NS_ASSUME_NONNULL_END
         
         if( error != nil )
         {
-            @throw [ NSException exceptionWithName: @"com.xs-labs.Xrun.XRXcodeMessageMatcherException" reason: error.description userInfo: nil ];
+            @throw [ NSException exceptionWithName: @"com.xs-labs.xrun.XRXcodeMessageMatcherException" reason: error.description userInfo: nil ];
         }
     }
     
