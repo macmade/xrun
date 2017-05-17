@@ -80,26 +80,31 @@ NS_ASSUME_NONNULL_END
 
 + ( id< SKRunableObject > )importCertificate: ( NSString * )b64Cert
 {
-    NSArray< id< SKRunableObject > > * tasks;
-    NSData                           * data;
-    NSString                         * cert;
+    NSMutableArray< id< SKRunableObject > > * tasks;
+    NSData                                  * data;
+    NSString                                * cert;
+    NSOperatingSystemVersion                  macOSVersion;
     
-    b64Cert = [ b64Cert stringByReplacingOccurrencesOfString: @"\n" withString: @"" ];
-    data    = [ [ NSData alloc ] initWithBase64EncodedString: b64Cert options: NSDataBase64DecodingIgnoreUnknownCharacters ];
-    cert    = [ XRSetupTasks pathForTemporaryFileWithExtension: @"p12" ];
+    macOSVersion = [ NSProcessInfo processInfo ].operatingSystemVersion;
+    b64Cert      = [ b64Cert stringByReplacingOccurrencesOfString: @"\n" withString: @"" ];
+    data         = [ [ NSData alloc ] initWithBase64EncodedString: b64Cert options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+    cert         = [ XRSetupTasks pathForTemporaryFileWithExtension: @"p12" ];
+    tasks        = [ NSMutableArray new ];
     
     [ data writeToFile: cert atomically: YES ];
+
+    [ tasks addObject: [ XRSetupTasks createKeychain: buildKeychainName withPassword: buildKeychainPassword ] ];
+    [ tasks addObject: [ XRSetupTasks setDefaultKeychain: buildKeychainName ] ];
+    [ tasks addObject: [ XRSetupTasks unlockKeychain: buildKeychainName withPassword: buildKeychainPassword ] ];
+    [ tasks addObject: [ XRSetupTasks setTimeout: 36000 forKeychain: buildKeychainName ] ];
+    [ tasks addObject: [ XRSetupTasks importCertificate: cert inKeychain: buildKeychainName ] ];
     
-    tasks =
-    @[
-        [ XRSetupTasks createKeychain: buildKeychainName withPassword: buildKeychainPassword ],
-        [ XRSetupTasks setDefaultKeychain: buildKeychainName  ],
-        [ XRSetupTasks unlockKeychain: buildKeychainName withPassword: buildKeychainPassword ],
-        [ XRSetupTasks setTimeout: 36000 forKeychain: buildKeychainName ],
-        [ XRSetupTasks importCertificate: cert inKeychain: buildKeychainName ],
-        [ XRSetupTasks setKeyPartitionListOfKeychain: buildKeychainName withPassword: buildKeychainPassword ],
-        [ XRSetupTasks printIdentities ]
-    ];
+    if( macOSVersion.majorVersion >= 10 && macOSVersion.minorVersion >= 12 )
+    {
+        [ tasks addObject: [ XRSetupTasks setKeyPartitionListOfKeychain: buildKeychainName withPassword: buildKeychainPassword ] ];
+    }
+    
+    [ tasks addObject: [ XRSetupTasks printIdentities ] ];
     
     return [ SKTaskGroup taskGroupWithName: @"import-cert" tasks: tasks ];
 }
