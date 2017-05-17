@@ -65,7 +65,7 @@ script:
 ```
 
 <a name="4"></a>
-## Compatibility with `xcodebuild`
+## Compatibility with xcodebuild
 
 xrun is fully compatible with `xcodebuild`, and can be used with the same command line options:
 
