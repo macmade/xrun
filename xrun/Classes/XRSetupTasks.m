@@ -84,8 +84,9 @@ NS_ASSUME_NONNULL_END
     NSData                           * data;
     NSString                         * cert;
     
-    data = [ [ NSData alloc ] initWithBase64EncodedString: b64Cert options: NSDataBase64DecodingIgnoreUnknownCharacters ];
-    cert = [ XRSetupTasks pathForTemporaryFile ];
+    b64Cert = [ b64Cert stringByReplacingOccurrencesOfString: @"\n" withString: @"" ];
+    data    = [ [ NSData alloc ] initWithBase64EncodedString: b64Cert options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+    cert    = [ XRSetupTasks pathForTemporaryFile ];
     
     [ data writeToFile: cert atomically: YES ];
     
