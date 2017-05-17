@@ -23,6 +23,19 @@ About
  - **Human-friendly, colored output**
  - **Compatible with latest Xcode versions**
 
+Table of Contents
+-----------------
+
+ - [Installation](#1)
+ - [Basic examples](#2)
+ - [Example Travis configuration](#3)
+ - [Compatibility with xcodebuild](#4)
+ - [Code Signing](#5)
+ - [Failures](#6)
+ - [Usage](#7)
+ - [License](#8)
+
+<a name="1"></a>
 Installation
 ------------
 
@@ -30,6 +43,7 @@ xrun can be easily installed with [Homebrew](http://brew.sh):
 
     brew install --HEAD macmade/tap/xrun
 
+<a name="2"></a>
 Basic examples
 --------------
 
@@ -41,6 +55,7 @@ Cleans the build directory and builds the first target in the Xcode project in t
     
 Analyses and tests the scheme `Bar` of the `Foo.xcodeproj` project.
 
+<a name="3"></a>
 Example Travis configuration
 ----------------------------
 
@@ -53,6 +68,7 @@ script:
 - xrun build analyse test 
 ```
 
+<a name="4"></a>
 Compatibility with `xcodebuild`
 -------------------------------
 
@@ -60,6 +76,27 @@ xrun is fully compatible with `xcodebuild`, and can be used with the same comman
 
     xrun install DSTROOT=/ -alltargets
 
+<a name="5"></a>
+Code-Signing
+------------
+
+**xrun supports code-signing, even on CI environments, like [Travis](http://travis-ci.org)**.
+
+When building locally, developer identities stored in your keychain will be used.  
+But on a continuous integration system, your developer certificates need to be imported, so your project can be code-signed, and built successfully.
+
+When run, xrun will look for an environment variable named `XRUN_CERT`.  
+If it is defined, its data should contain a base-64 encoded **PKCS 12** file (.p12).
+
+It will then create a keychain in its `setup` action, and import your developer identities from the `XRUN_CERT` environment variable.  
+You'll then be able to use code-signing, even for continuous integration builds.
+
+On macOS, you can export your developer identity from the **Keychain.app** application, as a **PKCS 12** file.  
+You can then get a base-64 encoded string from the file using the following command:
+
+    openssl enc -base64 -in /path/to/p12/file
+
+<a name="6"></a>
 Failures
 --------
 
@@ -75,6 +112,7 @@ With `xcodebuild`, warnings from the static analyzer are not considered as error
 **This can be a huge issue, especially with continuous integration.**  
 For this reason, xrun's `-fail-warn` flag also applies to static analysis.
 
+<a name="7"></a>
 Usage
 -----
 
@@ -137,6 +175,7 @@ Usage
         -disable-colors         Disables the colored output.
         -disable-icons          Disables the status icons.
 
+<a name="8"></a>
 License
 -------
 
