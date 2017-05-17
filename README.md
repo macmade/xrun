@@ -11,8 +11,7 @@ xrun
 [![Donate-Gratipay](https://img.shields.io/badge/donate-gratipay-yellow.svg?style=flat)](https://www.gratipay.com/macmade)
 [![Donate-Paypal](https://img.shields.io/badge/donate-paypal-yellow.svg?style=flat)](https://paypal.me/xslabs)
 
-About
------
+## About
 
 ### xrun is a drop-in replacement for Apple's xcodebuild or Facebook's xctool
 
@@ -36,16 +35,14 @@ Table of Contents
  - [License](#8)
 
 <a name="1"></a>
-Installation
-------------
+## Installation
 
 xrun can be easily installed with [Homebrew](http://brew.sh):
 
     brew install --HEAD macmade/tap/xrun
 
 <a name="2"></a>
-Basic examples
---------------
+## Basic examples
 
     xrun clean build
     
@@ -56,8 +53,7 @@ Cleans the build directory and builds the first target in the Xcode project in t
 Analyses and tests the scheme `Bar` of the `Foo.xcodeproj` project.
 
 <a name="3"></a>
-Example Travis configuration
-----------------------------
+## Example Travis configuration
 
 ```yml
 language: objective-c
@@ -69,16 +65,14 @@ script:
 ```
 
 <a name="4"></a>
-Compatibility with `xcodebuild`
--------------------------------
+## Compatibility with `xcodebuild`
 
 xrun is fully compatible with `xcodebuild`, and can be used with the same command line options:
 
     xrun install DSTROOT=/ -alltargets
 
 <a name="5"></a>
-Code-Signing
-------------
+## Code-Signing
 
 **xrun supports code-signing, even on CI environments, like [Travis](http://travis-ci.org)**.
 
@@ -97,8 +91,7 @@ You can then get a base-64 encoded string from the file using the following comm
     openssl enc -base64 -in /path/to/p12/file
 
 <a name="6"></a>
-Failures
---------
+## Failures
 
 **xrun allows a better control on failures compared to `xcodebuild`.**
 
@@ -113,8 +106,7 @@ With `xcodebuild`, warnings from the static analyzer are not considered as error
 For this reason, xrun's `-fail-warn` flag also applies to static analysis.
 
 <a name="7"></a>
-Usage
------
+## Usage
 
     Usage: xrun [-project <project>] [[-scheme <scheme>]...] [<action>]...
     
@@ -176,13 +168,11 @@ Usage
         -disable-icons          Disables the status icons.
 
 <a name="8"></a>
-License
--------
+## License
 
 xrun is released under the terms of the MIT license.
 
-Repository Infos
-----------------
+## Repository Infos
 
     Owner:          Jean-David Gadina - XS-Labs
     Web:            www.xs-labs.com
