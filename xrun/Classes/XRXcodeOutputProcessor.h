@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readonly           ) BOOL       hasErrors;
 @property( atomic, readonly           ) BOOL       hasAnalyzerWarnings;
 @property( atomic, readonly           ) BOOL       hasStandardErrorOutput;
+@property( atomic, readonly, nullable ) NSString * lastOutput;
+@property( atomic, readonly           ) BOOL       errorDetectedOnLastOutput;
 @property( atomic, readonly, nullable ) NSString * standardErrorOutput;
 
 + ( instancetype )defaultOutputProcessor;

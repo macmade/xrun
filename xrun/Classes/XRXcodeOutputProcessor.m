@@ -35,13 +35,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XRXcodeOutputProcessor()
 
-@property( atomic, readwrite, strong, nullable ) NSMutableString                                                   * outBuffer;
-@property( atomic, readwrite, strong, nullable ) NSMutableString                                                   * errBuffer;
-@property( atomic, readwrite, assign           ) BOOL                                                                hasWarnings;
-@property( atomic, readwrite, assign           ) BOOL                                                                hasAnalyzerWarnings;
-@property( atomic, readwrite, assign           ) BOOL                                                                hasErrors;
-@property( atomic, readwrite, assign           ) BOOL                                                                hasStandardErrorOutput;
-@property( atomic, readwrite, strong           ) dispatch_queue_t                                                    queue;
+@property( atomic, readwrite, strong, nullable ) NSMutableString                                                  * outBuffer;
+@property( atomic, readwrite, strong, nullable ) NSMutableString                                                  * errBuffer;
+@property( atomic, readwrite, assign           ) BOOL                                                               hasWarnings;
+@property( atomic, readwrite, assign           ) BOOL                                                               hasAnalyzerWarnings;
+@property( atomic, readwrite, assign           ) BOOL                                                               hasErrors;
+@property( atomic, readwrite, assign           ) BOOL                                                               hasStandardErrorOutput;
+@property( atomic, readwrite, strong, nullable ) NSString                                                         * lastOutput;
+@property( atomic, readwrite, assign           ) BOOL                                                               errorDetectedOnLastOutput;
+@property( atomic, readwrite, strong           ) dispatch_queue_t                                                   queue;
 @property( atomic, readwrite, strong           ) NSDictionary< NSString *, NSArray< XRXcodeMessageMatcher * > * > * matchers;
 
 - ( void )processMatchesInString: ( NSString * )str;
@@ -168,6 +170,9 @@ NS_ASSUME_NONNULL_END
     NSString               * key;
     BOOL                     match;
     
+    self.errorDetectedOnLastOutput = NO;
+    self.lastOutput                = [ str stringByTrimmingCharactersInSet: [ NSCharacterSet whitespaceAndNewlineCharacterSet ] ];
+    
     for( key in self.matchers )
     {
         for( matcher in self.matchers[ key ] )
@@ -185,7 +190,8 @@ NS_ASSUME_NONNULL_END
             }
             else if( match && [ key isEqualToString: @"errors" ] )
             {
-                self.hasErrors = YES;
+                self.hasErrors                 = YES;
+                self.errorDetectedOnLastOutput = YES;
             }
             else if( match && [ key isEqualToString: @"analyzer" ] )
             {
