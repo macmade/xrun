@@ -64,14 +64,7 @@
 
 + ( id< SKRunableObject > )coverage
 {
-    NSArray * tasks;
-    
-    tasks =
-    @[
-        
-    ];
-    
-    return [ SKTaskGroup taskGroupWithName: @"coverage" tasks: tasks ];
+    return [ SKTaskGroup taskGroupWithName: @"coverage" tasks: @[] ];
 }
 
 + ( id< SKRunableObject > )xcodeBuild: ( NSString * )action arguments: ( XRArguments * )args
