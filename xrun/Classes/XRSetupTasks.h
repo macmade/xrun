@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 + ( id< SKRunableObject > )updateHomebrew;
 + ( id< SKRunableObject > )installCCache;
 + ( id< SKRunableObject > )installXcodeCoveralls;
++ ( id< SKRunableObject > )importCertificate: ( NSString * )b64Cert;
 
 @end
 

@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_END
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCodesignMatcher             verbose: NO  status: SKStatusSecurity  resultFormat: @"Code signing: $(purple)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCodesignFrameworkMatcher    verbose: NO  status: SKStatusSecurity  resultFormat: @"Code signing: $(purple)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileMatcher              verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling: $(yellow)$(2)$(clear)" ],
-        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileXIBMatcher           verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling XIB fil:e $(yellow)$(2)$(clear)" ],
+        [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileXIBMatcher           verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling XIB file: $(yellow)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCompileStoryboardMatcher    verbose: NO  status: SKStatusBuild     resultFormat: @"Compiling Storyboard file: $(yellow)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyHeaderMatcher           verbose: NO  status: SKStatusFile      resultFormat: @"Copying header: $(yellow)$(2)$(clear)" ],
         [ XRXcodeMessageMatcher matcherWithExpression: XRRegularExpressionCopyPlistMatcher            verbose: NO  status: SKStatusFile      resultFormat: @"Copying property list: $(yellow)$(2)$(clear)" ],

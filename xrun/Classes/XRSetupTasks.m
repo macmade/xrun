@@ -29,6 +29,33 @@
 
 #import "XRSetupTasks.h"
 
+static NSString * __strong buildKeychainName;
+static NSString * __strong buildKeychainPassword;
+
+static void init( void ) __attribute__( ( constructor ) );
+static void init( void )
+{
+    buildKeychainName     = [ NSUUID UUID ].UUIDString;
+    buildKeychainPassword = [ NSUUID UUID ].UUIDString;
+}
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface XRSetupTasks()
+
++ ( id< SKRunableObject > )createKeychain: ( NSString * )keychainName withPassword: ( NSString * )password;
++ ( id< SKRunableObject > )setDefaultKeychain: ( NSString * )keychainName;
++ ( id< SKRunableObject > )unlockKeychain: ( NSString * )keychainName withPassword: ( NSString * )password;
++ ( id< SKRunableObject > )setTimeout: ( NSUInteger )timeout forKeychain: ( NSString * )keychainName;
++ ( id< SKRunableObject > )importCertificate: ( NSString * )path inKeychain: ( NSString * )keychainName;
++ ( id< SKRunableObject > )setKeyPartitionListOfKeychain: ( NSString * )keychainName withPassword: ( NSString * )password;
++ ( id< SKRunableObject > )printIdentities;
++ ( NSString * )pathForTemporaryFile;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
 @implementation XRSetupTasks
 
 + ( id< SKRunableObject > )fixRVM
@@ -49,6 +76,82 @@
 + ( id< SKRunableObject > )installXcodeCoveralls
 {
     return [ SKTask taskWithShellScript: @"brew install macmade/tap/xcode-coveralls" recoverTask: [ SKTask taskWithShellScript: @"brew upgrade xcode-coveralls" ] ];
+}
+
++ ( id< SKRunableObject > )importCertificate: ( NSString * )b64Cert
+{
+    NSArray< id< SKRunableObject > > * tasks;
+    NSData                           * data;
+    NSString                         * cert;
+    
+    data = [ [ NSData alloc ] initWithBase64EncodedString: b64Cert options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+    cert = [ XRSetupTasks pathForTemporaryFile ];
+    
+    [ data writeToFile: cert atomically: YES ];
+    
+    tasks =
+    @[
+        [ XRSetupTasks createKeychain: buildKeychainName withPassword: buildKeychainPassword ],
+        [ XRSetupTasks setDefaultKeychain: buildKeychainName  ],
+        [ XRSetupTasks unlockKeychain: buildKeychainName withPassword: buildKeychainPassword ],
+        [ XRSetupTasks setTimeout: 36000 forKeychain: buildKeychainName ],
+        [ XRSetupTasks importCertificate: cert inKeychain: buildKeychainName ],
+        [ XRSetupTasks setKeyPartitionListOfKeychain: buildKeychainName withPassword: buildKeychainPassword ],
+        [ XRSetupTasks printIdentities ]
+    ];
+    
+    return [ SKTaskGroup taskGroupWithName: @"import-cert" tasks: tasks ];
+}
+
++ ( id< SKRunableObject > )createKeychain: ( NSString * )keychainName withPassword: ( NSString * )password
+{
+    return [ SKTask taskWithShellScript: [ NSString stringWithFormat: @"security create-keychain -p %@ %@", password, keychainName ] ];
+}
+
++ ( id< SKRunableObject > )setDefaultKeychain: ( NSString * )keychainName
+{
+    return [ SKTask taskWithShellScript: [ NSString stringWithFormat: @"security default-keychain -s %@", keychainName ] ];
+}
+
++ ( id< SKRunableObject > )unlockKeychain: ( NSString * )keychainName withPassword: ( NSString * )password
+{
+    return [ SKTask taskWithShellScript: [ NSString stringWithFormat: @"security unlock-keychain -p %@ %@", password, keychainName ] ];
+}
+
++ ( id< SKRunableObject > )setTimeout: ( NSUInteger )timeout forKeychain: ( NSString * )keychainName
+{
+    return [ SKTask taskWithShellScript: [ NSString stringWithFormat: @"security set-keychain-settings -t %lu -u %@", ( unsigned long )timeout, keychainName ] ];
+}
+
++ ( id< SKRunableObject > )importCertificate: ( NSString * )path inKeychain: ( NSString * )keychainName
+{
+    return [ SKTask taskWithShellScript: [ NSString stringWithFormat: @"security import %@ -k %@ -T /usr/bin/codesign -P \"\"", path, keychainName ] ];
+}
+
++ ( id< SKRunableObject > )setKeyPartitionListOfKeychain: ( NSString * )keychainName withPassword: ( NSString * )password
+{
+    return [ SKTask taskWithShellScript: [ NSString stringWithFormat: @"security set-key-partition-list -S apple-tool:,apple: -s -k %@ %@", password, keychainName ] ];
+}
+
++ ( id< SKRunableObject > )printIdentities
+{
+    return [ SKTask taskWithShellScript: @"security find-identity -v" ];
+}
+
++ ( NSString * )pathForTemporaryFile
+{
+    NSString * path;
+    NSUUID   * uuid;
+    
+    path = nil;
+    
+    while( path == nil || [ [ NSFileManager defaultManager ] fileExistsAtPath: path ] )
+    {
+        uuid = [ NSUUID UUID ];
+        path = [ NSTemporaryDirectory() stringByAppendingPathComponent: uuid.UUIDString ];
+    }
+    
+    return path;
 }
 
 @end

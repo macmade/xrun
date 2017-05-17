@@ -37,7 +37,8 @@
 
 + ( id< SKRunableObject > )setup
 {
-    NSArray * tasks;
+    NSArray  * tasks;
+    NSString * cert;
     
     tasks =
     @[
@@ -49,6 +50,13 @@
     if( [ NSProcessInfo processInfo ].environment[ @"TRAVIS" ] && [ [ SKShell currentShell ] commandIsAvailable: @"rvm" ] )
     {
         tasks = [ @[ [ XRSetupTasks fixRVM ] ] arrayByAddingObjectsFromArray: tasks ];
+    }
+    
+    cert = [ NSProcessInfo processInfo ].environment[ @"XRUN_CERT" ];
+    
+    if( cert.length )
+    {
+        tasks = [ @[ [ XRSetupTasks importCertificate: cert ] ] arrayByAddingObjectsFromArray: tasks ];
     }
     
     return [ SKTaskGroup taskGroupWithName: @"setup" tasks: tasks ];
