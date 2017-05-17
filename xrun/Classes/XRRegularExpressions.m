@@ -395,25 +395,25 @@ NSString * const XRRegularExpressionPhaseFailedMatcher = @"\\*\\* (.*) FAILED \\
  * Captured groups:
  * - 1: whole error
  */
-NSString * const XRRegularExpressionClangErrorMatcher = @"(clang: error:.*)$";
+NSString * const XRRegularExpressionClangErrorMatcher = @"^(clang: error:.*)$";
 
 /*
  * Captured groups:
  * - 1: whole error
  */
-NSString * const XRRegularExpressionCheckDependenciesErrorsMatcher = @"(Code ?Sign error:.*|Code signing is required for product type .* in SDK .*|No profile matching .* found:.*|Provisioning profile .* doesn't .*|Swift is unavailable on .*|.?Use Legacy Swift Language Version.*)$";
+NSString * const XRRegularExpressionCheckDependenciesErrorsMatcher = @"^(Code ?Sign error:.*|Code signing is required for product type .* in SDK .*|No profile matching .* found:.*|Provisioning profile .* doesn't .*|Swift is unavailable on .*|.?Use Legacy Swift Language Version.*)$";
 
 /*
  * Captured groups:
  * - 1: whole error
  */
-NSString * const XRRegularExpressionProvisioningProfileRequiredMatcher = @"(.*requires a provisioning profile.*)$";
+NSString * const XRRegularExpressionProvisioningProfileRequiredMatcher = @"^(.*requires a provisioning profile.*)$";
 
 /*
  * Captured groups:
  * - 1: whole error
  */
-NSString * const XRRegularExpressionNoCertificateMatcher = @"(No certificate matching.*)$";
+NSString * const XRRegularExpressionNoCertificateMatcher = @"^(No certificate matching.*)$";
 
 /*
  * Captured groups:
