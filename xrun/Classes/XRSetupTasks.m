@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 + ( id< SKRunableObject > )importCertificate: ( NSString * )path inKeychain: ( NSString * )keychainName;
 + ( id< SKRunableObject > )setKeyPartitionListOfKeychain: ( NSString * )keychainName withPassword: ( NSString * )password;
 + ( id< SKRunableObject > )printIdentities;
-+ ( NSString * )pathForTemporaryFile;
++ ( NSString * )pathForTemporaryFileWithExtension: ( NSString * )ext;
 
 @end
 
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_END
     
     b64Cert = [ b64Cert stringByReplacingOccurrencesOfString: @"\n" withString: @"" ];
     data    = [ [ NSData alloc ] initWithBase64EncodedString: b64Cert options: NSDataBase64DecodingIgnoreUnknownCharacters ];
-    cert    = [ XRSetupTasks pathForTemporaryFile ];
+    cert    = [ XRSetupTasks pathForTemporaryFileWithExtension: @"p12" ];
     
     [ data writeToFile: cert atomically: YES ];
     
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_END
     return [ SKTask taskWithShellScript: @"security find-identity -v" ];
 }
 
-+ ( NSString * )pathForTemporaryFile
++ ( NSString * )pathForTemporaryFileWithExtension: ( NSString * )ext
 {
     NSString * path;
     NSUUID   * uuid;
@@ -149,7 +149,7 @@ NS_ASSUME_NONNULL_END
     while( path == nil || [ [ NSFileManager defaultManager ] fileExistsAtPath: path ] )
     {
         uuid = [ NSUUID UUID ];
-        path = [ NSTemporaryDirectory() stringByAppendingPathComponent: uuid.UUIDString ];
+        path = [ [ NSTemporaryDirectory() stringByAppendingPathComponent: uuid.UUIDString ] stringByAppendingPathExtension: ext ];
     }
     
     return path;
