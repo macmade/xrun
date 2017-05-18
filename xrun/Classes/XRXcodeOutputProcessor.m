@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, assign           ) BOOL                                                               hasErrors;
 @property( atomic, readwrite, assign           ) BOOL                                                               hasStandardErrorOutput;
 @property( atomic, readwrite, strong, nullable ) NSString                                                         * lastOutput;
+@property( atomic, readwrite, strong, nullable ) NSString                                                         * lastOutputWithoutMatch;
 @property( atomic, readwrite, assign           ) BOOL                                                               errorDetectedOnLastOutput;
 @property( atomic, readwrite, strong           ) dispatch_queue_t                                                   queue;
 @property( atomic, readwrite, strong           ) NSDictionary< NSString *, NSArray< XRXcodeMessageMatcher * > * > * matchers;
@@ -196,6 +197,22 @@ NS_ASSUME_NONNULL_END
             else if( match && [ key isEqualToString: @"analyzer" ] )
             {
                 self.hasAnalyzerWarnings = YES;
+            }
+            
+            if( match )
+            {
+                self.lastOutputWithoutMatch = nil;
+            }
+            else
+            {
+                if( self.lastOutputWithoutMatch == nil )
+                {
+                    self.lastOutputWithoutMatch = str;
+                }
+                else
+                {
+                    self.lastOutputWithoutMatch = [ self.lastOutputWithoutMatch stringByAppendingString: str ];
+                }
             }
         }
     }

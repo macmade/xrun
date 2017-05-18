@@ -143,7 +143,11 @@ NS_ASSUME_NONNULL_END
         ret = NO;
     }
     
-    if( ret == NO && self.outputProcessor.errorDetectedOnLastOutput == NO && self.outputProcessor.lastOutput.length > 0 )
+    if( ret == NO && self.outputProcessor.errorDetectedOnLastOutput == NO && self.outputProcessor.lastOutputWithoutMatch.length > 0 )
+    {
+        [ [ SKShell currentShell ] printInfoMessage: @"Last output fro xcodebuild:\n    %@", self.outputProcessor.lastOutputWithoutMatch ];
+    }
+    else if( ret == NO && self.outputProcessor.errorDetectedOnLastOutput == NO && self.outputProcessor.lastOutput.length > 0 )
     {
         [ [ SKShell currentShell ] printInfoMessage: @"Last output fro xcodebuild:\n    %@", self.outputProcessor.lastOutput ];
     }
